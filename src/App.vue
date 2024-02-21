@@ -1,10 +1,15 @@
 <script>
 import axios from "axios";
-export default {};
+import { RouterView } from "vue-router";
+export default {
+  component: {
+    RouterView,
+  },
+};
 </script>
-<template></template>
+<template>
+  <router-view></router-view>
+</template>
 <style lang="scss">
 @use "./styles/general.scss" as *;
-body {
-}
 </style>
