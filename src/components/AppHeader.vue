@@ -2,7 +2,7 @@
 export default {};
 </script>
 <template>
-  <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+  <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
       <h5 class="text-body-emphasis h4">Collapsed content</h5>
       <span class="text-body-secondary">Toggleable via the navbar brand.</span>
@@ -24,9 +24,4 @@ export default {};
     </div>
   </nav>
 </template>
-<style lang="scss">
-.navbar-toggler {
-  //   background-color: rgb(143, 143, 160);
-  color: red;
-}
-</style>
+<style lang="scss"></style>
