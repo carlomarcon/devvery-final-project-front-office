@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const braintree = require('braintree');
+const totale = '50.00';
 
 router.post('/', (req, res, next) => {
   const gateway = new braintree.BraintreeGateway({
@@ -16,7 +17,7 @@ router.post('/', (req, res, next) => {
   const nonceFromTheClient = req.body.paymentMethodNonce;
   // Create a new transaction for $10
   const newTransaction = gateway.transaction.sale({
-    amount: '10.00',
+    amount: totale,  //inserisci qui l'importo della tranzazione dando una variabile al totale del carrello
     paymentMethodNonce: nonceFromTheClient,
     options: {
       // This option requests the funds from the transaction
@@ -31,5 +32,8 @@ router.post('/', (req, res, next) => {
       }
   });
 });
+
+
+
 
 module.exports = router;
