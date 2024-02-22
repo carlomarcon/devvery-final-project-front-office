@@ -13,5 +13,5 @@ export default {
 </template>
 <style lang="scss">
 @use "./styles/general.scss" as *;
-@import "@fortawesome/fontawesome-free/css/all.css"; 
+// @use "../styles/variables/variables.scss" as *;
 </style>
