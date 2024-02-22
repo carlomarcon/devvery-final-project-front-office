@@ -2,20 +2,15 @@
 import AppHeader from "../components/AppHeader.vue";
 import AppSearch from "../components/AppSearch.vue";
 import AppConcept from "../components/AppConcept.vue";
-import AppBody from "../components/AppBody.vue";
-import AppSeparator from "../components/AppSeparator.vue";
-
-export default {
-  components: { AppHeader, AppSearch, AppConcept, AppBody, AppSeparator },
-};
+import AppFooter from "../components/AppFooter.vue";
+export default { components: { AppHeader, AppSearch, AppConcept, AppFooter } };
 </script>
 <template>
   <AppHeader />
   <AppSearch />
   <img src="../img/pittogramma.png" alt="Logo" class="logo" />
   <AppConcept />
-
-  <AppBody />
+  <AppFooter />
 </template>
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
