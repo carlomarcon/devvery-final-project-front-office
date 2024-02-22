@@ -2,7 +2,7 @@
 export default {};
 </script>
 <template>
-  <nav class="navbar bg-body-tertiary fixed-top p-4">
+  <nav class="navbar bg-body-tertiary p-4">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../img/logotipo.png" alt=""
@@ -62,18 +62,9 @@ export default {};
               </ul>
             </li>
           </ul>
-          <form class="d-flex mt-3" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
         </div>
       </div>
     </div>
-    <input type="text" placeholder="Ristoranti,pizzerie.." />
   </nav>
 </template>
 <style lang="scss" scoped>
@@ -95,20 +86,6 @@ nav {
     height: 35px;
     width: 46px;
     margin-top: 10px;
-  }
-
-  input {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 2rem;
-    height: 3rem;
-    width: 16rem;
-    border-radius: 11px;
-    border-color: #01222b;
-  }
-  input::placeholder {
-    color: #fdb633;
   }
 }
 </style>
