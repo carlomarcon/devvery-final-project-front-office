@@ -1,5 +1,4 @@
-<template>
-    <div class="debug"></div>
+<template>    
     <footer>
         <div class="container d-md-flex justify-content-between p-3">
             <div v-for="(item, index) in footerItems" :key="index">
@@ -10,7 +9,7 @@
                     <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
                     <br>
                 </div>
-                
+
             </div>
         </div>
         <div class="container pt-3 pb-3">
@@ -65,7 +64,5 @@ footer a:hover {
   text-decoration: underline !important; 
 }
 
-.debug {
-    height: 400px;
-}
+
 </style>
