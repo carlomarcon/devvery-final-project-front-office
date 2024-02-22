@@ -3,13 +3,17 @@ import AppHeader from "../components/AppHeader.vue";
 import AppSearch from "../components/AppSearch.vue";
 import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
-export default { components: { AppHeader, AppSearch, AppConcept, AppFooter } };
+import AppBody from "../components/AppBody.vue";
+export default {
+  components: { AppHeader, AppSearch, AppConcept, AppBody, AppFooter },
+};
 </script>
 <template>
   <AppHeader />
   <AppSearch />
   <img src="../img/pittogramma.png" alt="Logo" class="logo" />
   <AppConcept />
+  <AppBody />
   <AppFooter />
 </template>
 <style lang="scss" scoped>
