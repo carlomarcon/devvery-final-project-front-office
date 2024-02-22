@@ -2,9 +2,10 @@
 import axios from "axios";
 import { RouterView } from "vue-router";
 export default {
-  component: {
-    RouterView,
+  data() {
+    return {};
   },
+  components: {},
 };
 </script>
 <template>
