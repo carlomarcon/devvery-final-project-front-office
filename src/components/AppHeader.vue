@@ -2,7 +2,9 @@
 export default {};
 </script>
 <template>
-  <nav class="navbar bg-body-tertiary p-4">
+  <!-- MOBILE -->
+
+  <nav class="navbar bg-body-tertiary p-4 ms_sm">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../img/logotipo.png" alt=""
@@ -66,9 +68,25 @@ export default {};
       </div>
     </div>
   </nav>
+
+  <!-- DESKTOP -->
+
+  <nav class="ms_bg">
+    <div class="logo"><img src="../img/logotipo.png" alt="" /></div>
+    <div class="menu">
+      <ul>
+        <li>CHI SIAMO</li>
+        <li><a href="" class="btn btn-warning">LOGIN</a></li>
+        <li><a href="" class="btn btn-outline-warning">CARRELLO</a></li>
+      </ul>
+    </div>
+  </nav>
 </template>
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss";
+.ms_bg {
+  display: none;
+}
 nav {
   background-color: white !important;
 
@@ -86,6 +104,34 @@ nav {
     height: 35px;
     width: 46px;
     margin-top: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .ms_sm {
+    display: none !important;
+  }
+
+  .ms_bg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    .logo {
+      img {
+        height: 4rem;
+      }
+    }
+
+    .menu {
+      ul {
+        height: 10px;
+        li {
+          display: inline-block;
+          margin-right: 1.5rem;
+        }
+      }
+    }
   }
 }
 </style>
