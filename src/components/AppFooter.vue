@@ -14,7 +14,7 @@
         </div>
         <div class="container pt-3 pb-3">
             <a class="text-white" href="">Termini e condizioni</a><br>
-            <a class="text-white" href="">Politica sulla privacy</a>
+            <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>            
         </div>
     </footer>
 </template>
