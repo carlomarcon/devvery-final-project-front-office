@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h2>Carrello</h2>
-    <ul v-if="cart.length > 0"> 
-      <li v-for="(item, index) in cart" :key="index">
+    <h2 class="mb-4">Carrello</h2>
+    <ul v-if="cart.length > 0" class="list-group"> 
+      <li v-for="(item, index) in cart" :key="index" class="list-group-item">
         {{ item.name }} - {{ item.price }}€ 
-        <button @click="removeFromCart(index)">Rimuovi dal carrello</button>
+        <button @click="removeFromCart(index)" class="btn btn-danger btn-sm float-end">Rimuovi dal carrello</button>
       </li>
     </ul>
-    <p v-else>Il carrello è vuoto</p>
+    <p v-else class="alert alert-info">Il carrello è vuoto</p>
     
-    <div v-if="cart.length > 0">
-      <p>Totale: {{ calculateTotal() }}€</p>
+    <div v-if="cart.length > 0" class="mt-4">
+      <p class="fw-bold">Totale: {{ calculateTotal() }}€</p>
     </div>
   </div>
 </template>
