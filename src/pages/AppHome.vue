@@ -5,11 +5,11 @@ import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
-import AppCart from "../components/AppCart.vue";
+import ProductList from "../components/ProductList.vue";
 export default {
   components: {
     AppHeader,
-    AppCart,
+    ProductList,
     AppSearch,
     AppConcept,
     AppBody,
@@ -20,7 +20,7 @@ export default {
 </script>
 <template>
   <AppHeader />
-  <AppCart />
+  <ProductList />
   <AppSearch />
   <img src="../img/pittogramma.png" alt="Logo" class="logo" />
   <AppCarousel />
