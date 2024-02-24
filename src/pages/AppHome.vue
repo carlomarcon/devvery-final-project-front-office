@@ -5,9 +5,11 @@ import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
+import AppCart from "../components/AppCart.vue";
 export default {
   components: {
     AppHeader,
+    AppCart,
     AppSearch,
     AppConcept,
     AppBody,
@@ -18,6 +20,7 @@ export default {
 </script>
 <template>
   <AppHeader />
+  <AppCart />
   <AppSearch />
   <img src="../img/pittogramma.png" alt="Logo" class="logo" />
   <AppCarousel />
