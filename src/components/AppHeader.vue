@@ -1,5 +1,4 @@
 <template>
-  <!-- MOBILE -->
   <nav class="navbar bg-body-tertiary p-4 ms_sm">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -27,7 +26,6 @@
     </div>
   </nav>
 
-  <!-- DESKTOP -->
   <nav class="ms_bg">
     <div class="logo"><img src="../img/logotipo.png" alt="" /></div>
     <div class="menu">
@@ -42,24 +40,20 @@
 
 <script>
 import AppCart from "./AppCart.vue";
-import { ref } from "vue"; // Importiamo ref per gestire il reattività dei dati
 
 export default {
   components: {
     AppCart
   },
-  setup() {
-    const cartData = ref([]); // Inizializziamo cartData come una variabile reattiva vuota
-
-    const addToCart = (product) => {
-      // Aggiungi il prodotto al carrello
-      cartData.value.push(product);
-    };
-
-    return { cartData, addToCart };
+  props: {
+    cartData: {
+      type: Array,
+      required: true
+    }
   }
 };
 </script>
+
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss";

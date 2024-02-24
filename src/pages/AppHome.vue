@@ -1,3 +1,16 @@
+<template>
+  <div>
+    <AppHeader :cart-data="cartData" />
+    <ProductList :products="productsData" @add-to-cart="addToCart" />
+    <AppSearch />
+    <img src="../img/pittogramma.png" alt="Logo" class="logo" />
+    <AppCarousel />
+    <AppConcept />
+    <AppBody />
+    <AppFooter />  
+  </div>
+</template>
+
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppSearch from "../components/AppSearch.vue";
@@ -6,7 +19,6 @@ import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
 import ProductList from "../components/ProductList.vue";
-import AppCart from "../components/AppCart.vue";
 import { products } from "/data.js";
 
 export default {
@@ -18,41 +30,23 @@ export default {
     AppBody,
     AppFooter,
     AppCarousel,
-    AppCart,
   },
   data() {
     return {
       productsData: products,
-      cartData: []
+      cartData: [],
     };
   },
   methods: {
     addToCart(product) {
-      // Aggiungi il prodotto al carrello
       this.cartData.push(product);
-      
     }
-  }
-
-
+  },
+  
 };
 </script>
 
-<template>
-  <div>
-    <AppHeader />
-    <ProductList :products="productsData"/>
-    <AppSearch />
-    <img src="../img/pittogramma.png" alt="Logo" class="logo" />
-    <AppCarousel />
-    <AppConcept />
-    <AppBody />
-    <AppFooter />  
-  </div>
-</template>
-
 <style lang="scss" scoped>
-@use "../styles/variables/variables.scss" as *;
 .logo {
   width: 50%;
   position: relative;
