@@ -21,7 +21,7 @@
           <button type="button" class="btn-close ms_burger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <AppCart />
+          <AppCart :cart="cartData"/>
         </div>
       </div>
     </div>
@@ -42,13 +42,25 @@
 
 <script>
 import AppCart from "./AppCart.vue";
+import { ref } from "vue"; // Importiamo ref per gestire il reattività dei dati
 
 export default {
   components: {
-    AppCart,
+    AppCart
   },
+  setup() {
+    const cartData = ref([]); // Inizializziamo cartData come una variabile reattiva vuota
+
+    const addToCart = (product) => {
+      // Aggiungi il prodotto al carrello
+      cartData.value.push(product);
+    };
+
+    return { cartData, addToCart };
+  }
 };
 </script>
+
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss";
 
