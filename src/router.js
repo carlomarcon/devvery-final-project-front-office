@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AppHome from "./pages/AppHome.vue";
-import PrivacyPage from './pages/PrivacyPage.vue';
+import PrivacyPage from "./pages/PrivacyPage.vue";
+import AppShipment from "./pages/AppShipment.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -11,9 +12,14 @@ const router = createRouter({
       component: AppHome,
     },
     {
-      path: '/privacy',
-      name: 'Privacy',
-      component: PrivacyPage
+      path: "/shipment",
+      name: "Shipment",
+      component: AppShipment,
+    },
+    {
+      path: "/privacy",
+      name: "Privacy",
+      component: PrivacyPage,
     },
   ],
 });

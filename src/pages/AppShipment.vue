@@ -24,14 +24,10 @@ export default {
       <div class="orders-details mt-3">
         <h3>Il tuo ordine:</h3>
         <ul class="list-group mt-3">
-          <li
-            v-if="store.cartItems.length != 0"
-            v-for="items in store.cartItems"
-            class="list-group-item"
-          >
+          <li v-for="items in store.cartItems" class="list-group-item">
             {{ items }}
           </li>
-          <li class="list-group-item" v-else>Nessun articolo nel carrello</li>
+          <li class="list-group-item">Nessun articolo nel carrello</li>
         </ul>
       </div>
       <h3 class="mt-5">Dettagli richiesti:</h3>

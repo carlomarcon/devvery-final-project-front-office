@@ -14,13 +14,23 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-          <button type="button" class="btn-close ms_burger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close ms_burger"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="offcanvas-body">
-          <AppCart :cart="cartData"/>
+          <AppCart />
         </div>
       </div>
     </div>
@@ -43,17 +53,17 @@ import AppCart from "./AppCart.vue";
 
 export default {
   components: {
-    AppCart
+    AppCart,
   },
-  props: {
-    cartData: {
-      type: Array,
-      required: true
-    }
-  }
+  // props: {
+  //   cartData: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
+  methods: {},
 };
 </script>
-
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss";
