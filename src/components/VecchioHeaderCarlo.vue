@@ -1,0 +1,110 @@
+<template>
+    <nav class="navbar bg-body-tertiary p-4 ms_sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../img/logotipo.png" alt="" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close ms_burger" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <AppCart />
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="ms_bg">
+        <div class="logo"><img src="../img/logotipo.png" alt="" /></div>
+        <div class="menu">
+            <ul>
+                <li>CHI SIAMO</li>
+                <li><a href="" class="btn btn-warning">LOGIN</a></li>
+                <li><a href="" class="btn btn-outline-warning">CARRELLO</a></li>
+            </ul>
+        </div>
+    </nav>
+</template>
+  
+<script>
+import AppCart from "./AppCart.vue";
+
+export default {
+    components: {
+        AppCart,
+    },
+    // props: {
+    //   cartData: {
+    //     type: Array,
+    //     required: true,
+    //   },
+    // },
+    methods: {},
+};
+</script>
+  
+<style lang="scss" scoped>
+@use "../styles/variables/variables.scss";
+
+.ms_bg {
+    display: none;
+}
+
+nav {
+    background-color: white !important;
+
+    span {
+        height: 25px;
+        width: 20px;
+    }
+
+    img {
+        height: 2rem;
+    }
+
+    .ms_burger {
+        border-color: #01222b;
+        height: 35px;
+        width: 46px;
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ms_sm {
+        display: none !important;
+    }
+
+    .ms_bg {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+
+        .logo {
+            img {
+                height: 4rem;
+            }
+        }
+
+        .menu {
+            ul {
+                height: 10px;
+
+                li {
+                    display: inline-block;
+                    margin-right: 1.5rem;
+                }
+            }
+        }
+    }
+}
+</style>
+  
