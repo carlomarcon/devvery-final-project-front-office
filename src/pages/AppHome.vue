@@ -56,7 +56,7 @@ export default {
 .rotate {
   transform: rotate(180deg);
   position: relative;
-  background-color: black;
+  background-color: #01222b;
 }
 .logo {
   width: 50%;
