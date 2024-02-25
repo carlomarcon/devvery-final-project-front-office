@@ -8,7 +8,9 @@ export default {
     return { store };
   },
   methods: {},
-  created() {},
+  created() {
+    // console.log(this.store.cartData);
+  },
 };
 </script>
 <template>
@@ -24,8 +26,8 @@ export default {
       <div class="orders-details mt-3">
         <h3>Il tuo ordine:</h3>
         <ul class="list-group mt-3">
-          <li v-for="items in store.cartItems" class="list-group-item">
-            {{ items }}
+          <li v-for="items in this.store.cartData" class="list-group-item">
+            {{ items.name }}
           </li>
           <li class="list-group-item">Nessun articolo nel carrello</li>
         </ul>

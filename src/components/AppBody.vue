@@ -39,4 +39,10 @@ body {
     object-fit: cover;
   }
 }
+
+@media (min-width: 768px) {
+  body {
+    display: none;
+  }
+}
 </style>

@@ -1,12 +1,13 @@
 <template>
   <div>
     <AppHeader :cart-data="cartData" />
-    <ProductList @add-to-cart="addToCart" />
+    <!-- <ProductList @add-to-cart="addToCart" /> -->
     <AppSearch />
     <img src="../img/pittogramma.png" alt="Logo" class="logo" />
     <AppCarousel />
     <AppConcept />
     <AppBody />
+    <AppOrderAndLogin />
     <AppFooter />
   </div>
 </template>
@@ -18,18 +19,20 @@ import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
-import ProductList from "../components/ProductList.vue";
+// import ProductList from "../components/ProductList.vue";
 import { store } from "../store";
+import AppOrderAndLogin from "../components/AppOrderAndLogin.vue";
 
 export default {
   components: {
     AppHeader,
-    ProductList,
+    // ProductList,
     AppSearch,
     AppConcept,
     AppBody,
     AppFooter,
     AppCarousel,
+    AppOrderAndLogin,
   },
   data() {
     return {
