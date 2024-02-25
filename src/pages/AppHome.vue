@@ -1,16 +1,19 @@
 <template>
   <div>
     <AppHeader :cart-data="cartData" />
-    <!-- <ProductList @add-to-cart="addToCart" /> -->
-    <AppSearch />
-    <img src="../img/pittogramma.png" alt="Logo" class="logo" />
-    <AppCarousel />
-    <AppConcept />
-    <AppWave />
-    <AppBody />
-    <AppOrderAndLogin />
-    <AppWave class="rotate" />
-    <AppFooter />
+    <div class="ms-container">
+      <ProductList @add-to-cart="addToCart" />
+      <AppSearch />
+      <img src="../img/pittogramma.png" alt="Logo" class="logo" />
+      <AppCarousel />
+      <AppConcept />
+      <AppWave />
+      <AppBody />
+      <AppOrderAndLogin />
+      <AppWave class="rotate" />
+      <AppFooter />
+    </div>
+
   </div>
 </template>
 
@@ -21,16 +24,16 @@ import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
+import ProductList from "../components/ProductList.vue";
 import AppWave from "../components/AppWave.vue";
-// import ProductList from "../components/ProductList.vue";
 import { store } from "../store";
 import AppOrderAndLogin from "../components/AppOrderAndLogin.vue";
 
 export default {
   components: {
     AppHeader,
-    // ProductList,
-    AppWave,
+    ProductList,
+    AppSearch,
     AppSearch,
     AppConcept,
     AppBody,
@@ -72,9 +75,14 @@ export default {
   }
 }
 
+<<<<<<< HEAD
 @media (min-width: 2560px) {
   .rotate {
     display: none;
   }
+=======
+.ms-container {
+  padding-top: 5rem;
+>>>>>>> 303f933e5977351ff68c0a406f2a737f00df5e74
 }
 </style>
