@@ -25,8 +25,10 @@ export default {};
       <div class="ms_input h-50 w-100">
         <div class="position-relative">
           <form action="">
-            <label for="Search"></label>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <label for="Search">
+              <i class="fa-solid fa-magnifying-glass"></i
+            ></label>
+
             <input type="text" placeholder="Ristoranti,pizzerie.." />
           </form>
         </div>

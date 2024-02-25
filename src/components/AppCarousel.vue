@@ -50,12 +50,12 @@ export default {
   align-items: center;
 }
 img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .carousel {
-  width: 60%;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
