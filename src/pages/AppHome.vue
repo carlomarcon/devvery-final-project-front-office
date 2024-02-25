@@ -71,4 +71,10 @@ export default {
     display: none;
   }
 }
+
+@media (min-width: 2560px) {
+  .rotate {
+    display: none;
+  }
+}
 </style>

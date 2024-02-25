@@ -28,7 +28,7 @@ export default {
 <template>
   <div class="container">
     <carousel
-      :items-to-show="2"
+      :items-to-show="2.5"
       :wrap-around="true"
       class="carousel"
       :autoplay="1250"
@@ -54,16 +54,60 @@ img {
   aspect-ratio: 1;
 }
 
-.carousel {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 25rem;
+  }
+  .carousel {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25rem;
+  }
+
+  .carousel {
+    width: 95%;
+    margin-bottom: 3rem;
+    padding: 30px 0;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 2559px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35rem;
+  }
+
+  .carousel {
+    width: 95%;
+    margin-bottom: 3rem;
+    padding: 30px 0;
+  }
+}
+
+@media (min-width: 2559px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45rem;
+  }
+
+  .carousel {
+    width: 100%;
+    margin-bottom: 3rem;
+    padding: 30px 0;
   }
 }
 </style>

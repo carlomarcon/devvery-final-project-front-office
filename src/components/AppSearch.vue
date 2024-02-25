@@ -37,6 +37,10 @@ export default {};
   </div>
 </template>
 <style lang="scss" scoped>
+input::placeholder {
+  color: #fdb633;
+}
+
 i {
   position: absolute;
   top: 50%;
@@ -56,11 +60,27 @@ input {
   border-color: #01222b;
   text-align: center;
 }
-input::placeholder {
-  color: #fdb633;
-}
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  i {
+    position: absolute;
+    top: 50%;
+    right: 73%;
+    z-index: 1;
+    font-size: 1.5rem;
+  }
+
+  input {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5rem;
+    height: 3rem;
+    width: 18.4rem;
+    border-radius: 11px;
+    border-color: #01222b;
+    text-align: center;
+  }
   .ms_sm {
     display: none;
   }
@@ -86,6 +106,25 @@ input::placeholder {
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
+  i {
+    position: absolute;
+    top: 50%;
+    right: 73%;
+    z-index: 1;
+    font-size: 1.5rem;
+  }
+
+  input {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5rem;
+    height: 3rem;
+    width: 18.4rem;
+    border-radius: 11px;
+    border-color: #01222b;
+    text-align: center;
+  }
   .ms_sm {
     display: none;
   }
@@ -110,7 +149,26 @@ input::placeholder {
     }
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1439px) and (max-width: 3339px) {
+  i {
+    position: absolute;
+    top: 50%;
+    right: 73%;
+    z-index: 1;
+    font-size: 1.5rem;
+  }
+
+  input {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5rem;
+    height: 3rem;
+    width: 18.4rem;
+    border-radius: 11px;
+    border-color: #01222b;
+    text-align: center;
+  }
   .ms_sm {
     display: none;
   }
@@ -126,6 +184,51 @@ input::placeholder {
     }
     .search {
       padding: 6rem 10rem 1rem 7rem;
+      .van {
+        img {
+          height: 100px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 2560px) {
+  i {
+    position: absolute;
+    top: 50%;
+    right: 82%;
+    z-index: 1;
+    font-size: 1.5rem;
+  }
+
+  input {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1.5rem;
+    height: 3rem;
+    width: 18.4rem;
+    border-radius: 11px;
+    border-color: #01222b;
+    text-align: center;
+  }
+  .ms_sm {
+    display: none;
+  }
+
+  .ms_lg {
+    height: 20rem;
+    width: 100%;
+    display: flex !important;
+
+    .concept {
+      margin-left: 14rem;
+      color: #fdb633;
+      padding: 0 26rem;
+    }
+    .search {
+      padding: 6rem 40rem 1rem 16rem;
       .van {
         img {
           height: 100px;
