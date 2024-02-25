@@ -11,9 +11,8 @@
       <AppBody />
       <AppOrderAndLogin />
       <AppWave class="rotate" />
-      <AppFooter />
+      <AppFooter class="upper position-relative" />
     </div>
-
   </div>
 </template>
 
@@ -39,6 +38,7 @@ export default {
     AppBody,
     AppFooter,
     AppCarousel,
+    AppWave,
     AppOrderAndLogin,
   },
   data() {
@@ -56,10 +56,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.upper {
+  bottom: 1px;
+}
 .rotate {
   transform: rotate(180deg);
   position: relative;
   background-color: #01222b;
+  z-index: -1;
 }
 .logo {
   width: 50%;
@@ -75,14 +79,10 @@ export default {
   }
 }
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 @media (min-width: 2560px) {
   .rotate {
     display: none;
   }
-=======
-.ms-container {
-  padding-top: 5rem;
->>>>>>> 303f933e5977351ff68c0a406f2a737f00df5e74
 }
 </style>

@@ -32,14 +32,16 @@ export default {};
   </div>
 </template>
 <style lang="scss" scoped>
-.wrapper {
-  padding: 3rem;
-  background-color: #fdb633;
-  .col {
-    img {
-      object-fit: cover;
-      width: 100%;
-      border-radius: 20px;
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 3rem;
+    background-color: #fdb633;
+    .col {
+      img {
+        object-fit: cover;
+        width: 100%;
+        border-radius: 20px;
+      }
     }
   }
 }
