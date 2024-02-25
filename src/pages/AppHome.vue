@@ -1,14 +1,17 @@
 <template>
   <div>
     <AppHeader :cart-data="cartData" />
-    <!-- <ProductList @add-to-cart="addToCart" /> -->
-    <AppSearch />
-    <img src="../img/pittogramma.png" alt="Logo" class="logo" />
-    <AppCarousel />
-    <AppConcept />
-    <AppBody />
-    <AppOrderAndLogin />
-    <AppFooter />
+    <div class="ms-container">
+      <ProductList @add-to-cart="addToCart" />
+      <AppSearch />
+      <img src="../img/pittogramma.png" alt="Logo" class="logo" />
+      <AppCarousel />
+      <AppConcept />
+      <AppBody />
+      <AppOrderAndLogin />
+      <AppFooter />
+    </div>
+
   </div>
 </template>
 
@@ -19,14 +22,14 @@ import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
-// import ProductList from "../components/ProductList.vue";
+import ProductList from "../components/ProductList.vue";
 import { store } from "../store";
 import AppOrderAndLogin from "../components/AppOrderAndLogin.vue";
 
 export default {
   components: {
     AppHeader,
-    // ProductList,
+    ProductList,
     AppSearch,
     AppConcept,
     AppBody,
@@ -61,5 +64,9 @@ export default {
   .logo {
     display: none;
   }
+}
+
+.ms-container {
+  padding-top: 5rem;
 }
 </style>
