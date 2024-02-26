@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>Lista Prodotti  //debug</h2>
+    <h2>Lista Prodotti //debug</h2>
     <ul>
-      <li v-for="product in store.products" :key="product.id">
+      <li v-for="product in this.store.products" :key="product.id">
         {{ product.name }} - {{ product.price }}€
         <button @click="addToCart(product)" class="btn btn-primary">Aggiungi al carrello</button>
       </li>
@@ -18,39 +18,50 @@
     </transition>
   </div>
 </template>
-
+  
 <script>
 import { store } from "../store";
 export default {
   data() {
-    return { 
+    return {
       store,
       showModal: false
     };
   },
-  props: {
-    products: {
-      type: Array,
-      required: true,
-    },
-  },
   methods: {
     addToCart(product) {
-      this.store.cartData.push(product);
-      this.showModal = true;
-      setTimeout(() => {
-        this.showModal = false;
-      }, 1000); // Hide modal after 2 seconds
+      const existingProduct = this.store.cartData.find(item => item.id == product.id);
+      if (existingProduct) {
+        existingProduct.quantity++;
+      } else {
+        const myProduct = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        };
+        this.store.cartData.push(myProduct);
+      }
+      localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
+    },
+    pushProduct(product) {
+      let myProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1
+      };
+      this.store.cartData.push(myProduct)
     }
   },
 };
 </script>
-
+  
 <style scoped>
 /* Styling for the modal */
 .modal {
   position: fixed;
-  margin-top: 40vh;  
+  margin-top: 40vh;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
@@ -65,10 +76,14 @@ export default {
 }
 
 /* Fade animation */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to {
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
+  

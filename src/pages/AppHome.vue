@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader :cart-data="cartData" />
+    <AppHeader />
     <div class="ms-container">
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
