@@ -11,7 +11,7 @@ export default {
       images: [
         {
           cover: 'alta-cucina',
-          link: 'https://www.google.it/?hl=it',
+          link: 'https://www.google.it/?hl=i',
           type: 'GOURMET'
         },
         {
@@ -51,21 +51,10 @@ export default {
         },
       ],
       settings: {
-        itemsToShow: 1,
+        itemsToShow: 0.8,
         snapAlign: 'center',
-        autoplay: 2000
-      },
-      breakpoints: {
-        // 700px and up
-        500: {
-          itemsToShow: 2,
-          snapAlign: 'center',
-        },
-        // 1024 and up
-        1024: {
-          itemsToShow: 3.5,
-          snapAlign: 'center',
-        },
+        autoplay: 3000,
+        mouseDrag: false,
       },
     };
   },
@@ -73,7 +62,7 @@ export default {
   components: {
     Carousel,
     Slide,
-    Navigation,
+    Navigation
   },
   methods: {
     getImagepath(img) {
@@ -83,11 +72,9 @@ export default {
 };
 </script>
 <template>
-  <Carousel class="w-100 mt-4 mb-4" v-bind="settings" :breakpoints="breakpoints" :wrap-around="true"
-    :pause-autoplay-on-hover="true">
+  <Carousel class="w-100" v-bind="settings" :wrap-around="true">
     <Slide v-for="slide in images" :key="slide">
       <img class="carousel__item" :src="getImagepath(slide.cover)" alt="">
-      <a :href="slide.link">{{ slide.type }}</a>
     </Slide>
     <template #addons>
       <Navigation />
@@ -97,33 +84,19 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
-
+.carousel {
+  position: absolute;
+  top: 0;
+  z-index: -99999;
+  filter: brightness(40%);
+}
 .carousel__item {
-  height: 300px;
+  height: 1000px;
   width: 100%;
   object-fit: cover;
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-.carousel__slide {
-  padding: 5px;
-}
-
-a {
-  z-index: 3;
-  position: absolute;
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bolder;
-  color: $ms_dark;
-  left: 0;
-  bottom: 0;
-  background-color: white;
-  padding: .2rem 1rem .2rem 1rem;
-  border-radius: 0 10px 0px 0;
 }
 </style>

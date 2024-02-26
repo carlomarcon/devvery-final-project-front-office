@@ -57,7 +57,7 @@ export default {
 <template>
   <div class="container">
     <div class="d-flex align-items-center justify-content-end">
-      <form class="px-4 py-1" action="">
+      <form class="px-5 py-1" action="">
         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
         <input v-model="search" @input="filteredRestaurants" id="search" type="text" placeholder="Cerca Ristorante" />
       </form>
@@ -71,15 +71,17 @@ export default {
 i {
   position: absolute;
   z-index: 1;
-  top: 19%;
+  top: 27%;
   left: 3%;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: $ms_dark;
 }
 
 input {
   border: none;
   text-align: center;
+  background-color: transparent;
+  font-size: 2rem;
 
   &:focus {
     border: none;
@@ -92,9 +94,10 @@ input {
 }
 
 form {
-  border: 2px solid $ms_dark;
-  line-height: 30px;
+  border: 4px solid $ms_dark;
+  line-height: 60px;
   position: relative;
   border-radius: 5px;
+  background-color: white;
 }
 </style>

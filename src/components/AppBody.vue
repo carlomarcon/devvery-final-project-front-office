@@ -2,7 +2,7 @@
 export default {};
 </script>
 <template>
-  <div class="concept text-center align-items-center px-3">
+  <div class="concept text-center align-items-center px-3 mt-5">
       <h2>Il cibo che vuoi quando vuoi..da<span>vv</span>ero!</h2>
     </div>
 
