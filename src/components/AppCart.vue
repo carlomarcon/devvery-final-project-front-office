@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     remove(index) {
-      this.store.cartData=[];
+      this.store.cartData.splice(index, 1);
     },
     calculateTotal() {
       let total = 0;
