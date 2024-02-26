@@ -56,6 +56,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.ms-container {
+  padding-top: 5rem;
+}
 .upper {
   bottom: 1px;
 }
