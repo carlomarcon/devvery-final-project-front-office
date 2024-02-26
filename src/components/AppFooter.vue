@@ -1,24 +1,3 @@
-<template>    
-    <footer>
-        <div class="container d-md-flex justify-content-between p-3">
-            <div v-for="(item, index) in footerItems" :key="index">
-                <h2 class="mt-4 mb-3 text-white">{{ item.title }}</h2>
-
-                <div class="lh-lg" v-for="(link, linkIndex) in item.links" :key="linkIndex">
-                    <span v-if="link.icon" class="text-white"><i class="me-2 fs-5" :class="'fab fa-' + link.icon"></i></span>
-                    <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
-                    <br>
-                </div>
-
-            </div>
-        </div>
-        <div class="container pt-3 pb-3">
-            <a class="text-white" href="">Termini e condizioni</a><br>
-            <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>            
-        </div>
-    </footer>
-</template>
-
 <script>
 export default {
     data() {
@@ -54,6 +33,27 @@ export default {
     }
 };
 </script>
+
+<template>    
+    <footer>
+        <div class="container d-md-flex justify-content-between p-3">
+            <div v-for="(item, index) in footerItems" :key="index">
+                <h2 class="mt-4 mb-3 text-white">{{ item.title }}</h2>
+
+                <div class="lh-lg" v-for="(link, linkIndex) in item.links" :key="linkIndex">
+                    <span v-if="link.icon" class="text-white"><i class="me-2 fs-5" :class="'fab fa-' + link.icon"></i></span>
+                    <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+        <div class="container p-3 d-flex justify-content-between">
+            <a class="text-white" href="">Termini e condizioni</a><br>
+            <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>            
+        </div>
+    </footer>
+</template>
 
 <style scoped lang="scss">
 footer {
