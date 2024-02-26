@@ -4,7 +4,6 @@
     <div class="ms-container">
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
-      <img src="../assets/images/main/pittogramma.png" alt="Logo" class="logo" />
       <AppCarousel />
       <AppConcept />
       <AppBody />

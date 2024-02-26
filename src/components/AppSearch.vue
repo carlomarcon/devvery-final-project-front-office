@@ -1,240 +1,48 @@
 <script>
 export default {};
 </script>
+
 <template>
-  <!-- MOBILE -->
-
-  <div class="position-relative ms_sm">
-    <form action="">
-      <label for="Search"></label>
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" placeholder="Ristoranti,pizzerie.." />
-    </form>
-  </div>
-
-  <!-- DESKTOP -->
-
-  <div class="wrapper ms_lg d-none">
-    <div class="concept h-100 w-50 d-flex align-items-center">
-      <h1>Il cibo che vuoi, quando e dove vuoi..Davvero!</h1>
-    </div>
-    <div class="search h-100 w-50 d-flex flex-column">
-      <div class="van h-50 w-100">
-        <img src="../assets/images/main/camioncino.png" alt="van" />
-      </div>
-      <div class="ms_input h-50 w-100">
-        <div class="position-relative">
-          <form action="">
-            <label for="Search">
-              <i class="fa-solid fa-magnifying-glass"></i
-            ></label>
-
-            <input type="text" placeholder="Ristoranti,pizzerie.." />
-          </form>
-        </div>
-      </div>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-end">
+      <form class="px-4 py-1" action="">
+        <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input id="search" type="text" placeholder="Cerca Ristorante" />
+      </form>
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
-input::placeholder {
-  color: #fdb633;
-}
+@use "../styles/variables/variables.scss" as *;
 
 i {
   position: absolute;
-  top: 50%;
-  right: 73%;
   z-index: 1;
+  top: 19%;
+  left: 3%;
   font-size: 1.5rem;
+  color: $ms_dark;
 }
 
 input {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 1.5rem;
-  height: 3rem;
-  width: 18.4rem;
-  border-radius: 11px;
-  border-color: #01222b;
+  border: none;
   text-align: center;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  i {
-    position: absolute;
-    top: 50%;
-    right: 73%;
-    z-index: 1;
-    font-size: 1.5rem;
+ 
+  &:focus {
+    border: none;
+    outline: none;
   }
 
-  input {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 1.5rem;
-    height: 3rem;
-    width: 18.4rem;
-    border-radius: 11px;
-    border-color: #01222b;
-    text-align: center;
-  }
-  .ms_sm {
-    display: none;
-  }
-
-  .ms_lg {
-    height: 20rem;
-    width: 100%;
-    display: flex !important;
-
-    .concept {
-      padding: 0 0 0 1rem;
-      color: #fdb633;
-    }
-    .search {
-      padding: 5rem 0px 1rem 3rem;
-      .van {
-        img {
-          height: 100px;
-        }
-      }
-    }
+  &::placeholder {
+    color: $ms_yellow;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
-  i {
-    position: absolute;
-    top: 50%;
-    right: 73%;
-    z-index: 1;
-    font-size: 1.5rem;
-  }
-
-  input {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 1.5rem;
-    height: 3rem;
-    width: 18.4rem;
-    border-radius: 11px;
-    border-color: #01222b;
-    text-align: center;
-  }
-  .ms_sm {
-    display: none;
-  }
-
-  .ms_lg {
-    height: 20rem;
-    width: 100%;
-    display: flex !important;
-
-    .concept {
-      margin-left: 3rem;
-      color: #fdb633;
-    }
-    .search {
-      padding: 5rem 1rem 1rem 7rem;
-
-      .van {
-        img {
-          height: 100px;
-        }
-      }
-    }
-  }
-}
-@media (min-width: 1439px) and (max-width: 3339px) {
-  i {
-    position: absolute;
-    top: 50%;
-    right: 73%;
-    z-index: 1;
-    font-size: 1.5rem;
-  }
-
-  input {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 1.5rem;
-    height: 3rem;
-    width: 18.4rem;
-    border-radius: 11px;
-    border-color: #01222b;
-    text-align: center;
-  }
-  .ms_sm {
-    display: none;
-  }
-
-  .ms_lg {
-    height: 20rem;
-    width: 100%;
-    display: flex !important;
-
-    .concept {
-      margin-left: 14rem;
-      color: #fdb633;
-    }
-    .search {
-      padding: 6rem 10rem 1rem 7rem;
-      .van {
-        img {
-          height: 100px;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 2560px) {
-  i {
-    position: absolute;
-    top: 50%;
-    right: 82%;
-    z-index: 1;
-    font-size: 1.5rem;
-  }
-
-  input {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 1.5rem;
-    height: 3rem;
-    width: 18.4rem;
-    border-radius: 11px;
-    border-color: #01222b;
-    text-align: center;
-  }
-  .ms_sm {
-    display: none;
-  }
-
-  .ms_lg {
-    height: 20rem;
-    width: 100%;
-    display: flex !important;
-
-    .concept {
-      margin-left: 14rem;
-      color: #fdb633;
-      padding: 0 26rem;
-    }
-    .search {
-      padding: 6rem 40rem 1rem 16rem;
-      .van {
-        img {
-          height: 100px;
-        }
-      }
-    }
-  }
+form {
+  border: 2px solid $ms_dark;
+  line-height: 30px;
+  position: relative;
+  border-radius: 5px;
 }
 </style>
