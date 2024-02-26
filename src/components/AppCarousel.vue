@@ -32,7 +32,7 @@ export default {
         {
           cover: 'hamburgheria',
           link: '',
-          type: 'HAMBURGHERIE'
+          type: 'PANINOTECHE'
         },
         {
           cover: 'pasticceria',
@@ -113,22 +113,17 @@ export default {
   padding: 5px;
 }
 
-.carousel__prev,
-.carousel__next {
-  background: white !important;
-  border-radius: 50% !important;
-}
-
 a {
   z-index: 3;
   position: absolute;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bolder;
-  color: white;
-  bottom: 20%;
-  background-color: $ms_dark;
+  color: $ms_dark;
+  left: 0;
+  bottom: 0;
+  background-color: white;
   padding: .2rem 1rem .2rem 1rem;
-  border-radius: 10px;
+  border-radius: 0 10px 0px 0;
 }
 </style>

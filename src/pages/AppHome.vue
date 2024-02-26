@@ -10,7 +10,6 @@
       <AppWave />
       <AppBody />
       <AppOrderAndLogin />
-      <AppWave class="rotate" />
       <AppFooter class="upper position-relative" />
     </div>
   </div>
@@ -63,12 +62,7 @@ export default {
 .upper {
   bottom: 1px;
 }
-.rotate {
-  transform: rotate(180deg);
-  position: relative;
-  background-color: #01222b;
-  z-index: -1;
-}
+
 .logo {
   width: 50%;
   position: relative;

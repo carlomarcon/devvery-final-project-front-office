@@ -25,7 +25,7 @@ export default {
   <div>
     <AppHeader />
     
-    <div class="container mt-5 mb-5">
+    <div class="ms-container container mt-5 mb-5">
       <h2>Informativa Sulla Privacy</h2>
       <div class="row">
         <div class="col-md-4 mb-3">
