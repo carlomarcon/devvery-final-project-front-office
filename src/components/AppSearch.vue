@@ -1,5 +1,59 @@
 <script>
-export default {};
+import axios from "axios";
+import { store } from "../store";
+export default {
+  data() {
+    return {
+      search: "",
+      baseUrl: "http://127.0.0.1:8000",
+        store,
+      // restaurants: [],
+      // myTypes: [],
+      // checkedTypes: [],
+    };
+  },
+  components: {},
+  created() {
+    axios.get(`${this.baseUrl}/api/types`).then((resp) => {
+      this.store.myTypes = resp.data.result;
+    });
+  },
+  methods: {
+    filteredRestaurants() {
+      this.store.checkedTypes = [];
+      if (this.search.length === 0) {
+        this.store.flag = false;
+      } else {
+        axios
+          .get(`${this.baseUrl}/api/restaurants/searchText/${this.search}`)
+          .then((resp) => {
+            // console.log(resp.data.result[0]);
+            this.store.restaurants = resp.data.result;
+          })
+          .finally(() => {
+            this.store.flag = true;
+          });
+      }
+    },
+    checkTypes() {
+      this.search = "";
+      this.store.restaurants = [];
+      if (this.checkedTypes.length > 0) {
+        let dates = [];
+        this.store.checkedTypes.forEach((element) => {
+          dates.push(element.name);
+        });
+        let params = { types: dates };
+        axios
+          .get(`${this.baseUrl}/api/restaurants/types`, { params })
+          .then((resp) => {
+            console.log(resp.data.result);
+            this.store.restaurants = resp.data.result;
+          });
+      }
+    },
+  },
+};
 </script>
 
 <template>
@@ -7,7 +61,7 @@ export default {};
     <div class="d-flex align-items-center justify-content-end">
       <form class="px-4 py-1" action="">
         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-        <input id="search" type="text" placeholder="Cerca Ristorante" />
+        <input v-model="search" @input="filteredRestaurants" id="search" type="text" placeholder="Cerca Ristorante" />
       </form>
     </div>
   </div>
@@ -28,7 +82,7 @@ i {
 input {
   border: none;
   text-align: center;
- 
+
   &:focus {
     border: none;
     outline: none;
