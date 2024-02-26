@@ -53,17 +53,8 @@ img {
   height: 3rem;
 }
 
-nav {
-  height: 5rem;
-
-}
-
 i {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
-ul {
-  list-style-type: none;
-  margin-top: 1rem;
-}
 </style>
