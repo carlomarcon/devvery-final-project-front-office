@@ -4,6 +4,7 @@
     <div class="ms-container">
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
+      <AppResults v-if="store.flag"/>
       <AppCarousel />
       <AppBody />
       <AppOrderAndLogin />
@@ -14,6 +15,7 @@
 
 <script>
 import AppHeader from "../components/AppHeader.vue";
+import AppResults from "../components/AppResults.vue";
 import AppSearch from "../components/AppSearch.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
@@ -32,6 +34,7 @@ export default {
     AppFooter,
     AppCarousel,
     AppOrderAndLogin,
+    AppResults
   },
   data() {
     return {
