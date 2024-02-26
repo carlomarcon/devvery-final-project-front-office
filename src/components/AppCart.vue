@@ -24,7 +24,10 @@ export default {
   },
   methods: {
     remove(index) {
+      const element= this.store.cartData[index].name;
+      console.log(element);
       this.store.cartData.splice(index, 1);
+      console.log(this.store.cartData);
     },
     calculateTotal() {
       let total = 0;
@@ -34,15 +37,12 @@ export default {
       return total;
     },
     incrementQuantity(index) {
-      const clonedItem = { ...this.store.cartData[index] };
-      clonedItem.quantity++;
-      this.store.cartData.splice(index, 1, clonedItem);
+      this.store.cartData[index].quantity++;     
+      
     },
     decrementQuantity(index) {
       if (this.store.cartData[index].quantity > 1) {
-        const clonedItem = { ...this.store.cartData[index] };
-        clonedItem.quantity--;
-        this.store.cartData.splice(index, 1, clonedItem);
+        this.store.cartData[index].quantity--;
       }
     },
   },

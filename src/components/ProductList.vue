@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>Lista Prodotti  //debug</h2>
+    <h2>Lista Prodotti //debug</h2>
     <ul>
-      <li v-for="product in store.products" :key="product.id">
+      <li v-for="product, index in this.store.products" :key="product.id">
         {{ product.name }} - {{ product.price }}€
-        <button @click="addToCart(product)" class="btn btn-primary">Aggiungi al carrello</button>
+        <button @click="addToCart(product, index)" class="btn btn-primary">Aggiungi al carrello</button>
       </li>
     </ul>
 
@@ -23,7 +23,7 @@
 import { store } from "../store";
 export default {
   data() {
-    return { 
+    return {
       store,
       showModal: false
     };
@@ -35,8 +35,10 @@ export default {
     },
   },
   methods: {
-    addToCart(product) {
-      this.store.cartData.push(product);
+    addToCart(product, index) {
+      if (this.store.cartData[index]) { this.store.cartData[index].quantity++ }
+        else { this.store.cartData.push(product) }
+      ;
       this.showModal = true;
       setTimeout(() => {
         this.showModal = false;
@@ -50,7 +52,7 @@ export default {
 /* Styling for the modal */
 .modal {
   position: fixed;
-  margin-top: 40vh;  
+  margin-top: 40vh;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
@@ -65,10 +67,12 @@ export default {
 }
 
 /* Fade animation */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to {
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
-}
-</style>
+}</style>
