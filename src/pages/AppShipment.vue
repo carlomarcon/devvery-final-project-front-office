@@ -17,7 +17,7 @@ export default {
   <section class="sectionShipment">
     <div class="order d-flex align-items-center">
       <router-link :to="{ name: 'home' }">
-        <img class="m-3" src="../img/pittogramma.png" alt="" />
+        <img class="m-3" src="../assets/images/main/pittogramma.png" alt="" />
       </router-link>
       <h2>Dettagli di consegna</h2>
     </div>

@@ -4,8 +4,7 @@ import AppCart from "./AppCart.vue";
 export default {
   components: {
     AppCart,
-  },
-  methods: {},
+  }
 };
 </script>
 
@@ -15,12 +14,12 @@ export default {
       <div class="container ">
 
         <a class="navbar-brand" href="#">
-          <img src="../img/logotipo.png" alt="" />
+          <img src="../assets/images/main/logotipo.png" alt="" />
         </a>
 
         <div class="d-flex gap-3 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
-          <a href="" class="btn ms_btn-yellow d-none d-md-block">LOGIN</a>
+          <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-none d-md-block">LOGIN</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -47,10 +46,9 @@ export default {
 
 
 <style lang="scss" scoped>
-@use "../styles/variables/variables.scss";
 
 img {
-  height: 3rem;
+  height: 40px;
 }
 
 i {

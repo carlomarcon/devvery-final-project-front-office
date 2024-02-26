@@ -1,113 +1,129 @@
 <script>
+import { defineComponent } from 'vue'
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 export default {
-  name: "App",
+  name: "Autoplay",
 
   data() {
     return {
-      imgArray: [
-        "https://www.my-personaltrainer.it/2020/09/07/hamburger_900x760.jpeg",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
-        "https://www.todis.it/wp-content/uploads/2023/05/sushi-fatto-in-casa.jpg",
-        "https://www.donnamoderna.com/content/uploads/2003/03/Cotoletta-alla-milanese-830x625.jpg",
-        "https://www.cucchiaio.it/content/dam/cucchiaio/it/ricette/2022/11/pasta-alla-lupara/_R5_1095.jpg",
+      images: [
+        {
+          cover: 'alta-cucina',
+          link: '',
+          type: 'GOURMET'
+        },
+        {
+          cover: 'cinese',
+          link: '',
+          type: 'CINESE'
+        },
+        {
+          cover: 'fast-food',
+          link: '',
+          type: 'FAST FOODS'
+        },
+        {
+          cover: 'giapponese',
+          link: '',
+          type: 'GIAPPONESE'
+        },
+        {
+          cover: 'hamburgheria',
+          link: '',
+          type: 'PANINOTECHE'
+        },
+        {
+          cover: 'pasticceria',
+          link: '',
+          type: 'PASTICCERIE'
+        },
+        {
+          cover: 'pizzeria',
+          link: '',
+          type: 'PIZZERIE'
+        },
+        {
+          cover: 'trattoria',
+          link: '',
+          type: 'TRATTORIE'
+        },
       ],
+      settings: {
+        itemsToShow: 1,
+        snapAlign: 'center',
+        autoplay: 2000
+      },
+      breakpoints: {
+        // 700px and up
+        500: {
+          itemsToShow: 2,
+          snapAlign: 'center',
+        },
+        // 1024 and up
+        1024: {
+          itemsToShow: 3.5,
+          snapAlign: 'center',
+        },
+      },
     };
   },
 
   components: {
     Carousel,
     Slide,
-    Pagination,
     Navigation,
   },
+  methods: {
+    getImagepath(img) {
+      return new URL(`../assets/images/imgTypes/${img}.png`, import.meta.url).href;
+    },
+  }
 };
 </script>
 <template>
-  <div class="container">
-    <carousel
-      :items-to-show="2.5"
-      :wrap-around="true"
-      class="carousel"
-      :autoplay="1250"
-    >
-      <slide v-for="slide in imgArray" :key="slide">
-        <div class="carousel__item"><img :src="slide" alt="" /></div>
-      </slide>
-
-      <template #addons>
-        <navigation />
-      </template>
-    </carousel>
-  </div>
+  <Carousel class="w-100 mt-4 mb-4" v-bind="settings" :breakpoints="breakpoints" :wrap-around="true"
+    :pause-autoplay-on-hover="true">
+    <Slide v-for="slide in images" :key="slide">
+      <img class="carousel__item" :src="getImagepath(slide.cover)" alt="">
+      <a href="{{ slide-link }}">{{ slide.type }}</a>
+    </Slide>
+    <template #addons>
+      <Navigation />
+    </template>
+  </Carousel>
 </template>
+
 <style lang="scss" scoped>
-.container {
-  display: none;
+@use "../styles/variables/variables.scss" as *;
+
+.carousel__item {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: flex;
   justify-content: center;
   align-items: center;
-}
-img {
-  width: 100%;
-  aspect-ratio: 1;
+  position: relative;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25rem;
-  }
-  .carousel {
-    width: 100%;
-  }
+.carousel__slide {
+  padding: 5px;
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25rem;
-  }
-
-  .carousel {
-    width: 95%;
-    margin-bottom: 3rem;
-    padding: 30px 0;
-  }
-}
-
-@media (min-width: 1440px) and (max-width: 2559px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 35rem;
-  }
-
-  .carousel {
-    width: 95%;
-    margin-bottom: 3rem;
-    padding: 30px 0;
-  }
-}
-
-@media (min-width: 2559px) {
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45rem;
-  }
-
-  .carousel {
-    width: 100%;
-    margin-bottom: 3rem;
-    padding: 30px 0;
-  }
+a {
+  z-index: 3;
+  position: absolute;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: $ms_dark;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  padding: .2rem 1rem .2rem 1rem;
+  border-radius: 0 10px 0px 0;
 }
 </style>
