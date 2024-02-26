@@ -2,25 +2,21 @@
 export default {};
 </script>
 <template>
-  <body>
-    <div
-      class="content text-center d-flex align-items-center ps-3 pe-3 justify-content-center"
-    >
-      <img src="../img/ristorante.jpeg" alt="content" />
+  <section>
+    <div class="content text-center d-flex align-items-center ps-3 pe-3 justify-content-center">
+      <img class="rounded" src="../assets/images/main/ristorante.jpeg" alt="content" />
       <h2>
         I migliori ristoranti della città nel palmo della tua mano davvero!
       </h2>
     </div>
-    <div
-      class="content text-center d-flex align-items-center ps-3 pe-3 justify-content-center"
-    >
-      <img src="../img/chef.jpg" alt="content" />
+    <div class="content text-center d-flex align-items-center ps-3 pe-3 justify-content-center">
+      <img class="rounded" src="../assets/images/main/chef.jpg" alt="content" />
       <h2>Sei un ristorante? Lavora con noi!</h2>
     </div>
-  </body>
+  </section>
 </template>
 <style lang="scss" scoped>
-body {
+section {
   background-color: #fdb633;
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -28,6 +24,7 @@ body {
   flex-direction: column;
   gap: 2rem;
 }
+
 .content {
   height: 20rem;
   flex-wrap: wrap;
@@ -41,7 +38,7 @@ body {
 }
 
 @media (min-width: 768px) {
-  body {
+  section {
     display: none;
   }
 }

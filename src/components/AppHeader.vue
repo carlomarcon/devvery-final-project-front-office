@@ -4,8 +4,7 @@ import AppCart from "./AppCart.vue";
 export default {
   components: {
     AppCart,
-  },
-  methods: {},
+  }
 };
 </script>
 
@@ -15,7 +14,7 @@ export default {
       <div class="container ">
 
         <a class="navbar-brand" href="#">
-          <img src="../img/logotipo.png" alt="" />
+          <img src="../assets/images/main/logotipo.png" alt="" />
         </a>
 
         <div class="d-flex gap-3 align-items-center">

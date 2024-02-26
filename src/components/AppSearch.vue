@@ -20,7 +20,7 @@ export default {};
     </div>
     <div class="search h-100 w-50 d-flex flex-column">
       <div class="van h-50 w-100">
-        <img src="../img/camioncino.png" alt="van" />
+        <img src="../assets/images/main/camioncino.png" alt="van" />
       </div>
       <div class="ms_input h-50 w-100">
         <div class="position-relative">

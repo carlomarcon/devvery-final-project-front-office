@@ -57,7 +57,6 @@ export default {
 
         <div class="stars"></div>
         <div class="twinkling"></div>
-
     </footer>
 </template>
 
@@ -65,15 +64,15 @@ export default {
 
 footer::before {
     width: 100%;
-    background-image: url(../img/onda.png);
+    background-image: url(../assets/images/main/onda.png);
     content: '';
     height: 4rem;
     position: absolute;
     display: block;
     z-index: 9;
-    top: -9%;
+    top: -1px;
     left: 0;
-    background-size: contain;
+    background-size:cover;
     transform: rotate(180deg);
     background-repeat: no-repeat;
 }
@@ -116,13 +115,13 @@ footer::before {
 footer {
     position: relative;
     padding: 2rem;
-    background-image: url("../assets/images/BG-Gradient.png");
+    background-image: url("../assets/images/footer/BG-Gradient.png");
     background-color: black;
     background-size: contain;
 }
 
 .stars {
-    background: transparent url("../assets/images/stars_bg.png") repeat top center;
+    background: transparent url("../assets/images/footer/stars_bg.png") repeat top center;
     display: block;
     width: 100%;
     height: 100%;
@@ -135,7 +134,7 @@ footer {
 }
 
 .twinkling {
-    background: transparent url("../assets/images/bg-twinkle.png") top center;
+    background: transparent url("../assets/images/footer/bg-twinkle.png") top center;
     background-size: contain;
     display: block;
     width: 100%;

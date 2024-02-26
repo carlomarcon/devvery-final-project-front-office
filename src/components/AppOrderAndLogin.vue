@@ -13,12 +13,12 @@ export default {};
         <button class="btn btn-dark">ORDINA ORA</button>
       </div>
       <div class="col w-50 h-50">
-        <img src="../img/ristorante stellato.jpg" alt="Borghese" />
+        <img src="../assets/images/main/ristorante stellato.jpg" alt="Borghese" />
       </div>
     </div>
     <div class="container d-none d-md-flex align-items-center mt-3 p-3 gap-4">
       <div class="col w-50 h-50">
-        <img src="../img/borghese.png" alt="Borghese" />
+        <img src="../assets/images/main/borghese.png" alt="Borghese" />
       </div>
       <div class="col w-50 h-50">
         <h3>Unisciti a noi e preparati a raggiungere il voto 10 in cucina!</h3>

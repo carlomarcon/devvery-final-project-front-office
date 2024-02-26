@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     getImagepath(img) {
-      return new URL(`../img/imgTypes/${img}.png`, import.meta.url).href;
+      return new URL(`../assets/images/imgTypes/${img}.png`, import.meta.url).href;
     },
   }
 };
