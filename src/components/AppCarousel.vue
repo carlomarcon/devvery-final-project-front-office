@@ -11,7 +11,7 @@ export default {
       images: [
         {
           cover: 'alta-cucina',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'GOURMET'
         },
         {
@@ -21,32 +21,32 @@ export default {
         },
         {
           cover: 'fast-food',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'FAST FOODS'
         },
         {
           cover: 'giapponese',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'GIAPPONESE'
         },
         {
           cover: 'hamburgheria',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'PANINOTECHE'
         },
         {
           cover: 'pasticceria',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'PASTICCERIE'
         },
         {
           cover: 'pizzeria',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'PIZZERIE'
         },
         {
           cover: 'trattoria',
-          link: '',
+          link: 'https://www.google.it/?hl=it',
           type: 'TRATTORIE'
         },
       ],
@@ -87,7 +87,7 @@ export default {
     :pause-autoplay-on-hover="true">
     <Slide v-for="slide in images" :key="slide">
       <img class="carousel__item" :src="getImagepath(slide.cover)" alt="">
-      <a href="{{ slide-link }}">{{ slide.type }}</a>
+      <a :href="slide.link">{{ slide.type }}</a>
     </Slide>
     <template #addons>
       <Navigation />
