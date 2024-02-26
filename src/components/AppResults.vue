@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       store,
+      baseUrl: 'http://127.0.0.1:8000'
     };
   },
 };
@@ -14,7 +15,7 @@ export default {
   </h2>
   <div class="wrapper d-flex justify-content-center">
     <div class="card" style="width: 18rem">
-      <!-- <img :src="`${baseUrl}/api/restaurants/${restaurant.cover_image}`" alt="" /> -->
+    <!-- <img :src="`${baseUrl}/storage/${restaurant.cover_image}`" alt="" /> -->
       <div class="card-body" v-for="restaurant in this.store.restaurants">
         <h5 class="card-title">{{ restaurant.name }}</h5>
         <p class="card-text">Indirizzo: {{ restaurant.address }}</p>

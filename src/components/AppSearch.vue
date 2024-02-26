@@ -7,9 +7,6 @@ export default {
       search: "",
       baseUrl: "http://127.0.0.1:8000",
         store,
-      // restaurants: [],
-      // myTypes: [],
-      // checkedTypes: [],
     };
   },
   components: {},
@@ -29,6 +26,7 @@ export default {
           .then((resp) => {
             // console.log(resp.data.result[0]);
             this.store.restaurants = resp.data.result;
+            console.log(resp.data.result);
           })
           .finally(() => {
             this.store.flag = true;
