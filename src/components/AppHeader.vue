@@ -12,14 +12,14 @@ export default {
 <template >
   <nav class="navbar fixed-top bg-body-tertiary">
     <div class="container ">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="">
         <img src="../img/logotipo.png" alt="" />
       </a>
 
 
       <div class="d-flex gap-3">
         <a href="" class="btn d-none d-md-block d-lg-block ">CHI SIAMO</a>
-        <a href="" class="btn btn-warning d-none d-md-block d-lg-block  ">LOGIN</a>
+        <a href="http://127.0.0.1:8000/admin" class="btn btn-warning d-none d-md-block d-lg-block  ">LOGIN</a>
         <div><button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="fa-solid fa-cart-shopping"></i>
