@@ -47,10 +47,9 @@ export default {
 
 
 <style lang="scss" scoped>
-@use "../styles/variables/variables.scss";
 
 img {
-  height: 3rem;
+  height: 40px;
 }
 
 i {
