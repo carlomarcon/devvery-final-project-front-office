@@ -4,7 +4,6 @@ import { store } from "../store";
 export default {
   data() {
     return {
-      search: "",
       baseUrl: "http://127.0.0.1:8000",
         store,
     };
@@ -18,11 +17,11 @@ export default {
   methods: {
     filteredRestaurants() {
       this.store.checkedTypes = [];
-      if (this.search.length === 0) {
+      if (this.store.search.length === 0) {
         this.store.flag = false;
       } else {
         axios
-          .get(`${this.baseUrl}/api/restaurants/searchText/${this.search}`)
+          .get(`${this.baseUrl}/api/restaurants/searchText/${this.store.search}`)
           .then((resp) => {
             // console.log(resp.data.result[0]);
             this.store.restaurants = resp.data.result;
@@ -30,23 +29,6 @@ export default {
           })
           .finally(() => {
             this.store.flag = true;
-          });
-      }
-    },
-    checkTypes() {
-      this.search = "";
-      this.store.restaurants = [];
-      if (this.checkedTypes.length > 0) {
-        let dates = [];
-        this.store.checkedTypes.forEach((element) => {
-          dates.push(element.name);
-        });
-        let params = { types: dates };
-        axios
-          .get(`${this.baseUrl}/api/restaurants/types`, { params })
-          .then((resp) => {
-            console.log(resp.data.result);
-            this.store.restaurants = resp.data.result;
           });
       }
     },
@@ -59,7 +41,7 @@ export default {
     <div class="d-flex align-items-center justify-content-end">
       <form class="px-4 py-1" action="">
         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-        <input v-model="search" @input="filteredRestaurants" id="search" type="text" placeholder="Cerca Ristorante" />
+        <input v-model="store.search" @input="filteredRestaurants" id="search" type="text" placeholder="Cerca Ristorante" />
       </form>
     </div>
   </div>

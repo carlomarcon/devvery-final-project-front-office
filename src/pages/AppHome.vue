@@ -4,6 +4,7 @@
     <div class="ms-container">
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
+      <AppCheckbox />
       <AppResults v-if="store.flag"/>
       <AppCarousel v-if="!store.flag"/>
       <AppBody />
@@ -21,6 +22,7 @@ import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
 import ProductList from "../components/ProductList.vue";
+import AppCheckbox from "../components/AppCheckbox.vue";
 import { store } from "../store";
 import AppOrderAndLogin from "../components/AppOrderAndLogin.vue";
 
@@ -29,10 +31,10 @@ export default {
     AppHeader,
     ProductList,
     AppSearch,
-    AppSearch,
     AppBody,
     AppFooter,
     AppCarousel,
+    AppCheckbox,
     AppOrderAndLogin,
     AppResults
   },
