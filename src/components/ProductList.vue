@@ -2,9 +2,9 @@
   <div>
     <h2>Lista Prodotti //debug</h2>
     <ul>
-      <li v-for="product, index in this.store.products" :key="product.id">
+      <li v-for="product in this.store.products" :key="product.id">
         {{ product.name }} - {{ product.price }}€
-        <button @click="addToCart(product, index)" class="btn btn-primary">Aggiungi al carrello</button>
+        <button @click="addToCart(product)" class="btn btn-primary">Aggiungi al carrello</button>
       </li>
     </ul>
 
@@ -35,15 +35,37 @@ export default {
     },
   },
   methods: {
-    addToCart(product, index) {
-      if (this.store.cartData[index]) { this.store.cartData[index].quantity++ }
-        else { this.store.cartData.push(product) }
-      ;
-      this.showModal = true;
-      setTimeout(() => {
-        this.showModal = false;
-      }, 1000); // Hide modal after 2 seconds
+    addToCart(product) {
+      let checked = false;
+      if (this.store.cartData.length > 0) {
+        for (let i = 0; i < this.store.cartData.length; i++) {
+          if (this.store.cartData[i].id === product.id && checked === false) {
+            this.store.cartData[i].quantity = this.store.cartData[i].quantity + 1;
+            checked = true
+          } else {
+            if (checked === false) {
+              this.pushProduct(product);
+            }
+          }
+        }
+      }
+      else {
+        this.pushProduct(product)
+      }
+      console.log(this.store.cartData);
+    },
+
+    pushProduct(product) {
+      let myProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1
+      };
+      this.store.cartData.push(myProduct)
+      // console.log(myProduct);
     }
+
   },
 };
 </script>
@@ -75,4 +97,5 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}</style>
+}
+</style>
