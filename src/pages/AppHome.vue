@@ -1,11 +1,10 @@
 <template>
   <div>
-    <AppHeader :cart-data="cartData" />
+    <AppHeader />
     <div class="ms-container">
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
       <AppCarousel />
-      <AppConcept />
       <AppBody />
       <AppOrderAndLogin />
       <AppFooter />
@@ -16,7 +15,6 @@
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppSearch from "../components/AppSearch.vue";
-import AppConcept from "../components/AppConcept.vue";
 import AppFooter from "../components/AppFooter.vue";
 import AppBody from "../components/AppBody.vue";
 import AppCarousel from "../components/AppCarousel.vue";
@@ -30,7 +28,6 @@ export default {
     ProductList,
     AppSearch,
     AppSearch,
-    AppConcept,
     AppBody,
     AppFooter,
     AppCarousel,

@@ -11,7 +11,6 @@ export default {
       this.store.cartData.splice(index, 1);
     },
     calculateTotal() {
-      
       let total = 0;
       for (let item of this.store.cartData) {
         total += item.price;

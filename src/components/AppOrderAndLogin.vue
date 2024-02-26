@@ -2,6 +2,7 @@
 export default {};
 </script>
 <template>
+  
   <div class="wrapper">
     <div class="container d-none d-md-flex align-items-center mt-3 p-3 gap-4">
       <div class="col w-50 h-50">
@@ -32,6 +33,19 @@ export default {};
   </div>
 </template>
 <style lang="scss" scoped>
+.concept {
+  height: 12rem;
+  color: #fdb633;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    color: black;
+    height: 30px;
+  }
+}
+
 @media (min-width: 768px) {
   .wrapper {
     padding: 3rem;
