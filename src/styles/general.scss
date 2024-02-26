@@ -6,3 +6,90 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+img {
+  max-width: 100%;
+}
+
+.ms_bg-yellow {
+  background-color: $ms_yellow;
+}
+
+.ms_bg-orange {
+  background-color: $ms_orange;
+}
+
+.ms_bg-dark {
+  background-color: $ms_dark;
+}
+
+.ms_color-yellow {
+  color: $ms_yellow;
+}
+
+.ms_color-dark {
+  color: $ms_dark;
+}
+
+.ms_color-red {
+  color: $ms_red;
+}
+
+.ms_btn-red {
+  background-color: $ms_red;
+  color: white;
+  padding: .2rem .5rem .2rem .5rem;
+  font-weight: bolder;
+  border-radius: 5px;
+  border: 2px solid $ms_red;
+
+  &:hover {
+    border: 2px solid $ms_red;
+    color: $ms_red;
+    background-color: transparent;
+  }
+}
+
+.ms_btn-yellow {
+  background-color: $ms_yellow;
+  padding: .2rem .5rem .2rem .5rem;
+  font-weight: bolder;
+  border-radius: 5px;
+  border: 2px solid $ms_yellow;
+
+  &:hover {
+    border: 2px solid $ms_yellow;
+    color: $ms_yellow;
+    background-color: transparent;
+  }
+}
+
+.ms_btn-green {
+  background-color: $ms_green;
+  padding: .2rem .5rem .2rem .5rem;
+  color: white;
+  font-weight: bolder;
+  border-radius: 5px;
+  border: 2px solid $ms_green;
+}
+
+.ms_btn-dark {
+  background-color: $ms_dark;
+  color: white;
+  padding: .2rem .5rem .2rem .5rem;
+  font-weight: bolder;
+  border-radius: 5px;
+  border: 2px solid $ms_dark;
+
+  &:hover {
+    border: 2px solid $ms_dark;
+    color: $ms_dark;
+    background-color: transparent;
+  }
+}
+
+.ms_btn {
+  text-decoration: none;
+  border-radius: 5px;
+  padding: .3rem .6rem .3rem .6rem;
+}
