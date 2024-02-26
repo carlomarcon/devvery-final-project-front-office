@@ -5,7 +5,7 @@
       <ProductList @add-to-cart="addToCart" />
       <AppSearch />
       <AppResults v-if="store.flag"/>
-      <AppCarousel />
+      <AppCarousel v-if="!store.flag"/>
       <AppBody />
       <AppOrderAndLogin />
       <AppFooter />
