@@ -1,11 +1,11 @@
 import { reactive } from "vue";
 
 export const store = reactive({
-flag: false,
-restaurants: [],
-myTypes: [],
-checkedTypes: [],
-
+  flag: false,
+  restaurants: [],
+  myTypes: [],
+  checkedTypes: [],
+  show: [],
   products: [
     { id: 1, name: "riso", price: 10 },
     { id: 2, name: "sushi", price: 20 },
@@ -15,5 +15,5 @@ checkedTypes: [],
 });
 
 function getCart() {
-  return JSON.parse(localStorage.getItem('cartData')) || [];
-};
+  return JSON.parse(localStorage.getItem("cartData")) || [];
+}
