@@ -15,8 +15,8 @@ export default {
   </h2>
   <div class="wrapper d-flex justify-content-center">
     <div class="card" style="width: 18rem">
-    <!-- <img :src="`${baseUrl}/storage/${restaurant.cover_image}`" alt="" /> -->
       <div class="card-body" v-for="restaurant in this.store.restaurants">
+        <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top" />
         <h5 class="card-title">{{ restaurant.name }}</h5>
         <p class="card-text">Indirizzo: {{ restaurant.address }}</p>
         <p class="card-text">Telefono: {{ restaurant.phone }}</p>
