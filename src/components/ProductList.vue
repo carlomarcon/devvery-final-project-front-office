@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="text-light text-center">
-    <h2>Lista Prodotti //debug</h2>
-    <ul class="d-flex justify-content-center">
-      <li v-for="product in this.store.products" :key="product.id">
-        {{ product.name }} - {{ product.price }}€
-        <button @click="addToCart(product)" class="btn btn-primary">Aggiungi al carrello</button>
-      </li>
-    </ul>
-  </div>
+      <h2>Lista Prodotti //debug</h2>
+      <ul class="d-flex justify-content-center">
+        <li v-for="product in this.store.products" :key="product.id">
+          {{ product.name }} - {{ product.price }}€
+          <button @click="addToCart(product)" class="btn btn-primary">Aggiungi al carrello</button>
+        </li>
+      </ul>
+    </div>
     <!-- Confirmation Modal -->
     <transition name="fade">
       <div v-if="showModal" class="modal d-flex align-items-center justify-content-center">
