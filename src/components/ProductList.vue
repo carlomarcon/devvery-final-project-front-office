@@ -32,6 +32,7 @@ export default {
   methods: {
     addToCart(product) {
       const existingProduct = this.store.cartData.find(item => item.id == product.id);
+      console.log(existingProduct)
       if (existingProduct) {
         existingProduct.quantity++;
       } else {
