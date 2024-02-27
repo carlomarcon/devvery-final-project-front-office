@@ -1,10 +1,11 @@
 import { reactive } from "vue";
 
 export const store = reactive({
-flag: false,
-restaurants: [],
-myTypes: [],
-search: "",
+  total: 0,
+  flag: false,
+  restaurants: [],
+  myTypes: [],
+  search: "",
 
   products: [
     { id: 1, name: "riso", price: 10 },

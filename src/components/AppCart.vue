@@ -31,6 +31,8 @@ export default {
         const productPrice = element.price * element.quantity;
         total += productPrice;
       });
+      this.store.total = total;
+      localStorage.setItem('total', JSON.stringify(this.store.total));
       return total;
     },
   },
