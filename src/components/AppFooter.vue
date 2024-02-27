@@ -37,7 +37,7 @@ export default {
 <template>
     <footer class="py-5 sticky-bottom">
 
-        <div class="p-3">
+        <div class="mt-3">
             <div class="row row-cols-2 row-cols-md-4 g-5 footer-links text-start">
                 <div class="col" v-for="(item, index) in footerItems" :key="index">
                     <h2>{{ item.title }}</h2>
@@ -95,7 +95,7 @@ export default {
     position: relative;
     z-index: 3;
     min-width: 100%;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .footer-links {
@@ -123,10 +123,11 @@ export default {
 
 footer {
     position: relative;
-    padding: 2rem;
+    padding: 2rem ;
     background-image: url("../assets/images/footer/BG-Gradient.png");
     background-color: black;
     background-size: contain;
+    z-index: 4;
 }
 
 .stars {

@@ -3,8 +3,8 @@ export default {};
 </script>
 <template>
   <div class="concept text-center align-items-center px-3 mt-5">
-      <h2>Il cibo che vuoi quando vuoi..da<span>vv</span>ero!</h2>
-    </div>
+    <h2>Il cibo che vuoi quando vuoi..da<span>vv</span>ero!</h2>
+  </div>
 
   <section>
     <div class="content text-center d-flex align-items-center ps-3 pe-3 justify-content-center">
@@ -21,8 +21,6 @@ export default {};
   </section>
 </template>
 <style lang="scss" scoped>
-
-
 section {
   background-color: #fdb633;
   padding-top: 5rem;
@@ -65,9 +63,9 @@ section {
     z-index: 9;
     bottom: -1px;
     left: 0;
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
-}
+  }
 
   span {
     color: black;
