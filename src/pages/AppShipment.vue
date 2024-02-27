@@ -1,78 +1,114 @@
 <script>
-import { RouterLink } from "vue-router";
+import AppHeader from "../components/AppHeader.vue";
+import AppFooter from "../components/AppFooter.vue";
 import { store } from "../store";
 
 export default {
-  components: { RouterLink },
+  components: {
+    AppHeader,
+    AppFooter,
+  },
   data() {
     return {
+      activeSection: 'dataSection',
       store
     };
   },
-  methods: {},
-  created() {
-    console.log(this.store.cartData);
-  },
+  methods: {
+    showSection(section) {
+      this.activeSection = section;
+    }
+  }
 };
 </script>
 
+ 
 <template>
-  <section class="sectionShipment">
-    <div class="order d-flex align-items-center">
-      <router-link :to="{ name: 'home' }">
-        <img class="mx-5" src="../assets/images/main/pittogramma.png" alt="" />
-      </router-link>
+  <div class="wrapper">
+    <AppHeader />
+
+    <div class="ms-container container mt-5 mb-5">
       <h2>Dettagli di consegna</h2>
-    </div>
-
-    <div class="shipment w-75 h-75">
-      <div class="orders-details mt-3">
-        <h3>Il tuo ordine:</h3>
-        <ul class="list-group mt-3">
-          <li v-for="items in store.cartData" class="list-group-item">
-            <div>
-              <h4 class="text-capitalize">{{ items.quantity }} - {{ items.name }}</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Il tuo ordine</h5>
             </div>
-          </li>
-          <h4 class="my-3">Il totale dell'ordine è di: {{ store.total }} €</h4>
-        </ul>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Prodotto</th>
+                    <th scope="col">Quantità</th>
+                    <th scope="col">Prezzo</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="items in store.cartData">
+                    <th scope="row">{{ items.name }}</th>
+                    <td>{{ items.quantity }} X</td>
+                    <td>{{ items.price }}€</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h5>Totale: {{ store.total }}€</h5>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Dettagli ordine</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group d-flex gap-5">
+                  <div>
+                    <label class="mb-2" for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" placeholder="Inserisci il tuo nome" required>
+                  </div>
+                  <div>
+                    <label class="mb-2" for="lastname">Cognome</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Inserisci il tuo cognome " required>
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <label class="mb-2" for="address">Indirizzo </label>
+                  <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required>
+                </div>
+                <div class="form-group mt-3">
+                  <label class="mb-2" for="phone-number">Numero di telefono</label>
+                  <input type="tel" class="form-control" id="phone-number"
+                    placeholder="Inserisci il numero di telefono" required>
+                </div>
+                <div class="form-group mt-3">
+                  <label class="mb-2" for="istruction">Eventuali indicazioni per il corriere</label>
+                  <input type="text" class="form-control" id="istruction"
+                    placeholder="Esempio scala 1 interno 3">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Procedi al pagamento</button>
+              </form>
+              <a href="http://localhost:3000/"> pagamento</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <h3 class="mt-5">Dettagli richiesti:</h3>
-      <form action="" class="">
-        <div class="mb-3 mt-2">
-          <label for="exampleFormControlInput1" class="form-label">Numero di telefono:</label>
-          <input type="Phone number" class="form-control" id="exampleFormControlInput1" />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Indirizzo:</label>
-          <input type="Address" class="form-control" id="exampleFormControlInput1" />
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Eventuali indicazioni:</label>
-          <textarea class="form-control" id="description" rows="3"></textarea>
-        </div>
-        <button type="button" class="btn btn-warning mt-3">Invia</button>
-      </form>
     </div>
-  </section>
+    <AppFooter />
+  </div>
 </template>
+
 <style lang="scss" scoped>
-.sectionShipment {
-  height: 100vh;
+@use "../styles/variables/variables.scss" as *;
+
+.wrapper {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .order {
-    width: 100%;
-    height: 15%;
-    text-align: center;
-    background-color: #fdb633;
-
-    img {
-      height: 3rem;
-      width: 3rem;
-    }
-  }
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
