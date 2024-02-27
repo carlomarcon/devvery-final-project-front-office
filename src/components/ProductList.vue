@@ -42,6 +42,11 @@ export default {
           quantity: 1
         };
         this.store.cartData.push(myProduct);
+        this.showModal = true;
+        setTimeout(() => {
+          this.showModal = false;
+        }, 1000); // Hide modal after 2 seconds
+
       }
       localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
     },
