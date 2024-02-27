@@ -91,8 +91,9 @@ export default {
       </div>
     </div>
 
+    <div>
     <transition name="fade">
-      <div class="modal d-flex align-items-center justify-content-center">
+      <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center">
         <div v-if="showModal" class="modal-content text-white p-4">
           <p>Prodotto aggiunto al carrello!</p>
         </div>
@@ -101,6 +102,7 @@ export default {
         </div>
       </div>
     </transition>
+  </div>
 
   </body>
 </template>
@@ -135,9 +137,12 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+}
+.active {
+  display: flex;
 }
 
 .modal-content {
