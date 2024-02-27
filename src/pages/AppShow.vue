@@ -93,7 +93,7 @@ export default {
 
     <div>
     <transition name="fade">
-      <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center">
+      <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center h-25">
         <div v-if="showModal" class="modal-content text-white p-4">
           <p>Prodotto aggiunto al carrello!</p>
         </div>
@@ -133,7 +133,7 @@ body {
 /* Styling for the modal */
 .modal {
   position: fixed;
-  margin-top: 40vh;
+  margin-top: 70vh;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
