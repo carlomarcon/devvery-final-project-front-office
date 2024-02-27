@@ -15,9 +15,9 @@ export default {
     <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6">
       <div class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants">
 
-        <div class="card" style="width: 18rem">
+        <div class="card h-100">
           <div class="card-body">
-            <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top" />
+            <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top h-50 mb-2" />
             <h5 class="card-title">{{ restaurant.name }}</h5>
             <p class="card-text">Indirizzo: {{ restaurant.address }}</p>
             <p class="card-text">Telefono: {{ restaurant.phone }}</p>
@@ -50,7 +50,7 @@ export default {
 }
 }
 img {
-  object-fit: contain;
+  object-fit: cover;
   border: solid 0.5px #01222B;
   border-radius: 15px;
 }
