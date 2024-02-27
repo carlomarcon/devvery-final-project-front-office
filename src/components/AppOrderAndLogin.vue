@@ -14,7 +14,7 @@ export default {};
       <div class="row row-cols-12 flex-column gap-5">
 
         <div class="col d-flex align-items-center flex-column flex-md-row-reverse">
-          <div class="d-flex justify-content-center mb-4">
+          <div class="d-flex justify-content-end mb-4">
             <img src="../assets/images/main/ristorante-stellato.jpg" alt="Foto Ristorante" />
           </div>
           <div class="w-100">
@@ -25,7 +25,7 @@ export default {};
         </div>
 
         <div class="col d-flex align-items-center flex-column flex-md-row">
-          <div class="d-flex justify-content-center mb-4">
+          <div class="d-flex justify-content-start mb-4">
             <img src="../assets/images/main/chef.jpg" alt="Foto di Chef" />
           </div>
           <div class="w-100 text-end">

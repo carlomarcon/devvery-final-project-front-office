@@ -103,7 +103,7 @@ export default {
 @use "../styles/variables/variables.scss" as *;
 
 .container {
-  padding: 6rem 0 6rem 0;
+  padding: 1rem 0 6rem 0;
 }
 
 i {
@@ -111,8 +111,12 @@ i {
   z-index: 1;
   top: 27%;
   left: 3%;
-  font-size: 2rem;
+  font-size: 1rem;
   color: $ms_dark;
+
+  @media screen and (min-width: 991px) {
+    font-size: 2.5rem;
+  }
 }
 
 .container {
@@ -120,7 +124,11 @@ i {
     border: none;
     text-align: center;
     background-color: transparent;
-    font-size: 2rem;
+    font-size: 1rem;
+
+    @media screen and (min-width: 991px) {
+    font-size: 2.5rem;
+  }
 
     &:focus {
       border: none;
@@ -134,7 +142,6 @@ i {
 
   form {
     border: 4px solid $ms_dark;
-    line-height: 60px;
     position: relative;
     border-radius: 5px;
     background-color: white;

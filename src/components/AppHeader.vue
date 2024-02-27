@@ -18,7 +18,7 @@ export default {
 
         <div class="d-flex gap-3 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
-          <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-none d-md-block">LOGIN</a>
+          <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block">LOGIN</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="fa-solid fa-cart-shopping"></i>
