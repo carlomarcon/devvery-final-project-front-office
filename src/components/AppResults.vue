@@ -12,12 +12,12 @@ export default {
 <template>
   <div class="container-fluid ms_bg-yellow">
 
-    <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6">
+    <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6 p-4">
       <div class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants">
 
-        <div class="card h-100">
+        <div class="card">
           <div class="card-body">
-            <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top h-50 mb-2" />
+            <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top mb-2" />
             <h5 class="card-title">{{ restaurant.name }}</h5>
             <p class="card-text">Indirizzo: {{ restaurant.address }}</p>
             <p class="card-text">Telefono: {{ restaurant.phone }}</p>
@@ -45,11 +45,12 @@ export default {
     position: absolute;
     display: block;
     z-index: 9;
-    bottom: -12%;
+    bottom: -40px;
     transform: rotate(180deg);
     left: 0;
     background-size: cover;
     background-repeat: no-repeat;
+
   }
 
   &::after {
@@ -60,7 +61,7 @@ export default {
     position: absolute;
     display: block;
     z-index: 9;
-    top: -12%;
+    top: -40px;
     left: 0;
     background-size: cover;
     background-repeat: no-repeat;
