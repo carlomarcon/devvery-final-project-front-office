@@ -5,15 +5,22 @@ export default {
   data() {
     return {
       baseUrl: "http://127.0.0.1:8000",
-        store,
+      store,
+      myTypes: [],
+      checkedTypes: [],
     };
   },
-  components: {},
   created() {
-    axios.get(`${this.baseUrl}/api/types`).then((resp) => {
+    axios.get(`${this.baseUrl}/api/types`)
+      .then((resp) => {
+        this.myTypes = resp.data.result;
+      });
+      axios.get(`${this.baseUrl}/api/types`).then((resp) => {
       this.store.myTypes = resp.data.result;
     });
   },
+  components: {},
+
   methods: {
     filteredRestaurants() {
       this.store.checkedTypes = [];
@@ -32,7 +39,31 @@ export default {
           });
       }
     },
+    checkTypes() {
+      this.store.restaurants = [];
+      this.store.flag = false;
+      if (this.checkedTypes.length > 0) {
+        
+        let dates = [];
+        this.checkedTypes.forEach((element) => {
+          dates.push(element.name);
+        });
+        const params = { types: dates };
+        axios
+          .get(`${this.baseUrl}/api/restaurants/types`, { params })
+          .then((resp) => {
+            if (!(typeof resp.data.result === 'string')) {
+              this.store.restaurants = resp.data.result;
+            }
+          })
+          .finally(() => {
+            if(this.store.restaurants.length > 0)
+            this.store.flag = true;
+          })
+      }
+    },
   },
+
 };
 </script>
 
@@ -41,9 +72,19 @@ export default {
     <div class="d-flex align-items-center justify-content-end">
       <form class="px-5 py-1" action="">
         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-        <input v-model="store.search" @input="filteredRestaurants" id="search" type="text" placeholder="Cerca Ristorante" />
+        <input v-model="store.search" @input="filteredRestaurants" id="search" type="text"
+          placeholder="Cerca Ristorante" />
       </form>
     </div>
+  </div>
+  <div class="d-flex flex-column align-items-center">
+    <form class="d-flex flex-wrap gap-3 fs-5 text-light my-4" action="">
+      <div class="" v-for="myType in myTypes" :key="myType">
+        <label :for="myType.name">{{ myType.name }}</label>
+        <input type="checkbox" :id="myType.name" :value="myType" v-model="checkedTypes">
+      </div>
+    </form>
+    <button @click="checkTypes">Cerca per tipi</button>
   </div>
 </template>
 
@@ -59,27 +100,29 @@ i {
   color: $ms_dark;
 }
 
-input {
-  border: none;
-  text-align: center;
-  background-color: transparent;
-  font-size: 2rem;
-
-  &:focus {
+.container {
+  input {
     border: none;
-    outline: none;
+    text-align: center;
+    background-color: transparent;
+    font-size: 2rem;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $ms_yellow;
+    }
   }
 
-  &::placeholder {
-    color: $ms_yellow;
+  form {
+    border: 4px solid $ms_dark;
+    line-height: 60px;
+    position: relative;
+    border-radius: 5px;
+    background-color: white;
   }
-}
-
-form {
-  border: 4px solid $ms_dark;
-  line-height: 60px;
-  position: relative;
-  border-radius: 5px;
-  background-color: white;
 }
 </style>

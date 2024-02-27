@@ -10,7 +10,7 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid ms_bg-yellow">
 
     <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6">
       <div class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants">
@@ -32,6 +32,23 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.container-fluid {
+  position: relative;
+  margin-top: 4rem;
+  &::before {
+    width: 100%;
+    background-image: url(../assets/images/main/onda.png);
+    content: '';
+    height: 4rem;
+    position: absolute;
+    display: block;
+    z-index: 9;
+    top: -15%;
+    left: 0;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+}
 img {
   object-fit: contain;
   border: solid 0.5px #01222B;
