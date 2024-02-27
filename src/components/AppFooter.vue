@@ -35,9 +35,9 @@ export default {
 </script>
 
 <template>
-    <footer class="py-5">
+    <footer class="py-5 sticky-bottom">
 
-        <div class="p-3">
+        <div class="mt-3">
             <div class="row row-cols-2 row-cols-md-4 g-5 footer-links text-start">
                 <div class="col" v-for="(item, index) in footerItems" :key="index">
                     <h2>{{ item.title }}</h2>
@@ -49,7 +49,7 @@ export default {
                 </div>
             </div>
 
-            <div class="footer-links container flex-column flex-md-row">
+            <div class="footer-pages container flex-column flex-md-row">
                 <a class="text-white" href="">Termini e condizioni</a><br>
                 <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
             </div>
@@ -62,20 +62,20 @@ export default {
 
 <style scoped lang="scss">
 
-footer::before {
-    width: 100%;
-    background-image: url(../assets/images/main/onda.png);
-    content: '';
-    height: 4rem;
-    position: absolute;
-    display: block;
-    z-index: 9;
-    top: -1px;
-    left: 0;
-    background-size:cover;
-    transform: rotate(180deg);
-    background-repeat: no-repeat;
-}
+// footer::before {
+//     width: 100%;
+//     background-image: url(../assets/images/main/onda.png);
+//     content: '';
+//     height: 4rem;
+//     position: absolute;
+//     display: block;
+//     z-index: 9;
+//     top: -1px;
+//     left: 0;
+//     background-size:cover;
+//     transform: rotate(180deg);
+//     background-repeat: no-repeat;
+// }
 
 
 @keyframes move-twink {
@@ -88,12 +88,21 @@ footer::before {
     }
 }
 
-.footer-links {
-    display: flex;
+.footer-pages {    
     color: white;
     align-items: center;
+    list-style-type: none;    
+    position: relative;
+    z-index: 3;
+    min-width: 100%;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.footer-links {
+    display: flex;
+    color: white;    
     list-style-type: none;
-    justify-content: space-between;
+    flex-direction: column;
     position: relative;
     z-index: 3;
     min-width: 100%;
@@ -114,10 +123,11 @@ footer::before {
 
 footer {
     position: relative;
-    padding: 2rem;
+    padding: 2rem ;
     background-image: url("../assets/images/footer/BG-Gradient.png");
     background-color: black;
     background-size: contain;
+    z-index: 4;
 }
 
 .stars {

@@ -46,6 +46,10 @@ export default {
 
 <style lang="scss" scoped>
 
+template {
+  z-index: 9999;
+}
+
 img {
   height: 40px;
 }

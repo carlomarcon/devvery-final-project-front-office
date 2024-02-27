@@ -21,8 +21,8 @@ export default {};
         <img src="../assets/images/main/ristorante stellato.jpg" alt="Borghese" />
       </div>
     </div>
-    <div class="container d-flex align-items-center mt-3 p-3 gap-4">
-      <div class="col w-50 h-50">
+    <div class="container d-none d-md-flex align-items-center mt-3 p-3 gap-4 ">
+      <div class="col w-50 h-50 prova">
         <img src="../assets/images/main/borghese.png" alt="Borghese" />
       </div>
       <div class="col w-50 h-50">
@@ -37,19 +37,26 @@ export default {};
   </div>
 </template>
 <style lang="scss" scoped>
-.concept {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.wrapper{
   position: relative;
-
- 
-
-  span {
-    color: white;
-    height: 30px;
-  }
+&::after {
+    width: 100%;
+    background-image: url(../assets/images/main/onda.png);
+    content: '';
+    height: 4rem;
+    position: absolute;
+    display: block;
+    z-index: 99;
+    bottom: calc(-4rem + 1px);
+    left: 0;
+    background-size:cover;
+    background-repeat: no-repeat;
+    rotate: 180deg;
 }
+}
+
+
+
 
 
   .wrapper {
