@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-    <footer class="py-5 sticky-bottom">
+    <footer class="sticky-bottom">
 
         <div class="mt-3">
             <div class="row row-cols-2 row-cols-md-4 g-5 footer-links text-start">
@@ -61,22 +61,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-
-// footer::before {
-//     width: 100%;
-//     background-image: url(../assets/images/main/onda.png);
-//     content: '';
-//     height: 4rem;
-//     position: absolute;
-//     display: block;
-//     z-index: 9;
-//     top: -1px;
-//     left: 0;
-//     background-size:cover;
-//     transform: rotate(180deg);
-//     background-repeat: no-repeat;
-// }
-
 
 @keyframes move-twink {
     0% {
@@ -123,7 +107,7 @@ export default {
 
 footer {
     position: relative;
-    padding: 2rem ;
+    padding: 6rem 3rem 3rem 3rem ;
     background-image: url("../assets/images/footer/BG-Gradient.png");
     background-color: black;
     background-size: contain;

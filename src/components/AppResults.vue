@@ -10,26 +10,24 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid ms_bg-yellow">
+  <div class="container-fluid ms_bg-yellow align-items-center d-flex flex-column">
 
-    <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-6 p-4">
-      <div class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants">
+    <h2 class="text-center ms_badge-dark">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
 
-        <div class="card">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 p-4">
+
+      <router-link class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants" :to="{ name: 'show', params: { slug: restaurant.slug } }">
+
+        <div class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
+          <img class="card-img-top mb-2 h-50" :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt=""  />
           <div class="card-body">
-            <img :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" class="card-img-top mb-2" />
-            <h5 class="card-title">{{ restaurant.name }}</h5>
-            <p class="card-text">Indirizzo: {{ restaurant.address }}</p>
-            <p class="card-text">Telefono: {{ restaurant.phone }}</p>
-            <router-link
-          :to="{ name: 'show', params: { slug: restaurant.slug } }"
-          class="btn btn-primary"
-          >Vai al ristorante</router-link
-        >
+            <h3 class="card-title">{{ restaurant.name }}</h3>
+            <p class="card-text">{{ restaurant.description }}</p>
           </div>
         </div>
-
-      </div>
+      
+      </router-link>
+      
     </div>
 
   </div>
@@ -41,6 +39,10 @@ export default {
   margin-top: 4rem;
   padding: 4rem 0 4rem 0;
 
+  a {
+    text-decoration: none;
+  }
+
   &::before {
     width: 100%;
     background-image: url(../assets/images/main/onda.png);
@@ -49,7 +51,7 @@ export default {
     position: absolute;
     display: block;
     z-index: 9;
-    bottom: -40px;
+    bottom: -62px;
     transform: rotate(180deg);
     left: 0;
     background-size: cover;
@@ -65,15 +67,26 @@ export default {
     position: absolute;
     display: block;
     z-index: 9;
-    top: -40px;
+    top: -61px;
     left: 0;
     background-size: cover;
     background-repeat: no-repeat;
   }
 }
 
-img {
-  object-fit: cover;
-  border: solid 0.5px #01222B;
-  border-radius: 15px;
-}</style>
+.hover-zoom {
+  transition: all .3s ease-in-out;
+  z-index: 1;
+  padding: 1rem 1rem 0 1rem;
+
+  img {
+    border-radius: 20px 20px 0 0px;
+  }
+
+  &:hover {
+    z-index: 2;
+    transform: scale(1.05);
+    transition: all .3s ease-in-out;
+  }
+}
+</style>

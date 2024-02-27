@@ -97,3 +97,11 @@ img {
   border-radius: 5px;
   padding: .3rem .6rem .3rem .6rem;
 }
+
+.ms_badge-dark {
+  background-color: $ms_dark;
+  color: white;
+  border-radius: 5px;
+  padding: .2rem .5rem .2rem .5rem;
+  font-weight: bold;
+}
