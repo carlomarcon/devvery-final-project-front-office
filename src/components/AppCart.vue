@@ -43,13 +43,13 @@ export default {
       <li v-for="(item, index) in store.cartData" :key="index" class="list-group-item">
         <div class="d-flex justify-content-between align-items-center">
           <div class="info">
-            <span class="d-inline-block mb-1">{{ item.name }}</span> - <span>{{ item.price }}€</span><br>
+            <span class="d-inline-block mb-1 text-capitalize">{{ item.name }}</span> - <span>{{ item.price }}€</span><br>
 
-            <span class="d-inline-block px-2 py-1 bg-warning-subtle rounded-circle lh-1 fw-bold"
-              @click="decrease(item.id)">-</span>
+            <button class="px-2 py-1 bg-warning-subtle border-0 rounded-circle lh-1 fw-bold"
+              @click="decrease(item.id)">-</button>
             <span class="d-inline-block mx-2">{{ item.quantity }}</span>
-            <span class="d-inline-block px-2 py-1 bg-warning-subtle rounded-circle lh-1 fw-bold"
-              @click="add(item.id)">+</span>
+            <button class="px-2 py-1 bg-warning-subtle border-0 rounded-circle lh-1 fw-bold"
+              @click="add(item.id)">+</button>
           </div>
 
           <button class="btn btn-outline-danger btn-sm" @click="remove(item.id)">
@@ -62,7 +62,7 @@ export default {
 
     <div v-if="store.cartData.length > 0" class="mt-4">
       <p class="fw-bold">Totale: {{ calculateTotal() }}€</p>
-      <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn btn-primary">Vai alla
+      <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn btn-outline-success">Vai alla
         spedizione</router-link>
     </div>
   </div>
