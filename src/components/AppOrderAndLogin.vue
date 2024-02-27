@@ -64,6 +64,7 @@ export default {};
     padding: 3rem;
     background-color: #fdb633;
     margin-top: 6rem;
+  
 
     &::before {
     width: 100%;

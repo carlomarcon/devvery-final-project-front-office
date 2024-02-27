@@ -35,6 +35,8 @@ export default {
 .container-fluid {
   position: relative;
   margin-top: 4rem;
+  padding: 4rem 0 4rem 0;
+
   &::before {
     width: 100%;
     background-image: url(../assets/images/main/onda.png);
@@ -43,15 +45,30 @@ export default {
     position: absolute;
     display: block;
     z-index: 9;
-    top: -15%;
+    bottom: -12%;
+    transform: rotate(180deg);
     left: 0;
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  &::after {
+    width: 100%;
+    background-image: url(../assets/images/main/onda.png);
+    content: '';
+    height: 4rem;
+    position: absolute;
+    display: block;
+    z-index: 9;
+    top: -12%;
+    left: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
-}
+
 img {
   object-fit: cover;
   border: solid 0.5px #01222B;
   border-radius: 15px;
-}
-</style>
+}</style>
