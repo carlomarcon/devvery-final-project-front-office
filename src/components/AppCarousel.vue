@@ -51,7 +51,7 @@ export default {
         },
       ],
       settings: {
-        itemsToShow: 0.8,
+        itemsToShow: 0.7,
         snapAlign: 'center',
         autoplay: 3000,
         mouseDrag: false,
@@ -87,7 +87,7 @@ export default {
 .carousel {
   position: absolute;
   top: 0;
-  z-index: -99999;
+  z-index: -999999;
   filter: brightness(40%);
 }
 .carousel__item {

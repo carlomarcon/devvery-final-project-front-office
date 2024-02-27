@@ -21,7 +21,11 @@ export default {
             <h5 class="card-title">{{ restaurant.name }}</h5>
             <p class="card-text">Indirizzo: {{ restaurant.address }}</p>
             <p class="card-text">Telefono: {{ restaurant.phone }}</p>
-            <a href="#" class="btn btn-primary">Vai al ristorante</a>
+            <router-link
+          :to="{ name: 'show', params: { slug: restaurant.slug } }"
+          class="btn btn-primary"
+          >Vai al ristorante</router-link
+        >
           </div>
         </div>
 
