@@ -10,13 +10,13 @@ export default {
 
 <template >
   <header>
-    <nav class="navbar fixed-top bg-body-tertiary">
+    <nav class="navbar fixed-top bg-body-tertiary flex-nowrap">
       <div class="container ">
         <router-link class="navbar-brand" :to="{ name: 'home' }">
           <img src="../assets/images/main/logotipo.png" alt="" />
         </router-link>
 
-        <div class="d-flex gap-3 align-items-center">
+        <div class="d-flex gap-2 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
           <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block">LOGIN</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"

@@ -10,11 +10,13 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid ms_bg-yellow align-items-center d-flex flex-column">
+  <div class="ms_container ms_bg-yellow align-items-center d-flex flex-column">
 
-    <h2 class="text-center ms_badge-dark">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
+    <div class="container-fluid">
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 p-4">
+    <h2 class="text-center ms_badge-dark mt-4">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 p-4">
 
       <router-link class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants" :to="{ name: 'show', params: { slug: restaurant.slug } }">
 
@@ -29,15 +31,14 @@ export default {
       </router-link>
       
     </div>
-
+  </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.container-fluid {
+.ms_container {
   position: relative;
   margin-top: 4rem;
-  padding: 4rem 0 4rem 0;
 
   a {
     text-decoration: none;
