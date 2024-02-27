@@ -32,7 +32,7 @@ export default {};
             <h3>Unisciti a noi e preparati a raggiungere il voto 10 in cucina!</h3>
             <p>Raggiungi più clienti con Devvery.Gestiamo noi la consegna, così tu puoi dedicarti a offrire i migliori
               piatti e prodotti.</p>
-            <button class="btn btn-dark">REGISTRATI</button>
+            <a href="http://127.0.0.1:8000/register" class="btn btn-dark">REGISTRATI</a>
           </div>
         </div>
 
