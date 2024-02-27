@@ -22,7 +22,7 @@ export default {
 
  
 <template>
-  <div>
+  <div class="wrapper">
     <AppHeader />
     
     <div class="ms-container container mt-5 mb-5">
@@ -74,7 +74,11 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
-
-
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 </style>
   

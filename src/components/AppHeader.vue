@@ -12,10 +12,9 @@ export default {
   <header>
     <nav class="navbar fixed-top bg-body-tertiary">
       <div class="container ">
-
-        <a class="navbar-brand" href="#">
+        <router-link class="navbar-brand" :to="{ name: 'home' }">
           <img src="../assets/images/main/logotipo.png" alt="" />
-        </a>
+        </router-link>
 
         <div class="d-flex gap-3 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
