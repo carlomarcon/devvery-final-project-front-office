@@ -3,6 +3,7 @@ import AppHome from "./pages/AppHome.vue";
 import PrivacyPage from "./pages/PrivacyPage.vue";
 import AppShipment from "./pages/AppShipment.vue";
 import AppShow from "./pages/AppShow.vue";
+import PaymentComponent from "./pages/PaymentComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,6 +28,12 @@ const router = createRouter({
       name: "show",
       component: AppShow,
     },
+    {
+      path: "/payment",
+      name: "payment",
+      component: PaymentComponent,
+    },
+    
   ],
 });
 
