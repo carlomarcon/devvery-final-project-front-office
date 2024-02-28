@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { store } from '../store';
 import { RouterLink } from 'vue-router';
+import AppHeader from "../components/AppHeader.vue";
 export default {
   data() {
     return {
@@ -10,6 +11,9 @@ export default {
       showModal: false,
       showError: false
     };
+  },
+  components: {
+    AppHeader
   },
   created() {
     axios
@@ -75,58 +79,80 @@ export default {
 };
 </script>
 <template>
-  <body>
-    <router-link class='btn btn-outline-warning' :to='{ name: "home" }'><i class='fa-solid fa-house'></i></router-link>
-    <h1 class="text-center p-3">Ristorante {{ this.$route.params.slug }}</h1>
-    <div class="d-flex flex-column align-items-center p-3 gap-3">
-      <h3 class="text-center fs-1">Menu</h3>
-      <div class="fs-2 d-flex flex-column" v-for="items in result">
-        <div>
-          {{ items.name }} <span>{{ items.price }}€</span>
+  <AppHeader />
+  <div class="wrapper">
+
+  
+  <div class="container">
+
+    <h1 class="text-center ms_color-dark p-5">Ristorante {{ store.selectRestaurant }}</h1>
+
+    <div class="row row-cols-1 row-cols-sm-2 g-4">
+      <div v-for="item in result" class="col">
+
+        <div class="card hover-zoom border-0 ms_bg-dark h-100">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`" class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
+            </div>
+            <div class="col-lg-8 ">
+              <div class="card-body">
+                <h5 class="card-title text-light">{{ item.name }}</h5>
+                <p class="card-text text-light">{{ item.description }}</p>
+                <p class="card-text text-light">{{ item.price }} €</p>
+              </div>
+              <div class="text-end">
+                <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+              </div>
+              
+            </div>
+          </div>
         </div>
-        <div class="d-flex justify-content-center flex-column">
-          <img :src="`http://127.0.0.1:8000/storage/${items.cover_image}`" alt="" />
-          <button class="w-100" @click="addtoCart(items)">Aggiungi</button>
-        </div>
+
       </div>
     </div>
-
-    <div>
-    <transition name="fade">
-      <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center h-25">
-        <div v-if="showModal" class="modal-content text-white p-4">
-          <p>Prodotto aggiunto al carrello!</p>
-        </div>
-        <div v-if="showError" class="err-content text-white p-4">
-          <p>Non puoi ordinare da un altro ristorante!</p>
-        </div>
-      </div>
-    </transition>
   </div>
+</div>
 
-  </body>
+  <transition class="text-center w-75 ms_modal-text" name="fade">
+    <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center h-25">
+      <div v-if="showModal" class="modal-content text-white p-4">
+        <p>Prodotto aggiunto al carrello!</p>
+      </div>
+      <div v-if="showError" class="err-content text-white p-4">
+        <p>Non puoi ordinare da un altro ristorante!</p>
+      </div>
+    </div>
+  </transition>
 </template>
+
 <style lang="scss" scoped>
-body {
-  background-color: #01222B;
+@use "../styles/variables/variables.scss" as *;
 
-  h1 {
-    color: #FDB633;
+.wrapper {
+  background-color: #ffecd0;
+  padding-top: 4rem;
+  min-height: 100vh;
+}
+
+.ms_modal-text {
+  @media screen and (min-width: 576px) {
+    width: 50% !important;
   }
+}
 
-  h3,
-  div {
-    color: white;
+.ms_btn-yellow {
+  border-radius: 0;
+}
 
-    div {
-      img {
-        width: 400px;
-      }
-    }
+.hover-zoom {
+  transition: all .3s ease-in-out;
+  z-index: 1;
 
-    button:hover {
-      background-color: #FDB633;
-    }
+  &:hover {
+    z-index: 2;
+    transform: scale(1.05);
+    transition: all .3s ease-in-out;
   }
 }
 
@@ -141,6 +167,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .active {
   display: flex;
 }

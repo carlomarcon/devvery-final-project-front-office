@@ -6,6 +6,7 @@ export const store = reactive({
   restaurants: [],
   myTypes: [],
   search: "",
+  selectRestaurant: '',
 
   products: [
     { id: 1, name: "riso", price: 10 },
