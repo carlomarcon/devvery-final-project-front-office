@@ -19,21 +19,13 @@ export default {
     axios
       .get('http://127.0.0.1:8000/api/restaurants/' + this.$route.params.slug)
       .then((resp) => {
-        // this.result = resp.data;
-        console.log(resp.data.foods);
         this.result = resp.data.foods;
-      })
-      .finally(() => {
-        console.log(this.result);
-        console.log(this.$route.params);
       });
   },
   methods: {
-
     addtoCart(product) {
       const existingProduct = this.store.cartData.find(
         (item) => item.id == product.id,
-        // item.restaurant_id == product.restaurant_id
       );
       const myProduct = {
         id: product.id,
@@ -50,7 +42,6 @@ export default {
           this.showError = false;
         }, 1000); // Hide error after 2 seconds
 
-        console.log('non puoi aggiungere cibo da un altro ristorante', this.store.cartData)
 
       } else if (existingProduct) {
         existingProduct.quantity++;
@@ -60,8 +51,6 @@ export default {
           this.showModal = false;
         }, 1000); // Hide modal after 2 seconds
 
-        console.log('hai aggiunto lo stesso prodotto', existingProduct, product, this.store.cartData[0].restaurant_id, myProduct.restaurant_id)
-
       } else {
         this.store.cartData.push(myProduct);
 
@@ -69,8 +58,6 @@ export default {
         setTimeout(() => {
           this.showModal = false;
         }, 1000); // Hide modal after 2 seconds
-
-        console.log('è stato aggiunto un nuovo prodotto');
       }
 
       localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
@@ -82,37 +69,38 @@ export default {
   <AppHeader />
   <div class="wrapper">
 
-  
-  <div class="container">
 
-    <h1 class="text-center ms_color-dark p-5">Ristorante {{ store.selectRestaurant }}</h1>
+    <div class="container">
 
-    <div class="row row-cols-1 row-cols-sm-2 g-4">
-      <div v-for="item in result" class="col">
+      <h1 class="text-center ms_color-dark p-5">Ristorante {{ store.selectRestaurant }}</h1>
 
-        <div class="card hover-zoom border-0 ms_bg-dark h-100">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`" class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
-            </div>
-            <div class="col-lg-8 ">
-              <div class="card-body">
-                <h5 class="card-title text-light">{{ item.name }}</h5>
-                <p class="card-text text-light">{{ item.description }}</p>
-                <p class="card-text text-light">{{ item.price }} €</p>
+      <div class="row row-cols-1 row-cols-sm-2 g-4">
+        <div v-for="item in result" class="col">
+
+          <div class="card hover-zoom border-0 ms_bg-dark h-100">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
+                  class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
               </div>
-              <div class="text-end">
-                <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+              <div class="col-lg-8 ">
+                <div class="card-body">
+                  <h5 class="card-title text-light">{{ item.name }}</h5>
+                  <p class="card-text text-light">{{ item.description }}</p>
+                  <p class="card-text text-light">{{ item.price }} €</p>
+                </div>
+                <div class="text-end">
+                  <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+                </div>
+
               </div>
-              
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <transition class="text-center w-75 ms_modal-text" name="fade">
     <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center h-25">

@@ -7,12 +7,6 @@ export const store = reactive({
   myTypes: [],
   search: "",
   selectRestaurant: '',
-
-  products: [
-    { id: 1, name: "riso", price: 10 },
-    { id: 2, name: "sushi", price: 20 },
-    { id: 3, name: "arancina", price: 30 },
-  ],
   cartData: getCart(),
 });
 

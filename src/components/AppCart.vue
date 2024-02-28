@@ -34,7 +34,7 @@ export default {
       this.store.total = total;
       localStorage.setItem('total', JSON.stringify(this.store.total));
       return total;
-    },
+    }
   },
 };
 </script> 
