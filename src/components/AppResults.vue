@@ -39,6 +39,7 @@ export default {
 .ms_container {
   position: relative;
   margin-top: 4rem;
+  min-height: 500px;
 
   a {
     text-decoration: none;

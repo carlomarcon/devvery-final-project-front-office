@@ -70,23 +70,22 @@ export default {
 
 <template>
   <div class="container">
-    <div v-if="checkedTypes.length === 0">
-      <h2 class="text-center text-light mt-5">CERCA UN RISTORANTE PER NOME</h2>
+    <div>
+      <h2 class="text-center text-light mt-5">CERCA UN RISTORANTE PER NOME O PER CATEGORIA</h2>
       <div class="d-flex align-items-center justify-content-center mt-5">
         <form class="px-5 py-1" action="">
           <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-          <input v-model="store.search" @input="filteredRestaurants" id="search" type="text"
+          <input v-bind:disabled="checkedTypes.length > 0" v-model="store.search" @input="filteredRestaurants" id="search" type="text"
             placeholder="Cerca Ristorante" />
         </form>
       </div>
     </div>
 
-    <div v-if="store.search.length === 0">
-      <h2 class="text-center text-light mt-5">CERCA UN RISTORANTE PER CATEGORIA</h2>
-      <div v-if="store.search.length == 0" class="d-flex justify-content-center gap-4 mt-5 flex-wrap">
+    <div>
+      <div class="d-flex justify-content-center gap-4 mt-5 flex-wrap">
 
         <div v-for="myType in myTypes" class="checkbox-wrapper-10">
-          <input v-model="checkedTypes" @change="checkTypes" :value="myType" class="tgl tgl-flip" :id="`cb5-${myType.name}`" type="checkbox" />
+          <input v-bind:disabled="store.search.length > 0" v-model="checkedTypes" @change="checkTypes" :value="myType" class="tgl tgl-flip" :id="`cb5-${myType.name}`" type="checkbox" />
 
           <label class="tgl-btn" :data-tg-off="myType.name" :data-tg-on="myType.name" :for="`cb5-${myType.name}`">
           </label>
@@ -205,7 +204,7 @@ i {
   padding: 2px;
   transition: all 0.2s ease;
   font-family: sans-serif;
-  perspective: 150px;
+  perspective: 200px;
   font-size: 2rem;
 
   @media screen and (max-width: 600px) {
@@ -229,7 +228,7 @@ i {
   left: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .checkbox-wrapper-10 .tgl-flip+.tgl-btn:after {
