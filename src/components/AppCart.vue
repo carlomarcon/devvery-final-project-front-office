@@ -35,11 +35,13 @@ export default {
       localStorage.setItem('total', JSON.stringify(this.store.total));
       return total;
     },
+    cartData(){console.log(this.store.cartData);}
   },
 };
 </script> 
 
 <template>
+  <button @click="cartData()"></button>
   <div>
     <ul v-if="store.cartData.length > 0" class="list-group">
       <li v-for="(item, index) in store.cartData" :key="index" class="list-group-item">
