@@ -98,7 +98,7 @@ export default {
             <div class="col-lg-8 ">
               <div class="card-body">
                 <h5 class="card-title text-light">{{ item.name }}</h5>
-                <p class="card-text text-light">{{ item.description }}</p>
+                <p class="card-text ms_description text-light">{{ item.description }}</p>
                 <p class="card-text text-light">{{ item.price }} €</p>
               </div>
               <div class="text-end">
@@ -131,8 +131,15 @@ export default {
 
 .wrapper {
   background-color: #ffecd0;
-  padding-top: 4rem;
+  padding: 4rem 0 4rem 0;
   min-height: 100vh;
+}
+
+.ms_description {
+  @media screen and (min-width: 990px) {
+    height: 50px;
+  }
+  
 }
 
 .ms_modal-text {
