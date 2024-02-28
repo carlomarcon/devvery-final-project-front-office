@@ -13,25 +13,29 @@ export default {
   <div class="ms_container ms_bg-yellow align-items-center d-flex flex-column">
 
     <div class="container-fluid">
+      <div class="d-flex justify-content-center">
+        <h2 class="text-center ms_badge-dark mt-4">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
+      </div>
 
-    <h2 class="text-center ms_badge-dark mt-4">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 p-4">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 p-4">
 
-      <router-link class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants" :to="{ name: 'show', params: { slug: restaurant.slug } }">
+        <router-link class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants"
+          :to="{ name: 'show', params: { slug: restaurant.slug } }">
 
-        <div class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
-          <img class="card-img-top mb-2 h-50" :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt=""  />
-          <div class="card-body">
-            <h3 class="card-title">{{ restaurant.name }}</h3>
-            <p class="card-text">{{ restaurant.description }}</p>
+          <div class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
+            <img class="card-img-top mb-2 h-50" :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" />
+            <div class="card-body">
+              <h3 class="card-title">{{ restaurant.name }}</h3>
+              <p class="card-text">{{ restaurant.description }}</p>
+            </div>
           </div>
-        </div>
-      
-      </router-link>
-      
+
+        </router-link>
+
+      </div>
+
     </div>
-  </div>
   </div>
 </template>
 
