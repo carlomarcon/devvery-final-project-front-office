@@ -16,7 +16,7 @@ export default {
           <img src="../assets/images/main/logotipo.png" alt="" />
         </router-link>
 
-        <div class="d-flex gap-2 align-items-center">
+        <div v-if="$route.path != '/shipment'" class="d-flex gap-2 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
           <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block">LOGIN</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -24,6 +24,9 @@ export default {
             <i class="fa-solid fa-cart-shopping"></i>
           </button>
         </div>
+
+        <router-link v-if="$route.path === '/shipment'" to="/" class="btn btn-warning">Torna
+          indietro</router-link>
 
       </div>
     </nav>
@@ -39,13 +42,11 @@ export default {
       <AppCart />
     </div>
   </div>
-  
 </template>
 
 
 
 <style lang="scss" scoped>
-
 template {
   z-index: 9999;
 }
@@ -57,5 +58,4 @@ img {
 i {
   font-size: 1.5rem;
 }
-
 </style>

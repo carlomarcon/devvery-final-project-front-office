@@ -35,23 +35,23 @@ export default {
 </script>
 
 <template>
-    <footer class="sticky-bottom">
-
-        <div class="mt-3">
-            <div class="row row-cols-2 row-cols-md-4 g-5 footer-links text-start">
-                <div class="col" v-for="(item, index) in footerItems" :key="index">
+    <footer class="position-relative p-5 pb-3 bg-dark">
+        <div class="p-3 my-5">
+            <div
+                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-between">
+                <div class="col mb-4" v-for="(item, index) in footerItems" :key="index">
                     <h2>{{ item.title }}</h2>
                     <div class="mb-2" v-for="(link, linkIndex) in item.links" :key="linkIndex">
-                        <span v-if="link.icon" class="text-white"><i class="fs-5 me-2"
+                        <span v-if="link.icon" class="text-white"><i class=" fs-5 me-2"
                                 :class="'fab fa-' + link.icon"></i></span>
                         <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="footer-pages container flex-column flex-md-row">
-                <a class="text-white" href="">Termini e condizioni</a><br>
-                <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
+                <div>
+                    <a class="text-white" href="">Termini e condizioni</a><br>
+                    <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
+                </div>
             </div>
         </div>
 
@@ -61,84 +61,55 @@ export default {
 </template>
 
 <style scoped lang="scss">
-
-@keyframes move-twink {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: -10000px 0;
-    }
-}
-
-.footer-pages {    
-    color: white;
-    align-items: center;
-    list-style-type: none;    
-    position: relative;
-    z-index: 3;
-    min-width: 100%;
-    padding: 1rem 1rem 0 1rem;
-}
-
-.footer-links {
-    display: flex;
-    color: white;    
-    list-style-type: none;
-    flex-direction: column;
-    position: relative;
-    z-index: 3;
-    min-width: 100%;
-    padding: 1rem;
-    
-
-    @media screen and (min-width: 500px) {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: stretch;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-}
-
 footer {
-    position: relative;
-    padding: 6rem 3rem 3rem 3rem ;
     background-image: url("../assets/images/footer/BG-Gradient.png");
-    background-color: black;
     background-size: contain;
     z-index: 4;
-}
 
-.stars {
-    background: transparent url("../assets/images/footer/stars_bg.png") repeat top center;
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
-}
+    .z_index {
+        z-index: 3;
+    }
 
-.twinkling {
-    background: transparent url("../assets/images/footer/bg-twinkle.png") top center;
-    background-size: contain;
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    animation: move-twink 900s linear infinite;
+    i {
+        width: 1.5rem;
+    }
+
+    .stars {
+        background: transparent url("../assets/images/footer/stars_bg.png") repeat top center;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 0;
+    }
+
+    .twinkling {
+        background: transparent url("../assets/images/footer/bg-twinkle.png") top center;
+        background-size: contain;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        animation: move-twink 900s linear infinite;
+    }
+
+    @keyframes move-twink {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: -10000px 0;
+        }
+    }
 }
 </style>

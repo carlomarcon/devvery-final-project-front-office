@@ -46,26 +46,25 @@ export default {
 
       axios.post('http://127.0.0.1:8000/api/orders', data).then((resp) => {
         console.log('Ordine salvato');
-        this.$router.push('/');
+        window.location.href = "http://localhost:3000/";
+        // this.$router.push('/');
       });
     }
   }
 };
 </script>
-
  
 <template>
-  <div class="wrapper">
+  <div class="overflow-y-auto position-relative">
     <AppHeader />
-
-    <div class="ms-container container mt-5 mb-5">
-
-      <h2>Dettagli di consegna</h2>
-      <div class="row">
-        <div class="col-md-4 mb-3">
+    <div class="ms-container container my-5">
+      <h3 class="mb-4">Dettagli di consegna</h3>
+      <div class="row mb-5 ms_wave">
+        <!-- RIEPILOGO -->
+        <div class="col-lg-4 col-md-12 mb-4">
           <div class="card">
             <div class="card-header">
-              <h5 class="mb-0">Il tuo ordine</h5>
+              <h5>Il tuo ordine</h5>
             </div>
             <div class="card-body">
               <table class="table">
@@ -74,58 +73,58 @@ export default {
                     <th scope="col">Prodotto</th>
                     <th scope="col">Quantità</th>
                     <th scope="col">Prezzo</th>
-
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="items in store.cartData">
                     <th scope="row">{{ items.name }}</th>
-                    <td>{{ items.quantity }} X</td>
+                    <td class="text-center">{{ items.quantity }}</td>
                     <td>{{ items.price }}€</td>
                   </tr>
                 </tbody>
               </table>
 
-              <h5>Totale: {{ store.total }}€</h5>
-
+              <h5 class="ps-2">Totale: {{ store.total }}€</h5>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+
+        <!-- FORM CLIENTE -->
+        <div class="col-lg-8 col-md-12 mb-5">
           <div class="card">
             <div class="card-header">
-              <h5 class="mb-0">Dettagli ordine</h5>
+              <h5>Dettagli cliente</h5>
             </div>
             <div class="card-body">
               <!-- FORM -->
               <form @submit.prevent="insertOrder">
-                <div class="form-group d-flex gap-5">
+                <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
                   <div>
-                    <label class="mb-2" for="first_name">Nome</label>
+                    <label class="my-2" for="first_name">Nome</label>
                     <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome" required
                       v-model="first_name">
                   </div>
                   <div>
-                    <label class="mb-2" for="last_name">Cognome</label>
+                    <label class="my-2" for="last_name">Cognome</label>
                     <input type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
                       required v-model="last_name">
                   </div>
+                  <div>
+                    <label class="my-2" for="phone">Numero di telefono</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
+                      v-model="phone">
+                  </div>
                 </div>
-                <div class="form-group mt-3">
-                  <label class="mb-2" for="address">Indirizzo </label>
+                <div class="form-group">
+                  <label class="my-2" for="address">Indirizzo </label>
                   <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
                     v-model="address">
                 </div>
-                <div class="form-group mt-3">
-                  <label class="mb-2" for="phone">Numero di telefono</label>
-                  <input type="tel" class="form-control" id="phone" placeholder="Inserisci il numero di telefono" required
-                    v-model="phone">
+
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-outline-success mt-4">Procedi al pagamento</button>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Procedi al pagamento</button>
-
               </form>
-              <a href="http://localhost:3000/"> pagamento</a>
             </div>
           </div>
         </div>
@@ -138,9 +137,20 @@ export default {
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.ms_wave {
+  &::after {
+    width: 100%;
+    background-image: url(../assets/images/main/onda_white.png);
+    content: '';
+    height: 50px;
+    position: absolute;
+    display: block;
+    transform: rotate(180deg);
+    z-index: 9;
+    top: 57%;
+    left: 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 </style>
