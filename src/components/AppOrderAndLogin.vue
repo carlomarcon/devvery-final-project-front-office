@@ -20,7 +20,7 @@ export default {};
           <div class="w-100 text-center text-sm-start">
             <h3>I migliori ristoranti della città nella tua mano!</h3>
             <p>Goditila flessibilità e la libertà che solo le consegne Devvery garaniscono!</p>
-            <button class="btn btn-dark">ORDINA ORA</button>
+            <a href="http://localhost:4242/" class="btn btn-dark">ORDINA ORA</a>
           </div>
         </div>
 
