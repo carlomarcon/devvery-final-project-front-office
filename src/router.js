@@ -4,6 +4,7 @@ import PrivacyPage from "./pages/PrivacyPage.vue";
 import AppShipment from "./pages/AppShipment.vue";
 import AppShow from "./pages/AppShow.vue";
 import PaymentComponent from "./pages/PaymentComponent.vue";
+import AppSuccess from "./pages/AppSuccess.vue";
 import TermAndConditionPage from "./pages/TermAndConditionPage.vue";
 
 
@@ -34,6 +35,11 @@ const router = createRouter({
       path: "/payment",
       name: "payment",
       component: PaymentComponent,
+    },
+    {
+      path: "/success",
+      name: "success",
+      component: AppSuccess,
     },
     {
       path: "/term",
