@@ -7,6 +7,10 @@ export default {
     };
   },
   methods: {
+    closeCanvas() {
+      const canvas = document.querySelector('.offcanvas-backdrop');
+      canvas.style.display = 'none';
+    },
     remove(id) {
       this.store.cartData = this.store.cartData.filter(item => item.id !== id);
       localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
@@ -72,8 +76,9 @@ export default {
 
       <div class="d-flex justify-content-between align-items-baseline mx-3">
         <h4 class="fw-bold">Totale: {{ calculateTotal() }}€</h4>
-        <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn btn-outline-success">Vai alla
-          spedizione</router-link>
+        <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn btn-outline-success position-relative">Vai
+          alla
+          spedizione<button class="close-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button></router-link>
       </div>
     </div>
 
@@ -81,4 +86,14 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.close-btn {
+  position: absolute;
+  border: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+</style>
