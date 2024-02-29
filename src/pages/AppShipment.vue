@@ -1,7 +1,6 @@
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
-import AppPayment from "../components/Payment.vue";
 import { store } from "../store";
 import axios from "axios";
 
@@ -9,7 +8,6 @@ export default {
   components: {
     AppHeader,
     AppFooter,
-    AppPayment
   },
   data() {
     return {
@@ -105,7 +103,7 @@ export default {
                 
 
                 <router-link class="btn btn-primary" :to="{ name: 'payment' }">Paga</router-link>
-                
+
               </form>
               
             </div>
