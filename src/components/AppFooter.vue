@@ -49,7 +49,7 @@ export default {
                 </div>
 
                 <div>
-                    <a class="text-white" href="">Termini e condizioni</a><br>
+                    <router-link class="text-white" to="/term">Termini e Condizioni</router-link><br>
                     <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
                 </div>
             </div>
