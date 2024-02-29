@@ -3,6 +3,7 @@ import axios from "axios";
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 import { store } from "../store";
+import axios from "axios";
 
 export default {
   components: {
@@ -22,6 +23,16 @@ export default {
       quantity: [],
       restaurant_id: store.cartData[0].restaurant_id
     };
+  },
+  // created() {
+  //   axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+  //     console.log(resp.data.token);
+  //   });
+  // },
+  async mounted() {
+      await axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+      this.tokenApi = resp.data.token
+    })
   },
   methods: {
     showSection(section) {
@@ -122,10 +133,12 @@ export default {
                     v-model="phone">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Procedi al pagamento</button>
+                
+
+                <router-link class="btn btn-primary" :to="{ name: 'payment' }">Paga</router-link>
 
               </form>
-              <a href="http://localhost:3000/"> pagamento</a>
+              
             </div>
           </div>
         </div>
