@@ -1,23 +1,34 @@
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
+import AppPayment from "../components/Payment.vue";
 import { store } from "../store";
+import axios from "axios";
 
 export default {
   components: {
     AppHeader,
     AppFooter,
+    AppPayment
   },
   data() {
     return {
-      activeSection: 'dataSection',
+      tokenApi : '',
       store
     };
   },
+  // created() {
+  //   axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+  //     console.log(resp.data.token);
+  //   });
+  // },
+  async mounted() {
+      await axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+      this.tokenApi = resp.data.token
+    })
+  },
   methods: {
-    showSection(section) {
-      this.activeSection = section;
-    }
+   
   }
 };
 </script>
@@ -91,9 +102,12 @@ export default {
                     placeholder="Esempio scala 1 interno 3">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Procedi al pagamento</button>
+                
+
+                <router-link class="btn btn-primary" :to="{ name: 'payment' }">Paga</router-link>
+                
               </form>
-              <a href="http://localhost:3000/"> pagamento</a>
+              
             </div>
           </div>
         </div>
