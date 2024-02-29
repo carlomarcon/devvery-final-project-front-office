@@ -6,9 +6,9 @@ export default {
                 {
                     title: "Uniamo le forze",
                     links: [
-                        { label: "Lavora con noi", url: "INSERIRE URL" },
-                        { label: "Registrati", url: "INSERIRE URL" },
-                        { label: "Login", url: "INSERIRE URL" }
+                        { label: "Lavora con noi", url: "https://boolean.careers" },
+                        { label: "Registrati", url: "http://127.0.0.1:8000/register" },
+                        { label: "Login", url: "http://127.0.0.1:8000" }
                     ]
                 },
                 {
@@ -49,7 +49,7 @@ export default {
                 </div>
 
                 <div>
-                    <a class="text-white" href="">Termini e condizioni</a><br>
+                    <router-link class="text-white" to="/term">Termini e Condizioni</router-link><br>
                     <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
                 </div>
             </div>
