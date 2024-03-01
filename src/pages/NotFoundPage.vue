@@ -1,25 +1,83 @@
 <script>
-export default {
+import AppHeader from "../components/AppHeader.vue";
+import AppFooter from "../components/AppFooter.vue";
 
-}
+export default {
+    components: {
+        AppHeader,
+        AppFooter,
+    },
+    data() {
+        return {
+            activeSection: 'mainSection'
+        };
+    },
+    methods: {
+        showSection(section) {
+            this.activeSection = section;
+        }
+    }
+};
 </script>
 
+ 
 <template>
-    <main>
-        <div class="ms_bg-yellow d-flex align-items-center">
-            <div class="container d-flex flex-column align-items-center">
-                <h1 class="text-light">404 NOT FOUND</h1>
-                <router-link class="btn ms_btn-dark mt-3 fs-1 px-5" :to="{ name: 'home' }">BACK</router-link>
-            </div>
+    <div class="wrapper">
+        <AppHeader />
+
+        <div class="ms_container  d-flex">
+            <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                    <img src="../assets/images/404/404-img2.png" alt="">
+                    <router-link  to="/" class="btn btn-success mb-4">Torna alla Home</router-link>
+                </div>
+                <div class="col d-none d-md-block d-lg-block "><img src="../assets/images/404/404-img.png" alt=""></div>
+            </div>         
+
         </div>
-    </main>
+        <AppFooter />
+    </div>
 </template>
 
+
 <style lang="scss" scoped>
-.ms_bg-yellow {
-    height: 100vh;
-    h1 {
-        font-size: 5rem;
-    }
+img {    
+    height: 100%;
+}
+
+.btn { width: 10rem;
+
+}
+
+.wrapper {
+    background-color: #fdb633;
+    overflow: hidden;
+
+}
+
+.ms_container {
+  position: relative;
+  margin-top: 4rem;
+  min-height: 500px;
+
+
+//   &::before {
+//     width: 100%;
+//     background-image: url(../assets/images/main/onda.png);
+//     content: '';
+//     height: 4rem;
+//     position: absolute;
+//     display: block;
+//     z-index: 9;
+//     bottom: -62px;
+//     transform: rotate(180deg);
+//     left: 0;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+
+//   }
+
+  
 }
 </style>
+
