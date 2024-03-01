@@ -36,9 +36,9 @@ export default {
 
 <template>
     <footer class="position-relative p-5 pb-3 bg-dark">
-        <div class="p-3 my-5">
+        <div class="px-5 my-5 mx-5">
             <div
-                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-between">
+                class="row row-cols-1 row-cols-md-1 row-cols-lg-4 text-white position-relative z_index justify-content-between gap-3">
                 <div class="col mb-4" v-for="(item, index) in footerItems" :key="index">
                     <h2>{{ item.title }}</h2>
                     <div class="mb-2" v-for="(link, linkIndex) in item.links" :key="linkIndex">
