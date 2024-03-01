@@ -1,30 +1,31 @@
 <template>
-  
-   
-    <!-- Confirmation Modal -->
-    <transition name="fade">
-      <div v-if="showModal" class="modal d-flex align-items-center justify-content-center">
-        <div class="modal-content text-white p-4">
-          <p>Prodotto aggiunto al carrello!</p>
-        </div>
+  <!-- Confirmation Modal -->
+  <transition name="fade">
+    <div
+      v-if="store.showModal"
+      class="modal d-flex align-items-center justify-content-center"
+    >
+      <div class="modal-content text-white p-4">
+        <p>Prodotto aggiunto al carrello!</p>
       </div>
-    </transition>
-  
+    </div>
+  </transition>
 </template>
-  
+
 <script>
 import { store } from "../store";
 export default {
   data() {
     return {
       store,
-      showModal: false
     };
   },
   methods: {
     addToCart(product) {
-      const existingProduct = this.store.cartData.find(item => item.id == product.id);
-      console.log(existingProduct)
+      const existingProduct = this.store.cartData.find(
+        (item) => item.id == product.id
+      );
+      console.log(existingProduct);
       if (existingProduct) {
         existingProduct.quantity++;
       } else {
@@ -32,30 +33,29 @@ export default {
           id: product.id,
           name: product.name,
           price: product.price,
-          quantity: 1
+          quantity: 1,
         };
         this.store.cartData.push(myProduct);
-        this.showModal = true;
+        this.store.showModal = true;
         setTimeout(() => {
-          this.showModal = false;
-        }, 1000); // Hide modal after 2 seconds
-
+          this.store.showModal = false;
+        }, 2000); // Hide modal after 2 seconds
       }
-      localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
+      localStorage.setItem("cartData", JSON.stringify(this.store.cartData));
     },
     pushProduct(product) {
       let myProduct = {
         id: product.id,
         name: product.name,
         price: product.price,
-        quantity: 1
+        quantity: 1,
       };
-      this.store.cartData.push(myProduct)
-    }
+      this.store.cartData.push(myProduct);
+    },
   },
 };
 </script>
-  
+
 <style scoped>
 /* Styling for the modal */
 .modal {
@@ -71,7 +71,7 @@ export default {
 
 .modal-content {
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Fade animation */
@@ -85,4 +85,3 @@ export default {
   opacity: 0;
 }
 </style>
-  
