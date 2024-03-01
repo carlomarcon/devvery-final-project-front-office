@@ -2,7 +2,7 @@
   <div>
     <AppHeader />
     <div class="ms-container">
-      <ProductList @add-to-cart="addToCart" />
+      <ProductList />
       <AppSearch />
       <AppCarousel />
       <AppResults v-if="store.flag"/>
