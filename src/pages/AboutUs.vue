@@ -20,10 +20,13 @@ export default {
     <div class="wrapper ms_bg-yellow">
         <AppHeader />
         <div class="container">
-            <div class="fs-2">
+            <img class="img-3" src="../assets/images/main/smartphone.png" alt="">
+            <img class="img-1" src="../assets/images/main/hamburger.png" alt="">
+            <img class="img-2" src="../assets/images/main/tree.png" alt="">
+            <div class="fs-3 fw-bold">
                 <h2 class="text-center fw-bolder mb-4"><span class="ms_brand">De<span class="text-white"><i class="fa-solid fa-v"></i><i class="fa-solid fa-v"></i></span>ery</span>: Rivoluzioniamo il Gusto, Consegna dopo Consegna</h2>
                 
-                <p>Benvenuti in Devvery, dove l'innovazione incontra la passione per il cibo.
+                <p >Benvenuti in Devvery, dove l'innovazione incontra la passione per il cibo.
                     Siamo più di una semplice azienda
                     di delivery; siamo un movimento dedicato a portare la bontà culinaria direttamente alla tua
                     porta.
@@ -40,7 +43,7 @@ export default {
                     ordine
                     vada a sostenere le piccole imprese e a promuovere l'ecosistema culinario locale. Inoltre, adottiamo
                     pratiche sostenibili nella nostra logistica di consegna per ridurre al minimo l'impatto ambientale delle
-                    nostre operazioni.</p>
+                    nostre operazioni. </p>
 
                 <p>Ci impegniamo costantemente a superare le aspettative dei nostri clienti, offrendo un servizio
                     impeccabile e una varietà ineguagliabile di opzioni culinarie. Che tu stia cercando una pizza fragrante,
@@ -88,12 +91,37 @@ export default {
     }
 }
    
-   
 }
 .container {
     padding-top: 6rem;
     padding-bottom: 6rem;
     min-height: calc(100vh - 430px);
+    position: relative;
+
+    img {
+        position: absolute;
+        opacity: 20%;
+        max-width: 350px;
+    }
+
+    .img-1 {
+        top: 15%;
+        left: -10%;
+    }
+
+    .img-2 {
+       
+        top: 35%;
+        right: -10%;
+        
+    }
+
+    .img-3 {
+      
+        top: 65%;
+        left: -10%;
+      
+    }
 }
 </style>
 

@@ -14,7 +14,7 @@ export default {
                 {
                     title: "Link di interesse",
                     links: [
-                        { label: "Chi siamo", url: "INSERIRE URL" },
+                        { label: "Chi siamo", url: "http://localhost:4242/about-us" },
                         { label: "FAQ", url: "INSERIRE URL" },
                         { label: "Sicurezza", url: "INSERIRE URL" }
                     ]
