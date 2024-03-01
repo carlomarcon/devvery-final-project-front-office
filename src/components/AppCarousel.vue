@@ -8,48 +8,7 @@ export default {
 
   data() {
     return {
-      images: [
-        {
-          cover: 'alta-cucina',
-          link: 'https://www.google.it/?hl=i',
-          type: 'GOURMET'
-        },
-        {
-          cover: 'cinese',
-          link: '',
-          type: 'CINESE'
-        },
-        {
-          cover: 'fast-food',
-          link: 'https://www.google.it/?hl=it',
-          type: 'FAST FOODS'
-        },
-        {
-          cover: 'giapponese',
-          link: 'https://www.google.it/?hl=it',
-          type: 'GIAPPONESE'
-        },
-        {
-          cover: 'hamburgheria',
-          link: 'https://www.google.it/?hl=it',
-          type: 'PANINOTECHE'
-        },
-        {
-          cover: 'pasticceria',
-          link: 'https://www.google.it/?hl=it',
-          type: 'PASTICCERIE'
-        },
-        {
-          cover: 'pizzeria',
-          link: 'https://www.google.it/?hl=it',
-          type: 'PIZZERIE'
-        },
-        {
-          cover: 'trattoria',
-          link: 'https://www.google.it/?hl=it',
-          type: 'TRATTORIE'
-        },
-      ],
+      images: ['alta-cucina','cinese','fast-food','giapponese','hamburgheria','pasticceria', 'pizzeria','trattoria'],
       settings: {
         itemsToShow: 0.7,
         snapAlign: 'center',
@@ -74,7 +33,7 @@ export default {
 <template>
   <Carousel class="w-100" v-bind="settings" :wrap-around="true">
     <Slide v-for="slide in images" :key="slide">
-      <img class="carousel__item" :src="getImagepath(slide.cover)" alt="">
+      <img class="carousel__item" :src="getImagepath(slide)" alt="">
     </Slide>
     <template #addons>
       <Navigation />

@@ -4,9 +4,7 @@ export default {
     return {};
   },
   created() {
-    // const animatedImage = document.querySelector(".animatedImage");
-    // setTimeout(() => (animatedImage.style.display = "none"), 2000);
-    setTimeout(() => this.$router.push("/"), 2500);
+    setTimeout(() => this.$router.push("/"), 3000);
   },
 };
 </script>

@@ -35,13 +35,7 @@ export default {
   data() {
     return {
       store,
-      // cartData: [],
-    };
-  },
-  methods: {
-    addToCart(product) {
-      this.cartData.push(product);
-    },
+    }
   },
 };
 </script>

@@ -4,18 +4,17 @@ import { store } from "../store";
 export default {
   data() {
     return {
-      baseUrl: "http://127.0.0.1:8000",
       store,
       myTypes: [],
       checkedTypes: [],
     };
   },
   created() {
-    axios.get(`${this.baseUrl}/api/types`)
+    axios.get(`${this.store.baseUrl}/api/types`)
       .then((resp) => {
         this.myTypes = resp.data.result;
       });
-    axios.get(`${this.baseUrl}/api/types`).then((resp) => {
+    axios.get(`${this.store.baseUrl}/api/types`).then((resp) => {
       this.store.myTypes = resp.data.result;
     });
   },
@@ -28,11 +27,11 @@ export default {
         this.store.flag = false;
       } else {
         axios
-          .get(`${this.baseUrl}/api/restaurants/searchText/${this.store.search}`)
+          .get(`${this.store.baseUrl}/api/restaurants/searchText/${this.store.search}`)
           .then((resp) => {
             // console.log(resp.data.result[0]);
             this.store.restaurants = resp.data.result;
-            console.log(resp.data.result);
+          
           })
           .finally(() => {
             this.store.flag = true;
@@ -50,11 +49,11 @@ export default {
         });
         const params = { types: dates };
         axios
-          .get(`${this.baseUrl}/api/restaurants/types`, { params })
+          .get(`${this.store.baseUrl}/api/restaurants/types`, { params })
           .then((resp) => {
             if (!(typeof resp.data.result === 'string')) {
               this.store.restaurants = resp.data.result;
-              console.log(this.store.restaurants);
+              // console.log(this.store.restaurants);
             }
           })
           .finally(() => {
@@ -73,7 +72,7 @@ export default {
     <div>
       <h2 class="text-center text-light mt-5">CERCA UN RISTORANTE PER NOME O PER CATEGORIA</h2>
       <div class="d-flex align-items-center justify-content-center mt-5">
-        <form class="px-5 py-1" action="">
+        <form :class="checkedTypes.length > 0 ? 'ms_opacity' : ''" class="px-5 py-1" action="">
           <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
           <input v-bind:disabled="checkedTypes.length > 0" v-model="store.search" @input="filteredRestaurants" id="search" type="text"
             placeholder="Cerca Ristorante" />
@@ -87,7 +86,7 @@ export default {
         <div v-for="myType in myTypes" class="checkbox-wrapper-10">
           <input v-bind:disabled="store.search.length > 0" v-model="checkedTypes" @change="checkTypes" :value="myType" class="tgl tgl-flip" :id="`cb5-${myType.name}`" type="checkbox" />
 
-          <label class="tgl-btn" :data-tg-off="myType.name" :data-tg-on="myType.name" :for="`cb5-${myType.name}`">
+          <label :class="store.search.length > 0 ? 'ms_opacity' : ''" class="tgl-btn" :data-tg-off="myType.name" :data-tg-on="myType.name" :for="`cb5-${myType.name}`">
           </label>
 
         </div>
@@ -103,6 +102,10 @@ export default {
 
 .container {
   padding: 1rem 0 6rem 0;
+}
+
+.ms_opacity {
+  filter: opacity(50%);
 }
 
 i {
