@@ -71,18 +71,21 @@ export default {
         width: 100%;
         background-image: url(../assets/images/main/onda.png);
         content: '';
-        height: 80px;
+        height: 100px;
         position: absolute;
         display: block;
         transform: rotate(180deg);
         z-index: 9;
-        bottom: -3%;
+        bottom: -4%;
         left: 0;
         background-size: cover;
         background-repeat: no-repeat;
     }
 }
 
+footer {
+    padding-top: 8rem !important;
+}
 .ms_brand {
     white-space: nowrap;
     position: relative;
