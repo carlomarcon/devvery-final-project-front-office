@@ -84,19 +84,27 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
+
 .carousel {
   position: absolute;
   top: 0;
   z-index: -999999;
   filter: brightness(40%);
 }
+
 .carousel__item {
-  height: 1000px;
+  height: 1400px;
   width: 100%;
   object-fit: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .carousel__item {
+    height: 1000px;
+  }
 }
 </style>

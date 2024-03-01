@@ -1,10 +1,21 @@
 <script>
 import AppCart from "./AppCart.vue";
+import { store } from "../store";
 
 export default {
+  data() {
+    return {
+      store,
+    };
+  },
   components: {
     AppCart,
-  }
+  },
+  computed: {
+    numberOfProducts() {
+      return this.store.cartData.reduce((totale, item) => totale + item.quantity, 0);
+    }
+  },
 };
 </script>
 
@@ -19,9 +30,13 @@ export default {
         <div v-if="$route.path != '/shipment'" class="d-flex gap-2 align-items-center">
           <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
           <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block">LOGIN</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <i class="fa-solid fa-cart-shopping"></i>
+          <!-- CARRELLO -->
+          <button class="navbar-toggler border-black border-2 d-flex align-content-center gap-1" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation">
+            <span v-if="store.cartData.length != 0" class="d-inline-block ms_color-dark fw-bold">{{ numberOfProducts
+            }}</span>
+            <i class="fa-solid fa-cart-shopping ms_color-dark"></i>
           </button>
         </div>
 
@@ -57,5 +72,10 @@ img {
 
 i {
   font-size: 1.5rem;
+}
+
+// CART SHADOW
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 </style>
