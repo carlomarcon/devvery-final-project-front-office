@@ -51,7 +51,7 @@ export default {
   <div class="wrapper">
     <div v-if="store.cartData.length > 0">
       <div class="text-end">
-        <button class="btn btn-outline-danger mb-3 btn-sm me-3" @click="emptyCart()">Svuota il carrello</button>
+        <button class="btn ms_btn-red mb-3 btn-sm me-3" @click="emptyCart()">Svuota il carrello</button>
       </div>
       <ul class="list-group mb-4">
         <li v-for="(item, index) in store.cartData" :key="index" class="list-group-item">
@@ -60,14 +60,14 @@ export default {
               <span class="d-inline-block mb-1 text-capitalize">{{ item.name }}</span> - <span>{{ item.price
               }}€</span><br>
 
-              <button class="px-2 py-1 bg-warning-subtle border-0 rounded-circle lh-1 fw-bold"
-                @click="decrease(item.id)">-</button>
+              <button class="btn ms_btn-yellow fw-bold"
+                @click="decrease(item.id)"><i class="fa-solid fa-minus"></i></button>
               <span class="d-inline-block mx-2">{{ item.quantity }}</span>
-              <button class="px-2 py-1 bg-warning-subtle border-0 rounded-circle lh-1 fw-bold"
-                @click="add(item.id)">+</button>
+              <button class="btn ms_btn-yellow fw-bold"
+                @click="add(item.id)"><i class="fa-solid fa-plus"></i></button>
             </div>
 
-            <button class="btn btn-outline-danger btn-sm" @click="remove(item.id)">
+            <button class="btn ms_btn-red btn-sm" @click="remove(item.id)">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
@@ -76,7 +76,7 @@ export default {
 
       <div class="d-flex justify-content-between align-items-baseline mx-3">
         <h4 class="fw-bold">Totale: {{ calculateTotal() }}€</h4>
-        <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn btn-outline-success position-relative">Vai
+        <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn ms_btn-dark position-relative">Vai
           alla
           spedizione<button class="close-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button></router-link>
       </div>
@@ -86,7 +86,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .close-btn {
   position: absolute;
   border: none;
@@ -96,4 +96,18 @@ export default {
   left: 0;
   background-color: transparent;
 }
+
+.list-group-item {
+  background-color: #ffecd0;
+  font-weight: bold;
+}
+
+.info {
+  button {
+    padding: 0 .3rem !important;
+    font-size: .8rem;
+  }
+}
+
+
 </style>

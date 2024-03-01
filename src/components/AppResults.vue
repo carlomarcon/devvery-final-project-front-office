@@ -28,7 +28,12 @@ export default {
 
           <div @click="selectRestaurant(restaurant.name)" class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
             <img class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`" alt="" />
+
             <div class="card-body">
+              <div class="d-flex gap-2 flex-wrap mb-3">
+                <div class="ms_badge-yellow" v-for="tipo in restaurant.types">{{ tipo.name }}</div>
+              </div>
+              
               <h3 class="card-title">{{ restaurant.name }}</h3>
               <p class="card-text">{{ restaurant.description }}</p>
             </div>

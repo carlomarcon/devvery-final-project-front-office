@@ -79,4 +79,12 @@ i {
 .navbar-toggler:focus {
   box-shadow: none;
 }
+
+.offcanvas-body {
+  background-color: #fff8ec;
+}
+
+.offcanvas-header {
+  background-color: #ffecd0;
+}
 </style>
