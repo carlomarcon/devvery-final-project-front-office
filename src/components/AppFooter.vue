@@ -35,8 +35,8 @@ export default {
 </script>
 
 <template>
-    <footer class="position-relative p-5 pb-3 bg-dark">
-        <div class="p-3 my-5">
+    <footer class="position-relative p-5 pb-3 bg-dark ">
+        <div class="p-3 my-5 container">
             <div
                 class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-between">
                 <div class="col mb-4" v-for="(item, index) in footerItems" :key="index">
