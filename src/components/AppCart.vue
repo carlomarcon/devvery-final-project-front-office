@@ -82,7 +82,7 @@ export default {
       </div>
     </div>
 
-    <p v-else class="alert alert-light mx-4">Il carrello è vuoto</p>
+    <p v-else class="alert mx-4">Il carrello è vuoto</p>
   </div>
 </template>
 
@@ -107,6 +107,11 @@ export default {
     padding: 0 .3rem !important;
     font-size: .8rem;
   }
+}
+
+.alert {
+  background-color: #ffecd0;
+  font-weight: bolder;
 }
 
 
