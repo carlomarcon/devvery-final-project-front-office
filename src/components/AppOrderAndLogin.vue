@@ -18,7 +18,7 @@ export default {};
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 justify-content-between align-items-center g-5">
-          <img class="object-fit-cover rounded rounded-5 p-0" src="../assets/images/main/ristorante-stellato.jpg"
+          <img class="object-fit-cover rounded rounded-5 p-0" src="../assets/images/main/chef.jpg"
             alt="Foto Ristorante" />
           <div class="d-flex flex-column align-items-start">
             <h3>Unisciti a noi e preparati a raggiungere il voto 10 in cucina!</h3>

@@ -16,12 +16,13 @@ export default {
       this.store.showModal = false;
       this.store.showError = false;
     },
-    computed: {
+  },
+  computed: {
       numberOfProducts() {
         return this.store.cartData.reduce((totale, item) => totale + item.quantity, 0);
       }
     },
-  };
+}
 </script>
 
 <template>
