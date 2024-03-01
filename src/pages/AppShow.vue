@@ -47,21 +47,25 @@ export default {
         existingProduct.quantity++;
 
         this.showModal = true;
-        setTimeout(() => {
-          this.showModal = false;
-        }, 1000); // Hide modal after 2 seconds
+        // setTimeout(() => {
+        //   this.showModal = false;
+        // }, 1000); // Hide modal after 2 seconds
 
       } else {
         this.store.cartData.push(myProduct);
 
         this.showModal = true;
-        setTimeout(() => {
-          this.showModal = false;
-        }, 1000); // Hide modal after 2 seconds
+        // setTimeout(() => {
+        //   this.showModal = false;
+        // }, 1000); // Hide modal after 2 seconds
       }
 
       localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
     },
+
+    close() {
+      this.showModal = false;
+    }
   },
 };
 </script>
@@ -102,9 +106,13 @@ export default {
   </div>
 
   <transition class="text-center w-75 ms_modal-text" name="fade">
-    <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center h-25">
-      <div v-if="showModal" class="modal-content text-white p-4">
+    <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center">
+      <div v-if="showModal" class="modal-content text-white text-center p-5 d-flex flex-row justify-content-center position-relative">
+       
         <p>Prodotto aggiunto al carrello!</p>
+        
+        <button type="button" class="btn ms_btn-yellow position-absolute top-0 end-0" @click="close"><i class="fa-solid fa-x"></i></button>
+
       </div>
       <div v-if="showError" class="err-content text-white p-4">
         <p>Non puoi ordinare da un altro ristorante!</p>
@@ -160,6 +168,7 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
+  height: fit-content;
 }
 
 .active {
