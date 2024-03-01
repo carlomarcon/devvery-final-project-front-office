@@ -8,6 +8,7 @@ export default {
     return {
       result: [],
       store,
+      nameProduct: ""
     };
   },
   components: {
@@ -22,6 +23,8 @@ export default {
   },
   methods: {
     addtoCart(product) {
+      this.nameProduct = "";
+      this.nameProduct = product.name;
       const existingProduct = this.store.cartData.find(
         (item) => item.id == product.id
       );
@@ -33,32 +36,37 @@ export default {
         quantity: 1,
       };
 
-      if (
-        this.store.cartData[0] &&
-        myProduct.restaurant_id !== this.store.cartData[0].restaurant_id
-      ) {
-        this.store.showError = true;
-        setTimeout(() => {
-          this.store.showError = false;
-        }, 2000); // Hide error after 2 seconds
+      if (this.store.cartData[0] && myProduct.restaurant_id !== this.store.cartData[0].restaurant_id) {
+
+        this.show.store.Error = true;
+        // setTimeout(() => {
+        //   this.show.store.Error = false;
+        // }, 1000); // Hide error after 2 seconds
+        
+
       } else if (existingProduct) {
         existingProduct.quantity++;
 
-        this.store.showModal = true;
+        this.show.store.Modal = true;
         setTimeout(() => {
-          this.store.showModal = false;
-        }, 2000); // Hide modal after 2 seconds
+          this.show.store.Modal = false;
+        }, 3000); // Hide modal after 2 seconds
+
       } else {
         this.store.cartData.push(myProduct);
 
-        this.store.showModal = true;
+        this.show.store.Modal = true;
         setTimeout(() => {
-          this.store.showModal = false;
-        }, 2000); // Hide modal after 2 seconds
+          this.show.store.Modal = false;
+        }, 3000); // Hide modal after 2 seconds
       }
 
       localStorage.setItem("cartData", JSON.stringify(this.store.cartData));
     },
+
+    close() {
+      this.show.store.Error = false;
+    }
   },
 };
 </script>
@@ -72,46 +80,46 @@ export default {
 
       <div class="row row-cols-1 row-cols-sm-2 g-4">
         <div v-for="item in result" class="col">
+
           <div class="card hover-zoom border-0 ms_bg-dark h-100">
             <div class="row g-0">
               <div class="col-md-4">
-                <img
-                  :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
-                  class="img-fluid rounded-start w-100 h-100 object-fit-cover"
-                  alt="..."
-                />
+                <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
+                  class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
               </div>
-              <div class="col-lg-8">
+              <div class="col-lg-8 ">
                 <div class="card-body">
                   <h5 class="card-title text-light">{{ item.name }}</h5>
-                  <p class="card-text ms_description text-light">
-                    {{ item.description }}
-                  </p>
+                  <p class="card-text ms_description text-light">{{ item.description }}</p>
                   <p class="card-text text-light">{{ item.price }} €</p>
                 </div>
                 <div class="text-end">
-                  <button @click="addtoCart(item)" class="btn ms_btn-yellow">
-                    +
-                  </button>
+                  <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
                 </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <transition class="text-center w-75 ms_modal-text" name="fade">
-    <div
-      v-if="store.showModal || store.showError"
-      class="active modal d-flex align-items-center justify-content-center h-25"
-    >
-      <div v-if="store.showModal" class="modal-content text-white p-4">
-        <p>Prodotto aggiunto al carrello!</p>
+  <transition class="text-center ms_modal-text" name="fade">
+    <div v-if="show.store.Modal || show.store.Error" :class="show.store.Modal ? 'modal-correct' : 'modal-error'" class="active d-flex modal align-items-center justify-content-center">
+      <div v-if="show.store.Modal" class="modal-content text-white p-5">
+
+        <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>
+
       </div>
-      <div v-if="store.showError" class="err-content text-white p-4">
-        <p>Non puoi ordinare da un altro ristorante!</p>
+      <div v-if="show.store.Error"
+        class="err-content text-center p-5 d-flex flex-row justify-content-center position-relative align-items-center">
+
+        <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
+            class="fa-solid fa-x"></i></button>
+
+        <p class="fs-3">Non puoi ordinare da un altro ristorante!</p>
       </div>
     </div>
   </transition>
@@ -130,6 +138,7 @@ export default {
   @media screen and (min-width: 990px) {
     height: 50px;
   }
+
 }
 
 .ms_modal-text {
@@ -154,15 +163,30 @@ export default {
 }
 
 /* Styling for the modal */
-.modal {
+.modal-correct {
   position: fixed;
   margin-top: 70vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 50%;
+  width: 30% !important;
   display: none;
   justify-content: center;
   align-items: center;
+  height: fit-content;
+  z-index: 2;
+}
+
+.modal-error {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100% !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  z-index: 2;
+  backdrop-filter: blur(5px);
 }
 
 .active {
@@ -175,8 +199,17 @@ export default {
 }
 
 .err-content {
-  border-radius: 5px;
-  background-color: rgba(255, 0, 0, 0.9);
+  border-radius: 10px;
+  background-color: white;
+  color: $ms_dark;
+  border: 5px solid $ms_yellow;
+  font-weight: bolder;
+}
+
+.ms_btn-red {
+  background-color: rgba(255, 255, 255, 0);
+  color: $ms_dark;
+  border: 0;
 }
 
 /* Fade animation */
