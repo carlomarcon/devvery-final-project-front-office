@@ -32,7 +32,7 @@ export default {
           v-if="$route.path != '/shipment'"
           class="d-flex gap-2 align-items-center"
         >
-          <a href="" class="btn d-none d-md-block fw-bold">CHI SIAMO</a>
+        <router-link class="btn d-none d-md-block fw-bold" to="/about-us">CHI SIAMO</router-link>
           <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block"
             >LOGIN</a
           >
