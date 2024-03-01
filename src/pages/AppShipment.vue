@@ -76,7 +76,7 @@ export default {
         this.sendPaymentPayload(payload);
       });
     },
-    sendPaymentPayload(payload) {
+    sendPaymentPayload() {
       // Effettua una richiesta HTTP POST al tuo server
       fetch('http://127.0.0.1:8000/api/orders/make/payment', {
         method: 'POST',
@@ -86,8 +86,6 @@ export default {
         body: JSON.stringify({
           token: "fake-valid-nonce",
           amount: this.store.total,
-          // Aggiungi il payload del pagamento alla richiesta
-          payload: payload
         })
       })
         .then(response => {
@@ -97,9 +95,15 @@ export default {
           return response.json();
         })
         .then(data => {
-          console.log('Risposta dal server:', data);
-          // Esegui il reindirizzamento alla pagina di successo
-          this.redirectToSuccessPage();
+          // console.log('Risposta dal server:', data);
+          axios.post('http://127.0.0.1:8000/api/orders', this.data).then((resp) => {
+            if(resp.status === 200) {
+              this.store.total = 0;
+            this.store.cartData = [];
+            localStorage.removeItem('cartData');
+            this.redirectToSuccessPage();
+            }
+          });
         })
         .catch(error => {
           this.error = true;
@@ -190,7 +194,8 @@ export default {
             <div class="dropin">
               <div id="dropin-container"></div>
               <button @click="handlePayment" class="btn btn-outline-success">Effettua il pagamento</button>
-              <span v-if="error" class="text-danger ms-3">Il pagamento non è andato a buon fine <span class="error"></span></span>
+              <span v-if="error" class="text-danger ms-3">Il pagamento non è andato a buon fine <span
+                  class="error"></span></span>
             </div>
           </div>
         </div>
