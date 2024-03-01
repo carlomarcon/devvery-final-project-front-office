@@ -35,10 +35,10 @@ export default {
 </script>
 
 <template>
-    <footer class="position-relative p-5 pb-3 bg-dark ">
-        <div class="p-3 my-5 container">
+    <footer class="position-relative p-5 pb-1 bg-dark ">
+        <div class="p-3 my-5 container-fluid text-center">
             <div
-                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-between">
+                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-center">
                 <div class="col mb-4" v-for="(item, index) in footerItems" :key="index">
                     <h2>{{ item.title }}</h2>
                     <div class="mb-2" v-for="(link, linkIndex) in item.links" :key="linkIndex">
@@ -48,7 +48,7 @@ export default {
                     </div>
                 </div>
 
-                <div>
+                <div class="d-md-flex justify-content-center gap-3">
                     <router-link class="text-white" to="/term">Termini e Condizioni</router-link><br>
                     <router-link class="text-white" to="/privacy">Politica sulla Privacy</router-link>
                 </div>
@@ -65,6 +65,7 @@ footer {
     background-image: url("../assets/images/footer/BG-Gradient.png");
     background-size: contain;
     z-index: 4;
+    padding-top: 5rem !important;
 
     .z_index {
         z-index: 3;
