@@ -17,16 +17,19 @@ export default {
 
  
 <template>
-    <div class="wrapper ms_bg-yellow">
-        <AppHeader />
+    <AppHeader />
+    <div class="wrapper ms_bg-yellow position-relative pt-5">
+        <div class="ms_wave"></div>
         <div class="container">
             <img class="img-3" src="../assets/images/main/smartphone.png" alt="">
             <img class="img-1" src="../assets/images/main/hamburger.png" alt="">
             <img class="img-2" src="../assets/images/main/tree.png" alt="">
             <div class="fs-3 fw-bold">
-                <h2 class="text-center fw-bolder mb-4"><span class="ms_brand">De<span class="text-white"><i class="fa-solid fa-v"></i><i class="fa-solid fa-v"></i></span>ery</span>: Rivoluzioniamo il Gusto, Consegna dopo Consegna</h2>
-                
-                <p >Benvenuti in Devvery, dove l'innovazione incontra la passione per il cibo.
+                <h2 class="text-center fw-bolder mb-4"><span class="ms_brand">De<span class="text-white"><i
+                                class="fa-solid fa-v"></i><i class="fa-solid fa-v"></i></span>ery</span>: Rivoluzioniamo il
+                    Gusto, Consegna dopo Consegna</h2>
+
+                <p>Benvenuti in Devvery, dove l'innovazione incontra la passione per il cibo.
                     Siamo più di una semplice azienda
                     di delivery; siamo un movimento dedicato a portare la bontà culinaria direttamente alla tua
                     porta.
@@ -47,20 +50,38 @@ export default {
 
                 <p>Ci impegniamo costantemente a superare le aspettative dei nostri clienti, offrendo un servizio
                     impeccabile e una varietà ineguagliabile di opzioni culinarie. Che tu stia cercando una pizza fragrante,
-                    un sushi fresco o un comfort food a tarda notte, puoi contare su Devvery per consegnare il piacere del cibo
+                    un sushi fresco o un comfort food a tarda notte, puoi contare su Devvery per consegnare il piacere del
+                    cibo
                     direttamente alla tua porta, quando ne hai più bisogno.</p>
 
-                <strong>Unisciti a noi in questa avventura culinaria. Con <span class="ms_brand">De<span class="text-white"><i class="fa-solid fa-v"></i><i class="fa-solid fa-v"></i></span>ery</span> , ogni pasto è un'esperienza da
+                <strong>Unisciti a noi in questa avventura culinaria. Con <span class="ms_brand">De<span
+                            class="text-white"><i class="fa-solid fa-v"></i><i class="fa-solid fa-v"></i></span>ery</span> ,
+                    ogni pasto è un'esperienza da
                     gustare.</strong>
             </div>
         </div>
-
-        <AppFooter />
     </div>
+    <AppFooter />
 </template>
 
 
 <style lang="scss" scoped>
+.ms_wave {
+    &::after {
+        width: 100%;
+        background-image: url(../assets/images/main/onda.png);
+        content: '';
+        height: 80px;
+        position: absolute;
+        display: block;
+        transform: rotate(180deg);
+        z-index: 9;
+        bottom: -3%;
+        left: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
 
 .ms_brand {
     white-space: nowrap;
@@ -68,30 +89,32 @@ export default {
 
     .text-white {
         &::after {
-        content: '';
-        width: 5%;
-        rotate: -20deg;
-        height: 30%;
-       
-        background-color: #f9b91f;
-        top: 16%;
-        left: 29%;
-        position: absolute;
-    }
+            content: '';
+            width: 5%;
+            rotate: -20deg;
+            height: 30%;
+
+            background-color: #f9b91f;
+            top: 16%;
+            left: 29%;
+            position: absolute;
+        }
+
         &::before {
-        content: '';
-        width: 5%;
-        rotate: -20deg;
-        height: 30%;
-       
-        background-color: #fdb633;
-        top: 16%;
-        left: 47%;
-        position: absolute;
+            content: '';
+            width: 5%;
+            rotate: -20deg;
+            height: 30%;
+
+            background-color: #fdb633;
+            top: 16%;
+            left: 47%;
+            position: absolute;
+        }
     }
+
 }
-   
-}
+
 .container {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -106,22 +129,17 @@ export default {
 
     .img-1 {
         top: 15%;
-        left: -10%;
+        left: 0;
     }
 
     .img-2 {
-       
         top: 35%;
-        right: -10%;
-        
+        right: 0;
     }
 
     .img-3 {
-      
         top: 65%;
-        left: -10%;
-      
+        left: 0;
     }
-}
-</style>
+}</style>
 
