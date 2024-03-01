@@ -8,8 +8,6 @@ export default {
     return {
       result: [],
       store,
-      showModal: false,
-      showError: false,
       nameProduct: ""
     };
   },
@@ -40,26 +38,26 @@ export default {
 
       if (this.store.cartData[0] && myProduct.restaurant_id !== this.store.cartData[0].restaurant_id) {
 
-        this.showError = true;
+        this.show.store.Error = true;
         // setTimeout(() => {
-        //   this.showError = false;
+        //   this.show.store.Error = false;
         // }, 1000); // Hide error after 2 seconds
         
 
       } else if (existingProduct) {
         existingProduct.quantity++;
 
-        this.showModal = true;
+        this.show.store.Modal = true;
         setTimeout(() => {
-          this.showModal = false;
+          this.show.store.Modal = false;
         }, 3000); // Hide modal after 2 seconds
 
       } else {
         this.store.cartData.push(myProduct);
 
-        this.showModal = true;
+        this.show.store.Modal = true;
         setTimeout(() => {
-          this.showModal = false;
+          this.show.store.Modal = false;
         }, 3000); // Hide modal after 2 seconds
       }
 
@@ -67,7 +65,7 @@ export default {
     },
 
     close() {
-      this.showError = false;
+      this.show.store.Error = false;
     }
   },
 };
@@ -110,13 +108,13 @@ export default {
   </div>
 
   <transition class="text-center ms_modal-text" name="fade">
-    <div v-if="showModal || showError" :class="showModal ? 'modal-correct' : 'modal-error'" class="active d-flex modal align-items-center justify-content-center">
-      <div v-if="showModal" class="modal-content text-white p-5">
+    <div v-if="show.store.Modal || show.store.Error" :class="show.store.Modal ? 'modal-correct' : 'modal-error'" class="active d-flex modal align-items-center justify-content-center">
+      <div v-if="show.store.Modal" class="modal-content text-white p-5">
 
         <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>
 
       </div>
-      <div v-if="showError"
+      <div v-if="show.store.Error"
         class="err-content text-center p-5 d-flex flex-row justify-content-center position-relative align-items-center">
 
         <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
