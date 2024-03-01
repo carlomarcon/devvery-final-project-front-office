@@ -16,8 +16,12 @@ export default {
       this.store.showModal = false;
       this.store.showError = false;
     },
-  },
-};
+    computed: {
+      numberOfProducts() {
+        return this.store.cartData.reduce((totale, item) => totale + item.quantity, 0);
+      }
+    },
+  };
 </script>
 
 <template>
@@ -28,51 +32,27 @@ export default {
           <img src="../assets/images/main/logotipo.png" alt="" />
         </router-link>
 
-        <div
-          v-if="$route.path != '/shipment'"
-          class="d-flex gap-2 align-items-center"
-        >
-        <router-link class="btn d-none d-md-block fw-bold" to="/about-us">CHI SIAMO</router-link>
-          <a href="http://127.0.0.1:8000" class="btn ms_btn-yellow d-block"
-            >LOGIN</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
-            @click="closeModal()"
-          >
-            <i class="fa-solid fa-cart-shopping"></i>
+        <div v-if="$route.path != '/shipment'" class="d-flex gap-2 align-items-center">
+          <router-link class="btn d-none d-md-block fw-bold" to="/about-us">CHI SIAMO</router-link>
+          <a href="http://127.0.0.1:8000/admin" class="btn ms_btn-yellow d-block">LOGIN</a>
+          <button class="navbar-toggler border-black border-2 d-flex align-content-center gap-1" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation" @click="closeModal()">
+            <span v-if="store.cartData.length != 0" class="d-inline-block ms_color-dark fw-bold">{{ numberOfProducts
+            }}</span>
+            <i class="fa-solid fa-cart-shopping ms_color-dark"></i>
           </button>
         </div>
 
-        <router-link
-          v-if="$route.path === '/shipment'"
-          to="/"
-          class="btn btn-warning"
-          >Torna indietro</router-link
-        >
+        <router-link v-if="$route.path === '/shipment'" to="/" class="btn btn-warning">Torna indietro</router-link>
       </div>
     </nav>
   </header>
 
-  <div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasNavbar"
-    aria-labelledby="offcanvasNavbarLabel"
-  >
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
       <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Il tuo carrello</h2>
-      <button
-        type="button"
-        class="btn-close ms_burger"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close ms_burger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div class="offcanvas-body">
@@ -92,5 +72,10 @@ img {
 
 i {
   font-size: 1.5rem;
+}
+
+// CART SHADOW
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 </style>

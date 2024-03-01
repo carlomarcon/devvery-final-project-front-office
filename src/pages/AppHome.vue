@@ -5,8 +5,8 @@
       <ProductList />
       <AppSearch />
       <AppCarousel />
-      <AppResults v-if="store.flag"/>
-      <AppOrderAndLogin v-else/>
+      <AppResults v-if="store.flag" />
+      <AppOrderAndLogin v-else />
       <AppFooter />
     </div>
   </div>
@@ -35,7 +35,17 @@ export default {
   data() {
     return {
       store,
-    }
+    };
+  },
+  methods: {
+    addToCart(product) {
+      this.cartData.push(product);
+    },
+  },
+  created() {
+    this.store.restaurants = [];
+    this.store.flag = false;
+    this.store.search = '';
   },
 };
 </script>
@@ -54,5 +64,4 @@ export default {
     display: none;
   }
 }
-
 </style>
