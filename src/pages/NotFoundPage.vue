@@ -25,7 +25,7 @@ export default {
     <div class="wrapper">
         <AppHeader />
 
-        <div class="ms_container  d-flex">
+        <div class="ms_container container  d-flex">
             <div class="row">
                 <div class="col d-flex flex-column align-items-center">
                     <img src="../assets/images/404/404-img2.png" alt="">
@@ -58,7 +58,7 @@ img {
 .ms_container {
   position: relative;
   margin-top: 4rem;
-  min-height: 500px;
+  min-height: 100%;
 
 
 //   &::before {
