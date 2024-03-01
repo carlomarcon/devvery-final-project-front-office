@@ -50,7 +50,7 @@ export default {
         this.store.showModal = true;
         setTimeout(() => {
           this.store.showModal = false;
-        }, 3000); // Hide modal after 2 seconds
+        }, 3200); // Hide modal after 2 seconds
 
       } else {
         this.store.cartData.push(myProduct);
@@ -58,7 +58,7 @@ export default {
         this.store.showModal = true;
         setTimeout(() => {
           this.store.showModal = false;
-        }, 3000); // Hide modal after 2 seconds
+        }, 3200); // Hide modal after 2 seconds
       }
 
       localStorage.setItem("cartData", JSON.stringify(this.store.cartData));
@@ -78,14 +78,14 @@ export default {
         Ristorante {{ store.selectRestaurant }}
       </h1>
 
-      <div class="row row-cols-1 row-cols-sm-2 g-4">
+      <div class="row row-cols-1 row-cols-sm-2 g-4 position-relative">
         <div v-for="item in result" class="col">
 
-          <div class="card hover-zoom border-0 ms_bg-dark h-100">
+          <div class="card hover-zoom border-0 ms_bg-dark h-100 rounded-3">
             <div class="row g-0">
               <div class="col-md-4">
                 <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
-                  class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
+                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="...">
               </div>
               <div class="col-lg-8 ">
                 <div class="card-body">
@@ -94,7 +94,7 @@ export default {
                   <p class="card-text text-light">{{ item.price }} €</p>
                 </div>
                 <div class="text-end">
-                  <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+                  <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></button>
                 </div>
 
               </div>
@@ -148,7 +148,9 @@ export default {
 }
 
 .ms_btn-yellow {
-  border-radius: 0;
+  border-radius: 6px 0 6px 0;
+  padding: 0.7rem;
+  font-weight: bold;
 }
 
 .hover-zoom {
@@ -168,7 +170,7 @@ export default {
   margin-top: 70vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 30% !important;
+  width: fit-content !important;
   display: none;
   justify-content: center;
   align-items: center;

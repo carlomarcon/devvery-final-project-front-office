@@ -50,7 +50,7 @@ img {
 }
 
 .wrapper {
-    background-color: #fdb633;
+    background-color: #f9b91f;
     overflow: hidden;
 
 }

@@ -45,7 +45,7 @@ export default {};
 <style lang="scss" scoped>
 .wrapper {
   position: relative;
-  background-color: #fdb633;
+  background-color: #f9b91f;
   margin-top: 6rem;
 
 
