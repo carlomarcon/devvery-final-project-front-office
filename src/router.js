@@ -1,12 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AppHome from "./pages/AppHome.vue";
-import PrivacyPage from "./pages/PrivacyPage.vue";
-import AppShipment from "./pages/AppShipment.vue";
-import AppShow from "./pages/AppShow.vue";
-import PaymentComponent from "./pages/PaymentComponent.vue";
-import AppSuccess from "./pages/AppSuccess.vue";
-import TermAndConditionPage from "./pages/TermAndConditionPage.vue";
-
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,38 +6,38 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: AppHome,
+      component: () => import('./pages/AppHome.vue')
     },
     {
       path: "/shipment",
       name: "Shipment",
-      component: AppShipment,
+      component: () => import('./pages/AppShipment.vue')
     },
     {
       path: "/privacy",
       name: "Privacy",
-      component: PrivacyPage,
+      component: () => import('./pages/PrivacyPage.vue')
     },
     {
       path: "/show/:slug",
       name: "show",
-      component: AppShow,
-    },
-    {
-      path: "/payment",
-      name: "payment",
-      component: PaymentComponent,
+      component: () => import('./pages/AppShow.vue')
     },
     {
       path: "/success",
       name: "success",
-      component: AppSuccess,
+      component: () => import('./pages/AppSuccess.vue')
     },
     {
       path: "/term",
       name: "term",
-      component: TermAndConditionPage,
+      component: () => import('./pages/TermAndConditionPage.vue')
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: () => import('./pages/NotFoundPage.vue')
+  }
   ],
 });
 

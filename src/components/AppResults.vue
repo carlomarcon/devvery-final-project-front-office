@@ -4,7 +4,6 @@ export default {
   data() {
     return {
       store,
-      baseUrl: 'http://127.0.0.1:8000'
     };
   },
   methods: {
@@ -29,7 +28,7 @@ export default {
           :to="{ name: 'show', params: { slug: restaurant.slug } }">
 
           <div @click="selectRestaurant(restaurant.name)" class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
-            <img class="card-img-top mb-2 h-50" :src="`${this.baseUrl}/storage/${restaurant.cover_image}`" alt="" />
+            <img class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`" alt="" />
             <div class="card-body">
               <h3 class="card-title">{{ restaurant.name }}</h3>
               <p class="card-text">{{ restaurant.description }}</p>

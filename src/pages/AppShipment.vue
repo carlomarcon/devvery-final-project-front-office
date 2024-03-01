@@ -22,15 +22,9 @@ export default {
       foods: [],
       quantity: [],
       restaurant_id: store.cartData[0].restaurant_id,
-      data: {}
+      data: {},
+      error: false
     };
-  },
-  created() {
-    const body = document.querySelector('body');
-    body.style.overflow = '';
-    body.style.padding = 0;
-    // document.querySelector('.offcanvas').style.visibility = 'hidden';
-    // document.querySelector('.offcanvas-backdrop').style.opacity = 0;
   },
   methods: {
     insertOrder() {
@@ -60,7 +54,7 @@ export default {
           console.error('Errore durante l\'inizializzazione di Braintree:', error);
           return;
         }
-        // Salva l'istanza di Braintree per accedervi successivamente
+
         this.braintreeInstance = instance;
       });
     },
@@ -79,7 +73,7 @@ export default {
         this.sendPaymentPayload(payload);
       });
     },
-    sendPaymentPayload(payload) {
+    sendPaymentPayload() {
       // Effettua una richiesta HTTP POST al tuo server
       fetch('http://127.0.0.1:8000/api/orders/make/payment', {
         method: 'POST',
@@ -89,8 +83,7 @@ export default {
         body: JSON.stringify({
           token: "fake-valid-nonce",
           amount: this.store.total,
-          // paymentMethodNonce: payload.nonce,
-          // amount: this.amountToPay // Passa l'importo da addebitare al server
+  
         })
       })
         .then(response => {
@@ -100,7 +93,7 @@ export default {
           return response.json();
         })
         .then(data => {
-          // Gestisci la risposta dal server
+          
           console.log('Risposta dal server:', data);
 
           axios.post('http://127.0.0.1:8000/api/orders', this.data).then((resp) => {
@@ -109,11 +102,11 @@ export default {
             this.store.cartData = [];
             localStorage.removeItem('cartData');
           });
-          // Esegui qui le azioni necessarie in base alla risposta del server
+   
         })
         .catch(error => {
-          console.error('Errore durante la richiesta al server:', error);
-          // Gestisci gli errori qui, ad esempio mostrando un messaggio all'utente
+          this.error = true
+          document.querySelector('.error').innerHTML = error
         });
     }
   }
@@ -200,6 +193,7 @@ export default {
             <div class="dropin">
               <div id="dropin-container"></div>
               <button @click="handlePayment" class="btn btn-outline-success">Effettua il pagamento</button>
+              <span v-if="error" class="text-danger ms-3">Il pagamento non è andato a buon fine <span class="error"></span></span>
             </div>
           </div>
         </div>

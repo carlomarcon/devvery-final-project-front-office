@@ -17,7 +17,7 @@ export default {
   },
   created() {
     axios
-      .get('http://127.0.0.1:8000/api/restaurants/' + this.$route.params.slug)
+      .get(`${this.store.baseUrl}/api/restaurants/` + this.$route.params.slug)
       .then((resp) => {
         this.result = resp.data.foods;
       });
