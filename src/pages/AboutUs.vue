@@ -70,7 +70,7 @@ export default {
         rotate: -20deg;
         height: 30%;
        
-        background-color: #fdb633;
+        background-color: #f9b91f;
         top: 16%;
         left: 29%;
         position: absolute;
