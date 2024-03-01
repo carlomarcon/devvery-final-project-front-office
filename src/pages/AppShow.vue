@@ -9,7 +9,8 @@ export default {
       result: [],
       store,
       showModal: false,
-      showError: false
+      showError: false,
+      nameProduct: ""
     };
   },
   components: {
@@ -24,6 +25,8 @@ export default {
   },
   methods: {
     addtoCart(product) {
+      this.nameProduct = "";
+      this.nameProduct = product.name;
       const existingProduct = this.store.cartData.find(
         (item) => item.id == product.id,
       );
@@ -38,33 +41,33 @@ export default {
       if (this.store.cartData[0] && myProduct.restaurant_id !== this.store.cartData[0].restaurant_id) {
 
         this.showError = true;
-        setTimeout(() => {
-          this.showError = false;
-        }, 1000); // Hide error after 2 seconds
-
+        // setTimeout(() => {
+        //   this.showError = false;
+        // }, 1000); // Hide error after 2 seconds
+        
 
       } else if (existingProduct) {
         existingProduct.quantity++;
 
         this.showModal = true;
-        // setTimeout(() => {
-        //   this.showModal = false;
-        // }, 1000); // Hide modal after 2 seconds
+        setTimeout(() => {
+          this.showModal = false;
+        }, 3000); // Hide modal after 2 seconds
 
       } else {
         this.store.cartData.push(myProduct);
 
         this.showModal = true;
-        // setTimeout(() => {
-        //   this.showModal = false;
-        // }, 1000); // Hide modal after 2 seconds
+        setTimeout(() => {
+          this.showModal = false;
+        }, 3000); // Hide modal after 2 seconds
       }
 
       localStorage.setItem('cartData', JSON.stringify(this.store.cartData));
     },
 
     close() {
-      this.showModal = false;
+      this.showError = false;
     }
   },
 };
@@ -81,41 +84,45 @@ export default {
       <div class="row row-cols-1 row-cols-sm-2 g-4">
         <div v-for="item in result" class="col">
 
-        <div class="card hover-zoom border-0 ms_bg-dark h-100">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`" class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
-            </div>
-            <div class="col-lg-8 ">
-              <div class="card-body">
-                <h5 class="card-title text-light">{{ item.name }}</h5>
-                <p class="card-text ms_description text-light">{{ item.description }}</p>
-                <p class="card-text text-light">{{ item.price }} €</p>
+          <div class="card hover-zoom border-0 ms_bg-dark h-100">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
+                  class="img-fluid rounded-start w-100 h-100 object-fit-cover" alt="...">
               </div>
-              <div class="text-end">
-                <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+              <div class="col-lg-8 ">
+                <div class="card-body">
+                  <h5 class="card-title text-light">{{ item.name }}</h5>
+                  <p class="card-text ms_description text-light">{{ item.description }}</p>
+                  <p class="card-text text-light">{{ item.price }} €</p>
+                </div>
+                <div class="text-end">
+                  <button @click="addtoCart(item)" class="btn ms_btn-yellow">+</button>
+                </div>
+
               </div>
-              
             </div>
           </div>
-        </div>
 
         </div>
       </div>
     </div>
   </div>
 
-  <transition class="text-center w-75 ms_modal-text" name="fade">
-    <div v-if="showModal || showError" class="active modal d-flex align-items-center justify-content-center">
-      <div v-if="showModal" class="modal-content text-white text-center p-5 d-flex flex-row justify-content-center position-relative">
-       
-        <p>Prodotto aggiunto al carrello!</p>
-        
-        <button type="button" class="btn ms_btn-yellow position-absolute top-0 end-0" @click="close"><i class="fa-solid fa-x"></i></button>
+  <transition class="text-center ms_modal-text" name="fade">
+    <div v-if="showModal || showError" :class="showModal ? 'modal-correct' : 'modal-error'" class="active d-flex modal align-items-center justify-content-center">
+      <div v-if="showModal" class="modal-content text-white p-5">
+
+        <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>
 
       </div>
-      <div v-if="showError" class="err-content text-white p-4">
-        <p>Non puoi ordinare da un altro ristorante!</p>
+      <div v-if="showError"
+        class="err-content text-center p-5 d-flex flex-row justify-content-center position-relative align-items-center">
+
+        <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
+            class="fa-solid fa-x"></i></button>
+
+        <p class="fs-3">Non puoi ordinare da un altro ristorante!</p>
       </div>
     </div>
   </transition>
@@ -134,7 +141,7 @@ export default {
   @media screen and (min-width: 990px) {
     height: 50px;
   }
-  
+
 }
 
 .ms_modal-text {
@@ -159,16 +166,30 @@ export default {
 }
 
 /* Styling for the modal */
-.modal {
+.modal-correct {
   position: fixed;
   margin-top: 70vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 50%;
+  width: 30% !important;
   display: none;
   justify-content: center;
   align-items: center;
   height: fit-content;
+  z-index: 2;
+}
+
+.modal-error {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100% !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  z-index: 2;
+  backdrop-filter: blur(5px);
 }
 
 .active {
@@ -181,8 +202,17 @@ export default {
 }
 
 .err-content {
-  border-radius: 5px;
-  background-color: rgba(255, 0, 0, 0.9);
+  border-radius: 10px;
+  background-color: white;
+  color: $ms_dark;
+  border: 5px solid $ms_yellow;
+  font-weight: bolder;
+}
+
+.ms_btn-red {
+  background-color: rgba(255, 255, 255, 0);
+  color: $ms_dark;
+  border: 0;
 }
 
 /* Fade animation */
