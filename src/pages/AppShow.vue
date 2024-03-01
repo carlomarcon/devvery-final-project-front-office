@@ -189,6 +189,7 @@ export default {
   height: 100vh;
   z-index: 2;
   backdrop-filter: blur(5px);
+  padding: 10%;
 }
 
 .active {
