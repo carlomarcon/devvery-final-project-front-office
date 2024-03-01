@@ -119,7 +119,7 @@ export default {
         <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
             class="fa-solid fa-x"></i></button>
 
-        <p class="fs-3">Non puoi ordinare da un altro ristorante!</p>
+        <p class="fs-3">Non puoi ordinare da due ristoranti diversi !</p>
       </div>
     </div>
   </transition>
