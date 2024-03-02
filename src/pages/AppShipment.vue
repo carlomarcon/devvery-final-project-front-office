@@ -1,3 +1,4 @@
+
 <script>
 import axios from "axios";
 import { create } from 'braintree-web-drop-in';
@@ -76,7 +77,7 @@ export default {
         this.sendPaymentPayload(payload);
       });
     },
-    sendPaymentPayload() {
+    sendPaymentPayload(payload) {
       // Effettua una richiesta HTTP POST al tuo server
       fetch('http://127.0.0.1:8000/api/orders/make/payment', {
         method: 'POST',
@@ -86,6 +87,8 @@ export default {
         body: JSON.stringify({
           token: "fake-valid-nonce",
           amount: this.store.total,
+          // Aggiungi il payload del pagamento alla richiesta
+          payload: payload
         })
       })
         .then(response => {
@@ -95,15 +98,9 @@ export default {
           return response.json();
         })
         .then(data => {
-          // console.log('Risposta dal server:', data);
-          axios.post('http://127.0.0.1:8000/api/orders', this.data).then((resp) => {
-            if(resp.status === 200) {
-              this.store.total = 0;
-            this.store.cartData = [];
-            localStorage.removeItem('cartData');
-            this.redirectToSuccessPage();
-            }
-          });
+          console.log('Risposta dal server:', data);
+          // Esegui il reindirizzamento alla pagina di successo
+          this.redirectToSuccessPage();
         })
         .catch(error => {
           this.error = true;
@@ -112,6 +109,7 @@ export default {
     }
   }
 };
+
 </script>
  
 <template>
