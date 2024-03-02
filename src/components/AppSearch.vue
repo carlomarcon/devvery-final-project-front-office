@@ -77,8 +77,7 @@ export default {
   <div class="container">
     <div id="title" class="text-center" v-if="checkedTypes.length === 0">
       <p class="fw-semibold mb-0">Il cibo che vuoi, quando vuoi...</p>
-      <span class="ms_brand fw-semibold">Da<span class="text-white"><i class="fa-solid fa-v"></i><i
-            class="fa-solid fa-v"></i></span>ero</span>
+      <!-- INSERIRE TESTO DAVVERO -->
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
@@ -149,7 +148,7 @@ export default {
     white-space: nowrap;
 
 
-}
+  }
 
   // SEARCHBAR SHADOW
   .form-control:focus {

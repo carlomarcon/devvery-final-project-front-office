@@ -18,10 +18,10 @@ export default {
     },
   },
   computed: {
-      numberOfProducts() {
-        return this.store.cartData.reduce((totale, item) => totale + item.quantity, 0);
-      }
-    },
+    numberOfProducts() {
+      return this.store.cartData.reduce((totale, item) => totale + item.quantity, 0);
+    }
+  },
 }
 </script>
 
@@ -45,7 +45,8 @@ export default {
           </button>
         </div>
 
-        <router-link v-if="$route.path === '/shipment'" to="/" class="btn btn-warning">Torna indietro</router-link>
+        <router-link v-if="$route.path === '/shipment'" to="/" class="btn btn-warning fw-bold">Torna
+          indietro</router-link>
       </div>
     </nav>
   </header>
@@ -78,13 +79,5 @@ i {
 // CART SHADOW
 .navbar-toggler:focus {
   box-shadow: none;
-}
-
-.offcanvas-body {
-  background-color: #fff8ec;
-}
-
-.offcanvas-header {
-  background-color: #ffecd0;
 }
 </style>

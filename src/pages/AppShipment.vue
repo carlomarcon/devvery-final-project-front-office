@@ -24,8 +24,13 @@ export default {
       quantity: [],
       restaurant_id: store.cartData[0].restaurant_id,
       data: {},
-      error: false
+      error: false,
+      // per nascondere il tasto effettua pagamento dopo l'ordine
+      paid: false,
     };
+  },
+  created() {
+    this.paid = false;
   },
   methods: {
     redirectToSuccessPage() {
@@ -75,6 +80,7 @@ export default {
         }
         // Effettua la richiesta al tuo server con il payload del pagamento
         this.sendPaymentPayload(payload);
+        this.paid = true;
       });
     },
     sendPaymentPayload(payload) {
@@ -98,9 +104,15 @@ export default {
           return response.json();
         })
         .then(data => {
-          console.log('Risposta dal server:', data);
-          // Esegui il reindirizzamento alla pagina di successo
-          this.redirectToSuccessPage();
+          // console.log('Risposta dal server:', data);
+          axios.post('http://127.0.0.1:8000/api/orders', this.data).then((resp) => {
+            if (resp.status === 200) {
+              this.store.total = 0;
+              this.store.cartData = [];
+              localStorage.removeItem('cartData');
+              this.redirectToSuccessPage();
+            }
+          });
         })
         .catch(error => {
           this.error = true;
@@ -109,7 +121,6 @@ export default {
     }
   }
 };
-
 </script>
  
 <template>
@@ -181,7 +192,8 @@ export default {
                   </div>
 
                   <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-outline-success mt-4">Procedi al pagamento</button>
+                    <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
+                      pagamento</button>
                   </div>
                 </form>
               </div>
@@ -191,7 +203,8 @@ export default {
           <div v-else class="col-lg-8 col-md-12">
             <div class="dropin">
               <div id="dropin-container"></div>
-              <button @click="handlePayment" class="btn btn-outline-success">Effettua il pagamento</button>
+              <button @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
+                pagamento</button>
               <span v-if="error" class="text-danger ms-3">Il pagamento non è andato a buon fine <span
                   class="error"></span></span>
             </div>
