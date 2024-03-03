@@ -50,12 +50,11 @@ export default {
 <template>
   <div class="wrapper">
     <div v-if="store.cartData.length > 0">
-      <p>Stai ordinando da: {{ store.selectRestaurant }}</p>
-      <div class="text-end">
-        <button class="btn btn-outline-danger mb-3 btn-sm me-3 fw-bold border-2" @click="emptyCart()">Svuota il
-          carrello</button>
-      </div>
-      <ul class="list-group mb-4">
+      <div class="text-center mt-3">
+        <p class="d-inline-block text-center rounded-2 fw-bold p-2 ms_restaurant_name">Stai ordinando da {{ store.cartData[0].restaurant_name }}</p>
+      </div>      
+      
+      <ul class="list-group mt-3">
         <li v-for="(item, index) in store.cartData" :key="index" class="list-group-item fw-bold">
           <div class="d-flex justify-content-between align-items-center">
             <div class="info">
@@ -75,27 +74,46 @@ export default {
         </li>
       </ul>
 
-      <div class="d-flex justify-content-between align-items-baseline mx-3">
-        <h4 class="fw-bold">Totale: {{ calculateTotal() }}€</h4>
-        <router-link v-if="store.cartData.length > 0" to="/shipment" class="btn ms_btn-outline-dark position-relative">Vai
-          alla
-          spedizione<button class="close-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button></router-link>
+      <div class="mt-3 d-flex justify-content-between align-items-baseline">
+        <h5 class="fw-bold">Totale: {{ calculateTotal() }}€</h5>
+        <button class="btn btn-outline-warning btn-sm fw-bold border-2 ms_color_dark" @click="emptyCart()">Svuota il
+          carrello</button>
+      </div>      
+
+      <div class="d-flex justify-content-end mt-5">        
+        <router-link v-if="store.cartData.length > 0" to="/shipment" class="text-end">
+          <button class="btn ms_btn-outline-dark fs-5 p-2" data-bs-dismiss="offcanvas" aria-label="Close">
+           Conferma ordine<i class="fa-solid fa-circle-chevron-right fs-3 ms-2 align-middle"></i>            
+          </button>
+        </router-link>
       </div>
     </div>
 
-    <p v-else class="alert mx-4 fw-bold border">Il carrello è vuoto</p>
+    <div v-else>
+      <img class="p-4 mb-4" src="../assets/images/main/fork.png" alt="no foods here" />
+      <span class="d-block text-center text-body-tertiary fw-bold">Inizia ora ad ordinare!</span>
+    </div>    
+
   </div>
 </template>
 
 <style scoped lang="scss">
-.close-btn {
-  position: absolute;
-  border: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: transparent;
+@use "../styles/variables/variables.scss" as *;
+.ms_restaurant_name {
+  color: $ms_dark;
+  border: 2px solid $ms_yellow;
+}
+.ms_btn-outline-dark {
+border: none;
+}
+
+.ms_ship {
+  background-color: white;
+
+}
+
+.ms_color_dark {
+  color: $ms_dark;
 }
 
 .info {

@@ -31,6 +31,8 @@ export default {
       const myProduct = {
         id: product.id,
         restaurant_id: product.restaurant_id,
+        restaurant_name: product.restaurant.name,
+        restaurant_slug: product.restaurant.slug,
         name: product.name,
         price: product.price,
         quantity: 1,
@@ -74,9 +76,7 @@ export default {
   <AppHeader />
   <div class="wrapper">
     <div class="container">
-      <h1 class="text-center ms_color-dark p-5">
-        Ristorante {{ store.selectRestaurant }}
-      </h1>
+      <h1 v-if="result.length != 0" class="text-center ms_color-dark p-5">{{ result[0].restaurant.name }}</h1>
 
       <div class="row row-cols-1 row-cols-sm-2 g-4 position-relative">
         <div v-for="item in result" class="col">
@@ -119,7 +119,7 @@ export default {
         <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
             class="fa-solid fa-x"></i></button>
 
-        <p class="fs-3">Non puoi ordinare da due ristoranti diversi !</p>
+        <p class="fs-3">Non puoi ordinare da due ristoranti diversi!</p>
       </div>
     </div>
   </transition>
@@ -129,7 +129,6 @@ export default {
 @use "../styles/variables/variables.scss" as *;
 
 .wrapper {
-  background-color: #ffecd0;
   padding: 4rem 0 4rem 0;
   min-height: 100vh;
 }

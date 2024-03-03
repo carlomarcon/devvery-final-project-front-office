@@ -76,6 +76,10 @@ i {
   font-size: 1.5rem;
 }
 
+.offcanvas-header {
+  background-color: rgb(248, 249, 250);
+}
+
 // CART SHADOW
 .navbar-toggler:focus {
   box-shadow: none;

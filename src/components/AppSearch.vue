@@ -77,7 +77,6 @@ export default {
   <div class="container">
     <div id="title" class="text-center" v-if="checkedTypes.length === 0">
       <p class="fw-semibold mb-0">Il cibo che vuoi, quando vuoi...</p>
-      <!-- INSERIRE TESTO DAVVERO -->
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
