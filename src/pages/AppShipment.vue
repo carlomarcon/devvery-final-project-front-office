@@ -1,4 +1,3 @@
-
 <script>
 import axios from "axios";
 import { create } from 'braintree-web-drop-in';
@@ -25,17 +24,10 @@ export default {
       restaurant_id: store.cartData[0].restaurant_id,
       data: {},
       error: false,
-      // per nascondere il tasto effettua pagamento dopo l'ordine
       paid: false,
     };
   },
-  created() {
-    this.paid = false;
-  },
   methods: {
-    redirectToSuccessPage() {
-      this.$router.push('/success');
-    },
     insertOrder() {
       this.store.cartData.forEach(element => {
         this.foods.push(element.id)
@@ -55,16 +47,20 @@ export default {
 
       this.showPayment = true;
 
-      create({
-        authorization: 'sandbox_gpzz3ky6_8qxh27bqnbx8vsps',
-        container: '#dropin-container'
-      }, (error, instance) => {
-        if (error) {
-          console.error('Errore durante l\'inizializzazione di Braintree:', error);
-          return;
-        }
+      axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+        create({
+          authorization: resp.data.token,
+          container: '#dropin-container',
+          locale: "it_IT"
+        }, (error, instance) => {
+          if (error) {
+            document.getElementById('dropin-container').innerHTML = '<div class="text-center fs-2 text-danger mt-5">La creazione del form di pagamento è fallita, ritenta</div>'
+            return;
+          }
 
-        this.braintreeInstance = instance;
+          this.braintreeInstance = instance;
+          this.paid = true;
+        });
       });
     },
     handlePayment() {
@@ -72,57 +68,53 @@ export default {
         console.error('L\'istanza di Braintree non è stata inizializzata correttamente');
         return;
       }
-      // Richiedi il metodo di pagamento
       this.braintreeInstance.requestPaymentMethod((error, payload) => {
         if (error) {
           console.error('Errore durante la richiesta del metodo di pagamento:', error);
           return;
         }
-        // Effettua la richiesta al tuo server con il payload del pagamento
+
         this.sendPaymentPayload(payload);
-        this.paid = true;
       });
     },
     sendPaymentPayload(payload) {
-      // Effettua una richiesta HTTP POST al tuo server
+      this.paid = false;
+
       fetch('http://127.0.0.1:8000/api/orders/make/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          token: "fake-valid-nonce",
+          token: payload.nonce,
           amount: this.store.total,
-          // Aggiungi il payload del pagamento alla richiesta
+
           payload: payload
         })
       })
-        .then(response => {
-          if (!response.ok) {
+        .then(resp => {
+          if (!resp.ok) {
             throw new Error('Errore nella richiesta al server');
-          }
-          return response.json();
-        })
-        .then(data => {
-          // console.log('Risposta dal server:', data);
-          axios.post('http://127.0.0.1:8000/api/orders', this.data).then((resp) => {
-            if (resp.status === 200) {
+          } else {
+            axios.post('http://127.0.0.1:8000/api/orders', this.data).finally(() => {
               this.store.total = 0;
               this.store.cartData = [];
               localStorage.removeItem('cartData');
-              this.redirectToSuccessPage();
-            }
-          });
+              this.$router.push('/success');
+            });
+            return resp.json();
+          }
         })
         .catch(error => {
           this.error = true;
-          document.querySelector('.error').innerHTML = error;
+          this.paid = true;
+          console.log(error);
         });
     }
   }
 };
 </script>
- 
+
 <template>
   <div class="overflow-y-auto">
     <AppHeader />
@@ -171,8 +163,8 @@ export default {
                   <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
                     <div>
                       <label class="my-2" for="first_name">Nome</label>
-                      <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome" required
-                        v-model="first_name">
+                      <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
+                        required v-model="first_name">
                     </div>
                     <div>
                       <label class="my-2" for="last_name">Cognome</label>
@@ -203,10 +195,9 @@ export default {
           <div v-else class="col-lg-8 col-md-12">
             <div class="dropin">
               <div id="dropin-container"></div>
-              <button @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
+              <button v-if="paid" @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
                 pagamento</button>
-              <span v-if="error" class="text-danger ms-3">Il pagamento non è andato a buon fine <span
-                  class="error"></span></span>
+              <span v-if="error" class="text-danger ms-3 text-center">Il pagamento non è andato a buon fine, ritenta</span>
             </div>
           </div>
         </div>
@@ -224,18 +215,21 @@ export default {
     width: 100%;
     background-image: url(../assets/images/main/onda_white.png);
     content: '';
-    height: 50px;
+    height: 80px;
     position: absolute;
     display: block;
     transform: rotate(180deg);
     z-index: 9;
-    bottom: -90px;
+    bottom: -74px;
     left: 0%;
     background-size: cover;
     background-repeat: no-repeat;
   }
 }
 
+.position-relative {
+  min-height: 70vh;
+}
 .dropin {
   margin-top: -33px;
 }
