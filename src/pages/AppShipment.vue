@@ -159,7 +159,6 @@ export default {
     <div class="position-relative">
       <div class="ms-container container my-5">
         <h3 class="mb-4">Dettagli di consegna</h3>
-        <div>
           <div class="row mb-5 ms_wave">
             <!-- RIEPILOGO -->
             <div class="col-lg-4 col-md-12 mb-4">
@@ -245,7 +244,6 @@ export default {
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
     <AppFooter />
@@ -277,11 +275,11 @@ export default {
 }
 
 .dropin {
-  margin-top: -33px;
+  margin-top: -32px;
 }
 
 .ex-10-icon {
-    color: rgb(57, 57, 57);
+    color: rgb(71, 71, 71);
     font-size: 3rem;
     margin-top: 3rem;
     animation: rotation .9s linear infinite reverse;
