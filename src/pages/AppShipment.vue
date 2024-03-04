@@ -25,9 +25,23 @@ export default {
       data: {},
       error: false,
       paid: false,
+      validationErrors: {}
     };
   },
   methods: {
+    // VALIDAZIONI
+    isValidName() {
+      return /^[A-Za-zÀ-ÿ\s']+$/.test(this.first_name);
+    },
+    isValidSurname() {
+      return /^[A-Za-zÀ-ÿ\s'-]+$/.test(this.last_name);
+    },
+    isValidAddress() {
+      return /^[A-Za-zÀ-ÿ0-9\s',.-]+$/.test(this.address);
+    },
+    isValidPhone() {
+      return /^(?:\+?39?[ -]?)?(3[1-9]\d{1,2}|0\d{2,3})[ -]?\d{6,7}$/.test(this.phone);
+    },
     insertOrder() {
       this.store.cartData.forEach(element => {
         this.foods.push(element.id)
@@ -45,23 +59,43 @@ export default {
         restaurant_id: this.restaurant_id
       }
 
-      this.showPayment = true;
+      this.validationErrors = {};
 
-      axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
-        create({
-          authorization: resp.data.token,
-          container: '#dropin-container',
-          locale: "it_IT"
-        }, (error, instance) => {
-          if (error) {
-            document.getElementById('dropin-container').innerHTML = '<div class="text-center fs-2 text-danger mt-5">La creazione del form di pagamento è fallita, ritenta</div>'
-            return;
-          }
+      if (!this.isValidName()) {
+        this.validationErrors.name = 'Nome non valido';
+      }
 
-          this.braintreeInstance = instance;
-          this.paid = true;
+      if (!this.isValidSurname()) {
+        this.validationErrors.lastName = 'Cognome non valido';
+      }
+
+      if (!this.isValidAddress()) {
+        this.validationErrors.address = 'Indirizzo non valido';
+      }
+
+      if (!this.isValidPhone()) {
+        this.validationErrors.phone = 'Telefono non valido';
+      }
+
+      if (Object.keys(this.validationErrors).length === 0) {
+        this.showPayment = true;
+
+        axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+          create({
+            authorization: resp.data.token,
+            container: '#dropin-container',
+            locale: "it_IT"
+          }, (error, instance) => {
+            if (error) {
+              document.getElementById('dropin-container').innerHTML = '<div class="text-center fs-2 text-danger mt-5">La creazione del form di pagamento è fallita, ritenta</div>'
+              return;
+            }
+
+            this.braintreeInstance = instance;
+            this.paid = true;
+          });
         });
-      });
+      }
     },
     handlePayment() {
       if (!this.braintreeInstance) {
@@ -165,22 +199,26 @@ export default {
                       <label class="my-2" for="first_name">Nome</label>
                       <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
                         required v-model="first_name">
+                        <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="last_name">Cognome</label>
                       <input type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
                         required v-model="last_name">
+                        <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="phone">Numero di telefono</label>
                       <input type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
                         v-model="phone">
+                        <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="my-2" for="address">Indirizzo </label>
                     <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
                       v-model="address">
+                      <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
                   </div>
 
                   <div class="d-flex justify-content-end">
