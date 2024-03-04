@@ -26,8 +26,17 @@ export default {
       error: false,
       paid: false,
       validationErrors: {},
-      loading:false
+      loading: false
     };
+  },
+  created() {
+    const customerData = JSON.parse(localStorage.getItem('customer'));
+    if (customerData) {
+      this.first_name = customerData.first_name;
+      this.last_name = customerData.last_name;
+      this.address = customerData.address;
+      this.phone = customerData.phone;
+    }
   },
   methods: {
     // VALIDAZIONI
@@ -48,6 +57,13 @@ export default {
         this.foods.push(element.id)
         this.quantity.push(element.quantity)
       });
+
+      const customerData = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        address: this.address,
+        phone: this.phone
+      }
 
       this.data = {
         foods: this.foods,
@@ -81,6 +97,7 @@ export default {
       if (Object.keys(this.validationErrors).length === 0) {
         this.showPayment = true;
         this.loading = true;
+        localStorage.setItem('customer', JSON.stringify(customerData));
 
         axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
           create({
@@ -114,7 +131,7 @@ export default {
         this.sendPaymentPayload(payload);
       });
     },
-    sendPaymentPayload(payload) { 
+    sendPaymentPayload(payload) {
       this.loading = true;
       this.paid = false;
 
@@ -159,86 +176,86 @@ export default {
     <div class="position-relative">
       <div class="ms-container container my-5">
         <h3 class="mb-4">Dettagli di consegna</h3>
-          <div class="row mb-5 ms_wave">
-            <!-- RIEPILOGO -->
-            <div class="col-lg-4 col-md-12 mb-4">
-              <div class="card">
-                <div class="card-header">
-                  <h5>Il tuo ordine</h5>
-                </div>
-                <div class="card-body">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Prodotto</th>
-                        <th scope="col">Quantità</th>
-                        <th scope="col">Prezzo</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="items in store.cartData">
-                        <th scope="row">{{ items.name }}</th>
-                        <td class="text-center">{{ items.quantity }}</td>
-                        <td>{{ items.price }}€</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <h5 class="ps-2">Totale: {{ store.total }}€</h5>
-                </div>
+        <div class="row mb-5 ms_wave">
+          <!-- RIEPILOGO -->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5>Il tuo ordine</h5>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Prodotto</th>
+                      <th scope="col">Quantità</th>
+                      <th scope="col">Prezzo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="items in store.cartData">
+                      <th scope="row">{{ items.name }}</th>
+                      <td class="text-center">{{ items.quantity }}</td>
+                      <td>{{ items.price }}€</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h5 class="ps-2">Totale: {{ store.total }}€</h5>
               </div>
             </div>
-            <!-- FORM CLIENTE -->
-            <div v-if="!showPayment" class="col-lg-8 col-md-12 ">
-              <div class="card">
-                <div class="card-header">
-                  <h5>Dettagli cliente</h5>
-                </div>
-                <div class="card-body">
-                  <!-- FORM -->
-                  <form @submit.prevent="insertOrder">
-                    <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-                      <div>
-                        <label class="my-2" for="first_name">Nome</label>
-                        <input autocomplete="name" type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
-                          required v-model="first_name">
-                          <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
-                      </div>
-                      <div>
-                        <label class="my-2" for="last_name">Cognome</label>
-                        <input autocomplete="name" type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
-                          required v-model="last_name">
-                          <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
-                      </div>
-                      <div>
-                        <label class="my-2" for="phone">Numero di telefono</label>
-                        <input autocomplete="tel" type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
-                          v-model="phone">
-                          <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
-                      </div>
+          </div>
+          <!-- FORM CLIENTE -->
+          <div v-if="!showPayment" class="col-lg-8 col-md-12 ">
+            <div class="card">
+              <div class="card-header">
+                <h5>Dettagli cliente</h5>
+              </div>
+              <div class="card-body">
+                <!-- FORM -->
+                <form @submit.prevent="insertOrder">
+                  <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+                    <div>
+                      <label class="my-2" for="first_name">Nome</label>
+                      <input autocomplete="name" type="text" class="form-control" id="first_name"
+                        placeholder="Inserisci il tuo nome" required v-model="first_name">
+                      <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
                     </div>
-                    <div class="form-group">
-                      <label class="my-2" for="address">Indirizzo </label>
-                      <input autocomplete="street-address" type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
-                        v-model="address">
-                        <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
+                    <div>
+                      <label class="my-2" for="last_name">Cognome</label>
+                      <input autocomplete="name" type="text" class="form-control" id="last_name"
+                        placeholder="Inserisci il tuo cognome " required v-model="last_name">
+                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
-                        pagamento</button>
+                    <div>
+                      <label class="my-2" for="phone">Numero di telefono</label>
+                      <input autocomplete="tel" type="tel" class="form-control" id="phone"
+                        placeholder="Inserisci il cellulare" required v-model="phone">
+                      <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="my-2" for="address">Indirizzo </label>
+                    <input autocomplete="street-address" type="text" class="form-control" id="address"
+                      placeholder="Inserisci l'indirizzo" required v-model="address">
+                    <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
+                      pagamento</button>
+                  </div>
+                </form>
               </div>
             </div>
+          </div>
           <div v-else class="col-lg-8 col-md-12">
             <div class="dropin">
               <div id="dropin-container"></div>
               <button v-if="paid" @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
                 pagamento</button>
-                <div v-if="loading" class="text-center">
-                  <i class="ex-10-icon fas fa-circle-notch"></i>
-                </div>
-                
+              <div v-if="loading" class="text-center">
+                <i class="ex-10-icon fas fa-circle-notch"></i>
+              </div>
+
               <span v-if="error" class="text-danger ms-3 text-center">Il pagamento non è andato a buon fine,
                 ritenta</span>
             </div>
@@ -279,27 +296,27 @@ export default {
 }
 
 .ex-10-icon {
-    color: rgb(71, 71, 71);
-    font-size: 3rem;
-    margin-top: 3rem;
-    animation: rotation .9s linear infinite reverse;
+  color: rgb(71, 71, 71);
+  font-size: 3rem;
+  margin-top: 3rem;
+  animation: rotation .9s linear infinite reverse;
 
-    @keyframes rotation {
-        25% {
-            transform: rotate(90deg)
-        }
-
-        50% {
-            transform: rotate(180deg);
-        }
-
-        75% {
-            transform: rotate(270deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
-        }
+  @keyframes rotation {
+    25% {
+      transform: rotate(90deg)
     }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    75% {
+      transform: rotate(270deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 </style>
