@@ -228,33 +228,33 @@ export default {
                       <label class="my-2" for="first_name">Nome</label>
                       <input autocomplete="name" type="text" class="form-control" id="first_name"
                         placeholder="Inserisci il tuo nome" required v-model="first_name">
-                      <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name[0] }}</span>
+                      <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="last_name">Cognome</label>
                       <input autocomplete="name" type="text" class="form-control" id="last_name"
                         placeholder="Inserisci il tuo cognome " required v-model="last_name">
-                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName[0]
+                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName
                         }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="phone">Numero di telefono</label>
                       <input autocomplete="tel" type="tel" class="form-control" id="phone"
                         placeholder="Inserisci il cellulare" required v-model="phone">
-                      <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone[0] }}</span>
+                      <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="my-2" for="address">Indirizzo </label>
                     <input autocomplete="street-address" type="text" class="form-control" id="address"
                       placeholder="Inserisci l'indirizzo" required v-model="address">
-                    <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address[0] }}</span>
+                    <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     
                     <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
                       pagamento</button>
-                      <span v-if="validationErrors.foods" class="text-danger align-self-end">{{ validationErrors.foods[0] }}</span>
+                      <span v-if="validationErrors.foods" class="text-danger align-self-end">{{ validationErrors.foods }}</span>
                   </div>
                 </form>
               </div>
