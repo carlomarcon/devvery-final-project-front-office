@@ -12,6 +12,9 @@ export default {
       activeSection: 'mainSection'
     };
   },
+  created() {
+        window.scrollTo({ top: 0});
+    },
   methods: {
     showSection(section) {
       this.activeSection = section;
@@ -24,8 +27,10 @@ export default {
 <template>
   <div class="wrapper">
     <AppHeader />
+    <div class="position-relative">
 
     <div class="ms-container container mt-5 mb-5">
+      <div class="ms_wave"></div>
       <h2>Informativa Sulla Privacy</h2>
       <div class="row">
         <div class="col-md-4 mb-3">
@@ -222,6 +227,8 @@ export default {
         </div>
       </div>
     </div>
+
+    </div>
     <AppFooter />
   </div>
 </template>
@@ -234,5 +241,22 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.ms_wave {
+  &::after {
+    width: 100%;
+    background-image: url(../assets/images/main/onda_white.png);
+    content: '';
+    height: 80px;
+    position: absolute;
+    display: block;
+    transform: rotate(180deg);
+    z-index: 9;
+    bottom: -80px;
+    left: 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 </style>
