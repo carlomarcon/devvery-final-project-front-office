@@ -159,81 +159,78 @@ export default {
     <div class="position-relative">
       <div class="ms-container container my-5">
         <h3 class="mb-4">Dettagli di consegna</h3>
-        <div class="row mb-5 ms_wave">
-          <!-- RIEPILOGO -->
-          <div class="col-lg-4 col-md-12 mb-4">
-            <div class="card">
-              <div class="card-header">
-                <h5>Il tuo ordine</h5>
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Prodotto</th>
-                      <th scope="col">Quantità</th>
-                      <th scope="col">Prezzo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="items in store.cartData">
-                      <th scope="row">{{ items.name }}</th>
-                      <td class="text-center">{{ items.quantity }}</td>
-                      <td>{{ items.price }}€</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <h5 class="ps-2">Totale: {{ store.total }}€</h5>
-              </div>
-            </div>
-          </div>
-
-          <!-- FORM CLIENTE -->
-          <div v-if="!showPayment" class="col-lg-8 col-md-12 mb-5">
-            <div class="card">
-              <div class="card-header">
-                <h5>Dettagli cliente</h5>
-              </div>
-              <div class="card-body">
-                <!-- FORM -->
-                <form @submit.prevent="insertOrder">
-                  <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-                    <div>
-                      <label class="my-2" for="first_name">Nome</label>
-                      <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
-                        required v-model="first_name">
-                        <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
-                    </div>
-                    <div>
-                      <label class="my-2" for="last_name">Cognome</label>
-                      <input type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
-                        required v-model="last_name">
-                        <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
-                    </div>
-                    <div>
-                      <label class="my-2" for="phone">Numero di telefono</label>
-                      <input type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
-                        v-model="phone">
-                        <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="my-2" for="address">Indirizzo </label>
-                    <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
-                      v-model="address">
-                      <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
-                  </div>
-
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
-                      pagamento</button>
-                  </div>
-                </form>
+        <div>
+          <div class="row mb-5 ms_wave">
+            <!-- RIEPILOGO -->
+            <div class="col-lg-4 col-md-12 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Il tuo ordine</h5>
+                </div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Prodotto</th>
+                        <th scope="col">Quantità</th>
+                        <th scope="col">Prezzo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="items in store.cartData">
+                        <th scope="row">{{ items.name }}</th>
+                        <td class="text-center">{{ items.quantity }}</td>
+                        <td>{{ items.price }}€</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h5 class="ps-2">Totale: {{ store.total }}€</h5>
+                </div>
               </div>
             </div>
-          </div>
-
+            <!-- FORM CLIENTE -->
+            <div v-if="!showPayment" class="col-lg-8 col-md-12 ">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Dettagli cliente</h5>
+                </div>
+                <div class="card-body">
+                  <!-- FORM -->
+                  <form @submit.prevent="insertOrder">
+                    <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+                      <div>
+                        <label class="my-2" for="first_name">Nome</label>
+                        <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
+                          required v-model="first_name">
+                          <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
+                      </div>
+                      <div>
+                        <label class="my-2" for="last_name">Cognome</label>
+                        <input type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
+                          required v-model="last_name">
+                          <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
+                      </div>
+                      <div>
+                        <label class="my-2" for="phone">Numero di telefono</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
+                          v-model="phone">
+                          <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="my-2" for="address">Indirizzo </label>
+                      <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
+                        v-model="address">
+                        <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
+                        pagamento</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           <div v-else class="col-lg-8 col-md-12">
             <div class="dropin">
               <div id="dropin-container"></div>
@@ -247,6 +244,7 @@ export default {
                 ritenta</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
