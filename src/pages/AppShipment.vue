@@ -78,43 +78,53 @@ export default {
 
       this.validationErrors = {};
 
-      if (!this.isValidName()) {
-        this.validationErrors.name = 'Nome non valido';
-      }
+      // if (!this.isValidName()) {
+      //   this.validationErrors.name = 'Nome non valido';
+      // }
 
-      if (!this.isValidSurname()) {
-        this.validationErrors.lastName = 'Cognome non valido';
-      }
+      // if (!this.isValidSurname()) {
+      //   this.validationErrors.lastName = 'Cognome non valido';
+      // }
 
-      if (!this.isValidAddress()) {
-        this.validationErrors.address = 'Indirizzo non valido';
-      }
+      // if (!this.isValidAddress()) {
+      //   this.validationErrors.address = 'Indirizzo non valido';
+      // }
 
-      if (!this.isValidPhone()) {
-        this.validationErrors.phone = 'Telefono non valido';
-      }
+      // if (!this.isValidPhone()) {
+      //   this.validationErrors.phone = 'Telefono non valido';
+      // }
 
       if (Object.keys(this.validationErrors).length === 0) {
-        this.showPayment = true;
-        this.loading = true;
-        localStorage.setItem('customer', JSON.stringify(customerData));
+        axios.post('http://127.0.0.1:8000/api/orders/validation', this.data).then((resp) => {
+          console.log(resp);
+          if (resp.data.success) {
+            this.showPayment = true;
+            this.loading = true;
+            localStorage.setItem('customer', JSON.stringify(customerData));
 
-        axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
-          create({
-            authorization: resp.data.token,
-            container: '#dropin-container',
-            locale: "it_IT"
-          }, (error, instance) => {
-            if (error) {
-              document.getElementById('dropin-container').innerHTML = '<div class="text-center fs-2 text-danger mt-5">La creazione del form di pagamento è fallita, ritenta</div>'
-              return;
-            }
+            axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
+              create({
+                authorization: resp.data.token,
+                container: '#dropin-container',
+                locale: "it_IT"
+              }, (error, instance) => {
+                if (error) {
+                  document.getElementById('dropin-container').innerHTML = '<div class="text-center fs-2 text-danger mt-5">La creazione del form di pagamento è fallita, ritenta</div>'
+                  return;
+                }
 
-            this.braintreeInstance = instance;
-            this.paid = true;
-            this.loading = false;
-          });
-        });
+                this.braintreeInstance = instance;
+                this.paid = true;
+                this.loading = false;
+              });
+            });
+          } else {
+            this.validationErrors.name = resp.data.error.first_name;
+            this.validationErrors.lastName = resp.data.error.last_name;
+            this.validationErrors.address = resp.data.error.address;
+            this.validationErrors.phone = resp.data.error.phone;
+          }
+        })
       }
     },
     handlePayment() {
@@ -218,26 +228,26 @@ export default {
                       <label class="my-2" for="first_name">Nome</label>
                       <input autocomplete="name" type="text" class="form-control" id="first_name"
                         placeholder="Inserisci il tuo nome" required v-model="first_name">
-                      <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
+                      <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name[0] }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="last_name">Cognome</label>
                       <input autocomplete="name" type="text" class="form-control" id="last_name"
                         placeholder="Inserisci il tuo cognome " required v-model="last_name">
-                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
+                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName[0] }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="phone">Numero di telefono</label>
                       <input autocomplete="tel" type="tel" class="form-control" id="phone"
                         placeholder="Inserisci il cellulare" required v-model="phone">
-                      <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
+                      <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone[0] }}</span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="my-2" for="address">Indirizzo </label>
                     <input autocomplete="street-address" type="text" class="form-control" id="address"
                       placeholder="Inserisci l'indirizzo" required v-model="address">
-                    <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
+                    <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address[0] }}</span>
                   </div>
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
