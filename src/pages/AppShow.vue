@@ -81,7 +81,13 @@ export default {
   <AppHeader />
   <div class="wrapper">
     <div class="container">
-      <h1 v-if="result.length != 0" class="text-center ms_color-dark p-5">{{ result[0].restaurant.name }}</h1>
+      <div class="d-flex flex-column justify-content-between align-items-center"> 
+        <h1 v-if="result.length != 0" class="text-center ms_color-dark p-5">{{ result[0].restaurant.name }}</h1>
+        <div class="d-flex gap-5 mb-5 fs-2"> 
+          <p>Indirizzo: {{result[0].restaurant.address}}</p>
+          <p>Telefono: {{result[0].restaurant.phone}}</p>
+        </div>
+      </div>
 
       <div class="row row-cols-1 row-cols-sm-2 g-4 position-relative">
         <div v-for="item in result" class="col">
