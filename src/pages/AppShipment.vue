@@ -273,8 +273,4 @@ export default {
 .dropin {
   margin-top: -33px;
 }
-
-.buttana {
-  margin-top: 19px;
-}
 </style>
