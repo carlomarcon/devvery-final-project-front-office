@@ -23,9 +23,9 @@ export default {
           :to="{ name: 'show', params: { slug: restaurant.slug } }">
 
           <div class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
-            <img class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`"
+            <img v-if="restaurant.cover_image" class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`"
               alt="" />
-
+              <img v-else class="card-img-top mb-2 h-50" src="../assets/images/noimg.png" alt="nessuna_immagine" />
             <div class="card-body">
               <div class="d-flex gap-2 flex-wrap mb-3">
                 <div class="ms_badge-yellow" v-for="tipo in restaurant.types">{{ tipo.name }}</div>
