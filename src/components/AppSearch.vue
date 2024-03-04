@@ -110,6 +110,10 @@ export default {
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
 
+.checkbox-wrapper-10 img {
+  cursor: pointer; 
+}
+
 .ms_margin_top {
   margin-top: 0;
 }
@@ -283,4 +287,5 @@ export default {
     }
   }
 }
+
 </style>
