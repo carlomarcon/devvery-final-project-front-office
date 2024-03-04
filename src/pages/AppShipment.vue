@@ -31,13 +31,13 @@ export default {
   methods: {
     // VALIDAZIONI
     isValidName() {
-      return /^[A-Za-zÀ-ÿ\s']+$/.test(this.first_name);
+      return /^[A-Za-zÀ-ÿ\s']{3,}$/.test(this.first_name);
     },
     isValidSurname() {
       return /^[A-Za-zÀ-ÿ\s'-]+$/.test(this.last_name);
     },
     isValidAddress() {
-      return /^[A-Za-zÀ-ÿ0-9\s',.-]+$/.test(this.address);
+      return /^[A-Za-zÀ-ÿ0-9\s',.-]+[0-9]+[A-Za-z]?$/.test(this.address);
     },
     isValidPhone() {
       return /^(?:\+?39?[ -]?)?(3[1-9]\d{1,2}|0\d{2,3})[ -]?\d{6,7}$/.test(this.phone);
