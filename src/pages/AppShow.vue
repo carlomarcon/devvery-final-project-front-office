@@ -18,7 +18,11 @@ export default {
     axios
       .get(`${this.store.baseUrl}/api/restaurants/` + this.$route.params.slug)
       .then((resp) => {
-        this.result = resp.data.foods;
+        if(resp.data.foods) {
+          this.result = resp.data.foods;
+        } else {
+          this.$router.push('/not-found');
+        }
       });
   },
   methods: {
