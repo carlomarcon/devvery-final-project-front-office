@@ -79,11 +79,12 @@ export default {
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
-        <span class="input-group-text text-warning rounded-3 rounded-end-0" id="basic-addon1"><i
-            class="fa-solid fa-magnifying-glass"></i></span>
+            <label class="input-group-text text-warning rounded-3 rounded-end-0" id="basic-addon1" for="search"><i
+            class="fa-solid fa-magnifying-glass"></i></label>
         <input type="text" class="form-control bg-white rounded-3 rounded-start-0" placeholder="Cerca un Ristorante"
           aria-label="search" aria-describedby="basic-addon1" id="search" v-model="store.search"
           @input="filteredRestaurants">
+          
       </div>
     </div>
 

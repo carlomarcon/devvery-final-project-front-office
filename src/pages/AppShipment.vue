@@ -199,26 +199,26 @@ export default {
                     <div class="form-group row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
                       <div>
                         <label class="my-2" for="first_name">Nome</label>
-                        <input type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
+                        <input autocomplete="name" type="text" class="form-control" id="first_name" placeholder="Inserisci il tuo nome"
                           required v-model="first_name">
                           <span v-if="validationErrors.name" class="text-danger">{{ validationErrors.name }}</span>
                       </div>
                       <div>
                         <label class="my-2" for="last_name">Cognome</label>
-                        <input type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
+                        <input autocomplete="name" type="text" class="form-control" id="last_name" placeholder="Inserisci il tuo cognome "
                           required v-model="last_name">
                           <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName }}</span>
                       </div>
                       <div>
                         <label class="my-2" for="phone">Numero di telefono</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
+                        <input autocomplete="tel" type="tel" class="form-control" id="phone" placeholder="Inserisci il cellulare" required
                           v-model="phone">
                           <span v-if="validationErrors.phone" class="text-danger">{{ validationErrors.phone }}</span>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="my-2" for="address">Indirizzo </label>
-                      <input type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
+                      <input autocomplete="street-address" type="text" class="form-control" id="address" placeholder="Inserisci l'indirizzo" required
                         v-model="address">
                         <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
                     </div>
