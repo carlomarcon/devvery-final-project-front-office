@@ -78,21 +78,21 @@ export default {
 
       this.validationErrors = {};
 
-      // if (!this.isValidName()) {
-      //   this.validationErrors.name = 'Nome non valido';
-      // }
+      if (!this.isValidName()) {
+        this.validationErrors.name = 'Nome non valido';
+      }
 
-      // if (!this.isValidSurname()) {
-      //   this.validationErrors.lastName = 'Cognome non valido';
-      // }
+      if (!this.isValidSurname()) {
+        this.validationErrors.lastName = 'Cognome non valido';
+      }
 
-      // if (!this.isValidAddress()) {
-      //   this.validationErrors.address = 'Indirizzo non valido';
-      // }
+      if (!this.isValidAddress()) {
+        this.validationErrors.address = 'Indirizzo non valido';
+      }
 
-      // if (!this.isValidPhone()) {
-      //   this.validationErrors.phone = 'Telefono non valido';
-      // }
+      if (!this.isValidPhone()) {
+        this.validationErrors.phone = 'Telefono non valido';
+      }
 
       if (Object.keys(this.validationErrors).length === 0) {
         axios.post('http://127.0.0.1:8000/api/orders/validation', this.data).then((resp) => {
@@ -234,7 +234,8 @@ export default {
                       <label class="my-2" for="last_name">Cognome</label>
                       <input autocomplete="name" type="text" class="form-control" id="last_name"
                         placeholder="Inserisci il tuo cognome " required v-model="last_name">
-                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName[0] }}</span>
+                      <span v-if="validationErrors.lastName" class="text-danger">{{ validationErrors.lastName[0]
+                        }}</span>
                     </div>
                     <div>
                       <label class="my-2" for="phone">Numero di telefono</label>
