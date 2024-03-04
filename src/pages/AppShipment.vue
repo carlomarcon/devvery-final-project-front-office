@@ -25,7 +25,8 @@ export default {
       data: {},
       error: false,
       paid: false,
-      validationErrors: {}
+      validationErrors: {},
+      loading:false
     };
   },
   methods: {
@@ -79,6 +80,7 @@ export default {
 
       if (Object.keys(this.validationErrors).length === 0) {
         this.showPayment = true;
+        this.loading = true;
 
         axios.get('http://127.0.0.1:8000/api/orders/generate').then((resp) => {
           create({
@@ -93,6 +95,7 @@ export default {
 
             this.braintreeInstance = instance;
             this.paid = true;
+            this.loading = false;
           });
         });
       }
@@ -111,7 +114,8 @@ export default {
         this.sendPaymentPayload(payload);
       });
     },
-    sendPaymentPayload(payload) {
+    sendPaymentPayload(payload) { 
+      this.loading = true;
       this.paid = false;
 
       fetch('http://127.0.0.1:8000/api/orders/make/payment', {
@@ -235,6 +239,10 @@ export default {
               <div id="dropin-container"></div>
               <button v-if="paid" @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
                 pagamento</button>
+                <div v-if="loading" class="text-center">
+                  <i class="ex-10-icon fas fa-circle-notch"></i>
+                </div>
+                
               <span v-if="error" class="text-danger ms-3 text-center">Il pagamento non è andato a buon fine,
                 ritenta</span>
             </div>
@@ -272,5 +280,30 @@ export default {
 
 .dropin {
   margin-top: -33px;
+}
+
+.ex-10-icon {
+    color: rgb(57, 57, 57);
+    font-size: 3rem;
+    margin-top: 3rem;
+    animation: rotation .9s linear infinite reverse;
+
+    @keyframes rotation {
+        25% {
+            transform: rotate(90deg)
+        }
+
+        50% {
+            transform: rotate(180deg);
+        }
+
+        75% {
+            transform: rotate(270deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
 </style>
