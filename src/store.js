@@ -9,7 +9,6 @@ export const store = reactive({
   restaurants: [],
   myTypes: [],
   search: "",
-  selectRestaurant: "",
   cartData: getCart(),
 });
 

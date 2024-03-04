@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     resetFilter() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       this.store.search = "";
       this.checkedTypes = [];
       this.store.restaurants = [];
@@ -36,9 +37,7 @@ export default {
         axios
           .get(`${this.store.baseUrl}/api/restaurants/searchText/${this.store.search}`)
           .then((resp) => {
-            // console.log(resp.data.result[0]);
             this.store.restaurants = resp.data.result;
-
           })
           .finally(() => {
             this.store.flag = true;
@@ -77,7 +76,6 @@ export default {
   <div class="container">
     <div id="title" class="text-center" v-if="checkedTypes.length === 0">
       <p class="fw-semibold mb-0">Il cibo che vuoi, quando vuoi...</p>
-      <!-- INSERIRE TESTO DAVVERO -->
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
