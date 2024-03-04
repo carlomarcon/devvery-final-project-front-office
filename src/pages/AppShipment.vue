@@ -96,7 +96,6 @@ export default {
 
       if (Object.keys(this.validationErrors).length === 0) {
         axios.post('http://127.0.0.1:8000/api/orders/validation', this.data).then((resp) => {
-          console.log(resp);
           if (resp.data.success) {
             this.showPayment = true;
             this.loading = true;
@@ -123,6 +122,7 @@ export default {
             this.validationErrors.lastName = resp.data.error.last_name;
             this.validationErrors.address = resp.data.error.address;
             this.validationErrors.phone = resp.data.error.phone;
+            this.validationErrors.foods = resp.data.error.foods;
           }
         })
       }
@@ -250,9 +250,11 @@ export default {
                       placeholder="Inserisci l'indirizzo" required v-model="address">
                     <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address[0] }}</span>
                   </div>
-                  <div class="d-flex justify-content-end">
+                  <div class="d-flex justify-content-between align-items-center">
+                    
                     <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
                       pagamento</button>
+                      <span v-if="validationErrors.foods" class="text-danger align-self-end">{{ validationErrors.foods[0] }}</span>
                   </div>
                 </form>
               </div>
