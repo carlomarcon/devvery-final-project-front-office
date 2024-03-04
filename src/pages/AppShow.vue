@@ -8,7 +8,8 @@ export default {
     return {
       result: [],
       store,
-      nameProduct: ""
+      nameProduct: "",
+      menuEmpty: false
     };
   },
   components: {
@@ -18,8 +19,13 @@ export default {
     axios
       .get(`${this.store.baseUrl}/api/restaurants/` + this.$route.params.slug)
       .then((resp) => {
-        if(resp.data.foods) {
-          this.result = resp.data.foods;
+        if(resp.data.foods) { 
+          if(resp.data.foods.length > 0) {
+            this.result = resp.data.foods;
+          } else {
+            this.menuEmpty = true;
+          }
+          
         } else {
           this.$router.push('/not-found');
         }
@@ -79,13 +85,15 @@ export default {
 
 <template>
   <AppHeader />
+  <div v-if="!menuEmpty">
   <div class="wrapper">
+    
     <div class="container">
-      <div class="d-flex flex-column justify-content-between align-items-center"> 
-        <h1 v-if="result.length != 0" class="text-center ms_color-dark p-5">{{ result[0].restaurant.name }}</h1>
-        <div class="d-flex gap-5 mb-5 fs-2"> 
-          <p>Indirizzo: {{result[0].restaurant.address}}</p>
-          <p>Telefono: {{result[0].restaurant.phone}}</p>
+      <div v-if="result.length != 0" class="d-flex flex-column justify-content-between align-items-center"> 
+        <h1  class="text-center ms_color-dark pb-2 pt-5">{{ result[0].restaurant.name }}</h1>
+        <div class="d-flex gap-5 mb-5 fs-5"> 
+          <p class="ms_color-dark"><i class="fa-solid fa-location-dot"></i> {{ result[0].restaurant.address }}</p>
+          <p class="ms_color-dark"><i class="fa-solid fa-phone-flip"></i> {{ result[0].restaurant.phone }}</p>
         </div>
       </div>
 
@@ -95,8 +103,11 @@ export default {
           <div class="card hover-zoom border-0 ms_bg-dark h-100 rounded-3">
             <div class="row g-0">
               <div class="col-md-4">
-                <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
-                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="...">
+                <img v-if="item.cover_image" :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
+                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" :alt="`Immagine di ${item.name}`">
+                <img v-else src="../assets/images/noimg.png"
+                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="Immagine non presente">
+                  
                 <div class="card-img-overlay">
                   <p v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
                       class="fa-solid fa-bread-slice"></i></p>
@@ -140,8 +151,13 @@ export default {
 
         <p class="fs-3">Non puoi ordinare da due ristoranti diversi!</p>
       </div>
+      
     </div>
   </transition>
+</div>
+  <div v-else class="m-5 p-5">
+    <h2 class="text-center">Il ristorante non dispone ancora di un menù</h2>
+  </div>
 </template>
 
 <style lang="scss" scoped>
