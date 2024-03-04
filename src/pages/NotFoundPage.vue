@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
- 
+
 <template>
     <div class="wrapper">
         <AppHeader />
@@ -29,10 +29,10 @@ export default {
             <div class="row">
                 <div class="col d-flex flex-column align-items-center">
                     <img src="../assets/images/404/404-img2.png" alt="">
-                    <router-link  to="/" class="btn btn-success mb-4">Torna alla Home</router-link>
+                    <router-link to="/" class="btn btn-success mb-4">Torna alla Home</router-link>
                 </div>
                 <div class="col d-none d-md-block d-lg-block "><img src="../assets/images/404/404-img.png" alt=""></div>
-            </div>         
+            </div>
 
         </div>
         <AppFooter />
@@ -41,11 +41,12 @@ export default {
 
 
 <style lang="scss" scoped>
-img {    
+img {
     height: 100%;
 }
 
-.btn { width: 10rem;
+.btn {
+    width: 10rem;
 
 }
 
@@ -56,28 +57,9 @@ img {
 }
 
 .ms_container {
-  position: relative;
-  margin-top: 4rem;
-  min-height: 100%;
-
-
-//   &::before {
-//     width: 100%;
-//     background-image: url(../assets/images/main/onda.png);
-//     content: '';
-//     height: 4rem;
-//     position: absolute;
-//     display: block;
-//     z-index: 9;
-//     bottom: -62px;
-//     transform: rotate(180deg);
-//     left: 0;
-//     background-size: cover;
-//     background-repeat: no-repeat;
-
-//   }
-
-  
+    position: relative;
+    margin-top: 4rem;
+    min-height: 100%;
+    padding-top: 7rem;
 }
 </style>
-

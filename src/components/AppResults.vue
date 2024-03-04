@@ -8,6 +8,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="ms_container ms_bg-yellow align-items-center d-flex flex-column">
     <div class="container-fluid">
@@ -22,7 +23,8 @@ export default {
           :to="{ name: 'show', params: { slug: restaurant.slug } }">
 
           <div class="card ms_bg-dark text-light hover-zoom rounded-5 w-100">
-            <img class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`" alt="" />
+            <img class="card-img-top mb-2 h-50" :src="`${this.store.baseUrl}/storage/${restaurant.cover_image}`"
+              alt="" />
 
             <div class="card-body">
               <div class="d-flex gap-2 flex-wrap mb-3">

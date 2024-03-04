@@ -40,7 +40,7 @@ export default {
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation" @click="closeModal()">
             <span v-if="store.cartData.length != 0" class="d-inline-block ms_color-dark fw-bold">{{ numberOfProducts
-            }}</span>
+              }}</span>
             <i class="fa-solid fa-cart-shopping ms_color-dark"></i>
           </button>
         </div>

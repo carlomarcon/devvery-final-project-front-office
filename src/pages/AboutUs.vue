@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
- 
+
 <template>
     <AppHeader />
     <div class="wrapper ms_bg-yellow position-relative pt-5">
@@ -32,19 +32,25 @@ export default {
                     Fondati sulla convinzione che il cibo di qualità debba essere accessibile a tutti, ci impegniamo a
                     rendere
                     la tua esperienza gastronomica più conveniente, veloce e deliziosa che mai.<br>
-                    Il nostro approccio alla consegna di cibo è stato progettato per soddisfare le esigenze moderne, unendo
+                    Il nostro approccio alla consegna di cibo è stato progettato per soddisfare le esigenze moderne,
+                    unendo
                     tecnologia all'avanguardia e un tocco umano. Con la nostra app intuitiva, puoi sfogliare un'ampia
                     varietà di
                     ristoranti locali, selezionare i tuoi piatti preferiti e ricevere il tutto con pochi click.<br>
-                    Ma non ci fermiamo qui. In Devvery, crediamo nell'importanza di sostenere la comunità locale e ridurre
-                    l'impatto ambientale. Collaboriamo strettamente con i ristoratori della tua zona, garantendo che ogni
+                    Ma non ci fermiamo qui. In Devvery, crediamo nell'importanza di sostenere la comunità locale e
+                    ridurre
+                    l'impatto ambientale. Collaboriamo strettamente con i ristoratori della tua zona, garantendo che
+                    ogni
                     ordine
                     vada a sostenere le piccole imprese e a promuovere l'ecosistema culinario locale. Inoltre, adottiamo
-                    pratiche sostenibili nella nostra logistica di consegna per ridurre al minimo l'impatto ambientale delle
+                    pratiche sostenibili nella nostra logistica di consegna per ridurre al minimo l'impatto ambientale
+                    delle
                     nostre operazioni.<br>
                     Ci impegniamo costantemente a superare le aspettative dei nostri clienti, offrendo un servizio
-                    impeccabile e una varietà ineguagliabile di opzioni culinarie. Che tu stia cercando una pizza fragrante,
-                    un sushi fresco o un comfort food a tarda notte, puoi contare su Devvery per consegnare il piacere del
+                    impeccabile e una varietà ineguagliabile di opzioni culinarie. Che tu stia cercando una pizza
+                    fragrante,
+                    un sushi fresco o un comfort food a tarda notte, puoi contare su Devvery per consegnare il piacere
+                    del
                     cibo
                     direttamente alla tua porta, quando ne hai più bisogno.
                 </p>
@@ -91,4 +97,3 @@ export default {
     }
 }
 </style>
-

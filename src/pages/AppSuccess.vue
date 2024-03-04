@@ -8,12 +8,13 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="wrapper w-100 d-flex justify-content-center align-items-center text-center">
     <div class="success">
-      <img src="../assets/images/main/pittogramma.png" alt="" class="animatedImage"/>
+      <img src="../assets/images/main/pittogramma.png" alt="" class="animatedImage" />
       <h2 class="mt-5 mb-3">Ordine effettuato con successo!</h2>
-      <router-link  to="/" class="btn btn-success">Torna alla Home</router-link>
+      <router-link to="/" class="btn btn-success">Torna alla Home</router-link>
     </div>
   </div>
 </template>
@@ -40,6 +41,7 @@ export default {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -50,6 +52,7 @@ export default {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.1);
   }
@@ -59,4 +62,3 @@ export default {
   display: none;
 }
 </style>
-

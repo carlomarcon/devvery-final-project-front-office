@@ -44,7 +44,7 @@ export default {
         // setTimeout(() => {
         //   this.store.showError = false;
         // }, 1000); // Hide error after 2 seconds
-        
+
 
       } else if (existingProduct) {
         existingProduct.quantity++;
@@ -72,6 +72,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <AppHeader />
   <div class="wrapper">
@@ -86,6 +87,12 @@ export default {
               <div class="col-md-4">
                 <img :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
                   class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="...">
+                <div class="card-img-overlay">
+                  <p v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
+                      class="fa-solid fa-bread-slice"></i></p>
+                  <p v-if="item.vegan === 1" class="badge bg-success rounded-pill px-3 border"><i
+                      class="fa-solid fa-seedling"></i></p>
+                </div>
               </div>
               <div class="col-lg-8 ">
                 <div class="card-body">
@@ -94,7 +101,8 @@ export default {
                   <p class="card-text text-light">{{ item.price }} €</p>
                 </div>
                 <div class="text-end">
-                  <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i class="fa-solid fa-plus"></i></button>
+                  <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i
+                      class="fa-solid fa-plus"></i></button>
                 </div>
 
               </div>
@@ -107,7 +115,8 @@ export default {
   </div>
 
   <transition class="text-center ms_modal-text" name="fade">
-    <div v-if="store.showModal || store.showError" :class="store.showModal ? 'modal-correct' : 'modal-error'" class="active d-flex modal align-items-center justify-content-center">
+    <div v-if="store.showModal || store.showError" :class="store.showModal ? 'modal-correct' : 'modal-error'"
+      class="active d-flex modal align-items-center justify-content-center">
       <div v-if="store.showModal" class="modal-content text-white p-5">
 
         <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>

@@ -8,7 +8,7 @@ export default {
 
   data() {
     return {
-      images: ['alta-cucina','cinese','fast-food','giapponese','hamburgheria','pasticceria', 'pizzeria','trattoria'],
+      images: ['alta-cucina', 'cinese', 'fast-food', 'giapponese', 'hamburgheria', 'pasticceria', 'pizzeria', 'trattoria'],
       settings: {
         itemsToShow: 0.7,
         snapAlign: 'center',
@@ -30,6 +30,7 @@ export default {
   }
 };
 </script>
+
 <template>
   <Carousel class="w-100" v-bind="settings" :wrap-around="true">
     <Slide v-for="slide in images" :key="slide">
