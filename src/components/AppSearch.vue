@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { store } from "../store";
+
 export default {
   data() {
     return {
@@ -68,6 +69,20 @@ export default {
           })
       }
     },
+    toggleType(type) {
+      if (this.checkedTypes.includes(type)) {
+        // Se il tipo è già presente nell'array dei tipi selezionati, lo rimuove
+        const index = this.checkedTypes.indexOf(type);
+        if (index !== -1) {
+          this.checkedTypes.splice(index, 1);
+        }
+      } else {
+        // Se il tipo non è presente nell'array dei tipi selezionati, lo aggiunge
+        this.checkedTypes.push(type);
+      }
+      // Esegui la funzione di filtro
+      this.checkTypes();
+    },
   },
 };
 </script>
@@ -79,12 +94,12 @@ export default {
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
-            <label class="input-group-text text-warning rounded-3 rounded-end-0" id="basic-addon1" for="search"><i
-            class="fa-solid fa-magnifying-glass"></i></label>
+        <label class="input-group-text text-warning rounded-3 rounded-end-0" id="basic-addon1" for="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </label>
         <input type="text" class="form-control bg-white rounded-3 rounded-start-0" placeholder="Cerca un Ristorante"
           aria-label="search" aria-describedby="basic-addon1" id="search" v-model="store.search"
           @input="filteredRestaurants">
-          
       </div>
     </div>
 
@@ -94,21 +109,23 @@ export default {
         <input v-bind:disabled="store.search.length > 0" v-model="checkedTypes" @change="checkTypes" :value="myType"
           class="tgl tgl-flip z-2" :id="`cb5-${myType.name}`" type="checkbox" />
         <label class="tgl-btn fs-5 z-2" :data-tg-off="myType.name" :data-tg-on="myType.name"
-          :for="`cb5-${myType.name}`"></label>
-        <img
-          class="border border-2 border-warning position-absolute start-50 translate-middle rounded-circle z-1 object-fit-cover"
-          :src="getImagepath(myType.name)" :alt="myType.name" />
+          :for="`cb5-${myType.name}`">{{ myType.name }}</label>
+        <img class="border border-2 border-warning position-absolute start-50 translate-middle rounded-circle z-1 object-fit-cover"
+          :src="getImagepath(myType.name)" :alt="myType.name" @click="toggleType(myType)" />
       </div>
     </div>
     <div class="text-center" v-if="store.search != '' || checkedTypes.length > 0 || store.flag">
       <button type="button" class="btn fs-5 mt-5 fw-bold ms_reset_filter" @click="resetFilter()">Azzera ricerca</button>
     </div>
-
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use "../styles/variables/variables.scss" as *;
+
+.checkbox-wrapper-10 img {
+  cursor: pointer;
+}
 
 .ms_margin_top {
   margin-top: 0;
