@@ -74,7 +74,7 @@ export default {
 
 <template>
   <div class="container">
-    <div id="title" class="text-center" v-if="checkedTypes.length === 0">
+    <div id="title" class="text-center">
       <p class="fw-semibold mb-0">Il cibo che vuoi, quando vuoi...</p>
     </div>
     <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
