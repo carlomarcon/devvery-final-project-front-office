@@ -95,7 +95,7 @@ export default {
           class="tgl tgl-flip z-2" :id="`cb5-${myType.name}`" type="checkbox" />
         <label class="tgl-btn fs-5 z-2" :data-tg-off="myType.name" :data-tg-on="myType.name"
           :for="`cb5-${myType.name}`"></label>
-        <img
+        <img @click="$event.target.previousElementSibling.click()"
           class="border border-2 border-warning position-absolute start-50 translate-middle rounded-circle z-1 object-fit-cover"
           :src="getImagepath(myType.name)" :alt="myType.name" />
       </div>
