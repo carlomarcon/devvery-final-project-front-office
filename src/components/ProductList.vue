@@ -1,10 +1,7 @@
 <template>
   <!-- Confirmation Modal -->
   <transition name="fade">
-    <div
-      v-if="store.showModal"
-      class="modal d-flex align-items-center justify-content-center"
-    >
+    <div v-if="store.showModal" class="modal d-flex align-items-center justify-content-center">
       <div class="modal-content text-white p-4">
         <p>Prodotto aggiunto al carrello!</p>
       </div>

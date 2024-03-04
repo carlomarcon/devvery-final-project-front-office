@@ -22,7 +22,8 @@ export default {};
             alt="Foto Ristorante" />
           <div class="d-flex flex-column align-items-start">
             <h3>Unisciti a noi e preparati a raggiungere il voto 10 in cucina!</h3>
-            <p class="text-start w-75">Raggiungi più clienti con Devvery.Gestiamo noi la consegna, così tu puoi dedicarti
+            <p class="text-start w-75">Raggiungi più clienti con Devvery.Gestiamo noi la consegna, così tu puoi
+              dedicarti
               a
               offrire i migliori
               piatti e prodotti.</p>

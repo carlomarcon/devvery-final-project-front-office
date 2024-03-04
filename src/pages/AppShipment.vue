@@ -197,7 +197,8 @@ export default {
               <div id="dropin-container"></div>
               <button v-if="paid" @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
                 pagamento</button>
-              <span v-if="error" class="text-danger ms-3 text-center">Il pagamento non è andato a buon fine, ritenta</span>
+              <span v-if="error" class="text-danger ms-3 text-center">Il pagamento non è andato a buon fine,
+                ritenta</span>
             </div>
           </div>
         </div>
@@ -230,6 +231,7 @@ export default {
 .position-relative {
   min-height: 70vh;
 }
+
 .dropin {
   margin-top: -33px;
 }
