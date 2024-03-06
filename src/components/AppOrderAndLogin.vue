@@ -39,22 +39,22 @@ export default {};
 .wrapper {
   position: relative;
   background-color: #f9b91f;
-  margin-top: 6rem;
+  padding-top: 2rem;
 
 
-  &::before {
-    width: 100%;
-    background-image: url(../assets/images/main/onda.png);
-    content: '';
-    height: 7rem;
-    position: absolute;
-    display: block;
-    z-index: 9;
-    top: -104px;
-    left: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+  // &::before {
+  //   width: 100%;
+  //   background-image: url(../assets/images/main/onda.png);
+  //   content: '';
+  //   height: 7rem;
+  //   position: absolute;
+  //   display: block;
+  //   z-index: 9;
+  //   top: -104px;
+  //   left: 0;
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  // }
 
   &::after {
     width: 100%;

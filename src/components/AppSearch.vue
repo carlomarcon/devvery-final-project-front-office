@@ -6,7 +6,6 @@ export default {
     return {
       store,
       myTypes: [],
-      checkedTypes: [],
     };
   },
   created() {
@@ -22,7 +21,7 @@ export default {
     resetFilter() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.store.search = "";
-      this.checkedTypes = [];
+      this.store.checkedTypes = [];
       this.store.restaurants = [];
       this.store.flag = false;
     },
@@ -30,6 +29,7 @@ export default {
       return new URL(`../assets/images/type_in_search/${img}.jpg`, import.meta.url).href;
     },
     filteredRestaurants() {
+      this.store.loadingResults = true;
       this.store.checkedTypes = [];
       if (this.store.search.length === 0) {
         this.store.flag = false;
@@ -41,16 +41,18 @@ export default {
           })
           .finally(() => {
             this.store.flag = true;
+            this.store.loadingResults = false
           });
       }
     },
     checkTypes() {
+      this.store.loadingResults = true;
       this.store.restaurants = [];
       this.store.flag = false;
-      if (this.checkedTypes.length > 0) {
+      if (this.store.checkedTypes.length > 0) {
 
         let dates = [];
-        this.checkedTypes.forEach((element) => {
+        this.store.checkedTypes.forEach((element) => {
           dates.push(element.name);
         });
         const params = { types: dates };
@@ -63,6 +65,7 @@ export default {
             }
           })
           .finally(() => {
+            this.store.loadingResults = false
             if (this.store.restaurants.length > 0)
               this.store.flag = true;
           })
@@ -77,7 +80,7 @@ export default {
     <div id="title" class="text-center">
       <p class="fw-semibold mb-0">Il cibo che vuoi, quando vuoi...</p>
     </div>
-    <div class="d-flex justify-content-center mt-5" v-if="checkedTypes.length === 0">
+    <div class="d-flex justify-content-center mt-5" v-if="store.checkedTypes.length === 0">
       <div class="input-group w-75 ms_width">
             <label class="input-group-text text-warning rounded-3 rounded-end-0" id="basic-addon1" for="search"><i
             class="fa-solid fa-magnifying-glass"></i></label>
@@ -89,9 +92,9 @@ export default {
     </div>
 
     <div class="row row-cols-2 row-cols-md-4 justify-content-between mt-3"
-      :class="{ 'ms_margin_top': checkedTypes.length != 0 }" v-if="store.search.length === 0">
+      :class="{ 'ms_margin_top': store.checkedTypes.length != 0 }" v-if="store.search.length === 0">
       <div v-for="myType in myTypes" class="checkbox-wrapper-10 position-relative ms_margin">
-        <input v-bind:disabled="store.search.length > 0" v-model="checkedTypes" @change="checkTypes" :value="myType"
+        <input v-bind:disabled="store.search.length > 0" v-model="store.checkedTypes" @change="checkTypes" :value="myType"
           class="tgl tgl-flip z-2" :id="`cb5-${myType.name}`" type="checkbox" />
         <label class="tgl-btn fs-5 z-2" :data-tg-off="myType.name" :data-tg-on="myType.name"
           :for="`cb5-${myType.name}`"></label>
@@ -100,7 +103,7 @@ export default {
           :src="getImagepath(myType.name)" :alt="myType.name" />
       </div>
     </div>
-    <div class="text-center" v-if="store.search != '' || checkedTypes.length > 0 || store.flag">
+    <div class="text-center" v-if="store.search != '' || store.checkedTypes.length > 0 || store.flag">
       <button type="button" class="btn fs-5 mt-5 fw-bold ms_reset_filter" @click="resetFilter()">Azzera ricerca</button>
     </div>
 

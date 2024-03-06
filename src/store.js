@@ -10,6 +10,8 @@ export const store = reactive({
   myTypes: [],
   search: "",
   cartData: getCart(),
+  checkedTypes: [],
+  loadingResults: true
 });
 
 function getCart() {

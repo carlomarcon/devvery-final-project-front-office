@@ -5,8 +5,8 @@
       <ProductList />
       <AppSearch />
       <AppCarousel />
-      <AppResults v-if="store.flag" />
-      <AppOrderAndLogin v-else />
+      <AppResults />
+      <AppOrderAndLogin />
       <AppFooter />
     </div>
   </div>
