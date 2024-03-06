@@ -36,15 +36,18 @@ export default {
 
 <template>
     <footer class="position-relative p-5 pb-1 bg-dark ">
-        <div class="p-3 my-5 container-fluid">
-            <div
-                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white position-relative z_index justify-content-between ps-5">
-                <div class="col mb-4" v-for="(item, index) in footerItems" :key="index">
-                    <h2>{{ item.title }}</h2>
-                    <div class="mb-2" v-for="(link, linkIndex) in item.links" :key="linkIndex">
-                        <span v-if="link.icon" class="text-white"><i class=" fs-5 me-2"
-                                :class="'fab fa-' + link.icon"></i></span>
-                        <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
+        <div class=" my-5 container py-3 px-0">
+            <div class=" text-white position-relative z_index ">
+                <div class="d-flex justify-content-between flex-column flex-md-row">
+
+
+                    <div class="mb-4" v-for="(item, index) in footerItems" :key="index">
+                        <h2>{{ item.title }}</h2>
+                        <div class="mb-2" v-for="(link, linkIndex) in item.links" :key="linkIndex">
+                            <span v-if="link.icon" class="text-white"><i class=" fs-5 me-2"
+                                    :class="'fab fa-' + link.icon"></i></span>
+                            <a class="text-white text-decoration-none" :href="link.url">{{ link.label }}</a>
+                        </div>
                     </div>
                 </div>
 
@@ -66,6 +69,19 @@ footer {
     background-size: contain;
     z-index: 4;
     padding-top: 5rem !important;
+
+    // .col {
+    //     &:nth-child(3) {
+    //         text-align: end;
+    //     }
+    //     &:nth-child(2) {
+    //         text-align: center;
+    //     }
+    // }
+
+    
+
+
 
     .z_index {
         z-index: 3;

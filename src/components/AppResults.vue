@@ -12,12 +12,15 @@ export default {
 <template>
   <div class="ms_container ms_bg-yellow align-items-center d-flex flex-column">
     <div class="container-fluid">
+      <!-- <div v-if="store.restaurants.length === 0">
+        <h2>Nessun ristorante trovato</h2>
+      </div> -->
 
       <!-- <div class="d-flex justify-content-center">
         <h2 class="text-center ms_badge-dark mt-4">RISTORANTI TROVATI {{ this.store.restaurants.length }}</h2>
       </div> -->
 
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 p-4">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 p-4 justify-content-center">
 
         <router-link class="col g-4 d-flex justify-content-center" v-for="restaurant in this.store.restaurants"
           :to="{ name: 'show', params: { slug: restaurant.slug } }">

@@ -251,10 +251,11 @@ export default {
                     <span v-if="validationErrors.address" class="text-danger">{{ validationErrors.address }}</span>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
-                    
+
                     <button type="submit" class="btn btn-outline-success mt-4 border-2 fw-bold">Procedi al
                       pagamento</button>
-                      <span v-if="validationErrors.foods" class="text-danger align-self-end">{{ validationErrors.foods }}</span>
+                    <span v-if="validationErrors.foods" class="text-danger align-self-end">{{ validationErrors.foods
+                      }}</span>
                   </div>
                 </form>
               </div>
