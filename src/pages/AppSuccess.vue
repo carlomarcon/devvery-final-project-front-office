@@ -3,9 +3,6 @@ export default {
   data() {
     return {};
   },
-  created() {
-    // setTimeout(() => this.$router.push("/"), 3000);
-  },
 };
 </script>
 

@@ -5,7 +5,6 @@ export const store = reactive({
   showModal: false,
   showError: false,
   total: 0,
-  flag: false,
   restaurants: [],
   myTypes: [],
   search: "",

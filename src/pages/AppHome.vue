@@ -44,8 +44,9 @@ export default {
   },
   created() {
     this.store.restaurants = [];
-    this.store.flag = false;
     this.store.search = '';
+    this.store.loadingResults = true;
+    this.store.checkedTypes = [];
   },
 };
 </script>

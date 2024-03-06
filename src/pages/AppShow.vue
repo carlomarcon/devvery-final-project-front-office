@@ -19,13 +19,13 @@ export default {
     axios
       .get(`${this.store.baseUrl}/api/restaurants/` + this.$route.params.slug)
       .then((resp) => {
-        if(resp.data.foods) { 
-          if(resp.data.foods.length > 0) {
+        if (resp.data.foods) {
+          if (resp.data.foods.length > 0) {
             this.result = resp.data.foods;
           } else {
             this.menuEmpty = true;
           }
-          
+
         } else {
           this.$router.push('/not-found');
         }
@@ -86,75 +86,86 @@ export default {
 <template>
   <AppHeader />
   <div v-if="!menuEmpty">
-  <div class="wrapper">
-    
-    <div class="container">
-      <div v-if="result.length != 0" class="d-flex flex-column justify-content-between align-items-center"> 
-        <h1  class="text-center ms_color-dark pb-2 pt-5">{{ result[0].restaurant.name }}</h1>
-        <div class="d-flex gap-5 mb-5 fs-5"> 
-          <p class="ms_color-dark"><i class="fa-solid fa-location-dot"></i> {{ result[0].restaurant.address }}</p>
-          <p class="ms_color-dark"><i class="fa-solid fa-phone-flip"></i> {{ result[0].restaurant.phone }}</p>
+    <div class="wrapper">
+
+      <div class="container">
+        <div v-if="result.length != 0" class="d-flex flex-column justify-content-between align-items-center">
+          <h1 class="text-center ms_color-dark pb-2 pt-5">{{ result[0].restaurant.name }}</h1>
+          <div class="d-flex gap-5 mb-5 fs-5">
+            <p class="ms_color-dark"><i class="fa-solid fa-location-dot"></i> {{ result[0].restaurant.address }}</p>
+            <p class="ms_color-dark"><i class="fa-solid fa-phone-flip"></i> {{ result[0].restaurant.phone }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="row row-cols-1 row-cols-sm-2 g-4 position-relative">
-        <div v-for="item in result" class="col">
+        <div class="mt-5 d-flex flex-wrap">
+          <div class="me-4">
+            <p class="badge bg-warning rounded-pill px-3 border me-1"><i class="fa-solid fa-bread-slice"></i></p><span class="fw-bold">Piatto per Celiaci</span>
+          </div>
+          <div>
+            <p class="badge bg-success rounded-pill px-3 border me-1"><i class="fa-solid fa-seedling"></i></p><span class="fw-bold">Piatto per Vegani</span>
+          </div>
+          
+        </div>
 
-          <div class="card hover-zoom border-0 ms_bg-dark h-100 rounded-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img v-if="item.cover_image" :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
-                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" :alt="`Immagine di ${item.name}`">
-                <img v-else src="../assets/images/noimg.png"
-                  class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="Immagine non presente">
-                  
-                <div class="card-img-overlay">
-                  <p v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
-                      class="fa-solid fa-bread-slice"></i></p>
-                  <p v-if="item.vegan === 1" class="badge bg-success rounded-pill px-3 border"><i
-                      class="fa-solid fa-seedling"></i></p>
-                </div>
-              </div>
-              <div class="col-lg-8 ">
-                <div class="card-body">
-                  <h5 class="card-title text-light">{{ item.name }}</h5>
-                  <p class="card-text ms_description text-light">{{ item.description }}</p>
-                  <p class="card-text text-light">{{ item.price }} €</p>
-                </div>
-                <div class="text-end">
-                  <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i
-                      class="fa-solid fa-plus"></i></button>
-                </div>
+        <div class="row row-cols-1 row-cols-sm-2 g-4 position-relative">
+          <div v-for="item in result" class="col">
 
+            <div class="card hover-zoom border-0 ms_bg-dark h-100 rounded-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img v-if="item.cover_image" :src="`http://127.0.0.1:8000/storage/${item.cover_image}`"
+                    class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" :alt="`Immagine di ${item.name}`">
+                  <img v-else src="../assets/images/noimg.png"
+                    class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="Immagine non presente">
+
+                  <div class="card-img-overlay">
+                    <p v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
+                        class="fa-solid fa-bread-slice"></i></p>
+                    <p v-if="item.vegan === 1" class="badge bg-success rounded-pill px-3 border"><i
+                        class="fa-solid fa-seedling"></i></p>
+                  </div>
+                </div>
+                <div class="col-lg-8 ">
+                  <div class="card-body">
+                    <h5 class="card-title text-light">{{ item.name }}</h5>
+                    <p class="card-text ms_description text-light">{{ item.description }}</p>
+                    <p class="card-text text-light">{{ item.price }} €</p>
+                  </div>
+                  <div class="text-end">
+                    <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i
+                        class="fa-solid fa-plus"></i></button>
+                  </div>
+
+                </div>
               </div>
             </div>
+
           </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <transition class="text-center ms_modal-text" name="fade">
+      <div v-if="store.showModal || store.showError" :class="store.showModal ? 'modal-correct' : 'modal-error'"
+        class="active d-flex modal align-items-center justify-content-center">
+        <div v-if="store.showModal" class="modal-content text-white p-5">
+
+          <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>
 
         </div>
+        <div v-if="store.showError"
+          class="err-content text-center p-5 d-flex flex-row justify-content-center position-relative align-items-center">
+
+          <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
+              class="fa-solid fa-x"></i></button>
+
+          <p class="fs-3">Non puoi ordinare da due ristoranti diversi!</p>
+        </div>
+
       </div>
-    </div>
+    </transition>
   </div>
-
-  <transition class="text-center ms_modal-text" name="fade">
-    <div v-if="store.showModal || store.showError" :class="store.showModal ? 'modal-correct' : 'modal-error'"
-      class="active d-flex modal align-items-center justify-content-center">
-      <div v-if="store.showModal" class="modal-content text-white p-5">
-
-        <p class="fs-5"><strong class="ms_color-yellow p-1 fs-4">{{ nameProduct }}</strong> aggiunto al carrello!</p>
-
-      </div>
-      <div v-if="store.showError"
-        class="err-content text-center p-5 d-flex flex-row justify-content-center position-relative align-items-center">
-
-        <button type="button" class="btn ms_btn-red position-absolute top-0 end-0" @click="close"><i
-            class="fa-solid fa-x"></i></button>
-
-        <p class="fs-3">Non puoi ordinare da due ristoranti diversi!</p>
-      </div>
-      
-    </div>
-  </transition>
-</div>
   <div v-else class="m-5 p-5">
     <h2 class="text-center">Il ristorante non dispone ancora di un menù</h2>
   </div>

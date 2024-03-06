@@ -183,7 +183,7 @@ export default {
 <template>
   <div class="overflow-y-auto">
     <AppHeader />
-    <div class="position-relative">
+    <div class="wrapper position-relative">
       <div class="ms-container container my-5">
         <h3 class="mb-4">Dettagli di consegna</h3>
         <div class="row mb-5 ms_wave">
@@ -262,6 +262,21 @@ export default {
             </div>
           </div>
           <div v-else class="col-lg-8 col-md-12">
+            <div v-if="!loading" class="card fs-5">
+              <div class="card-header">
+                Dettagli Cliente
+              </div>
+              <div class="card-body d-flex justify-content-around flex-column flex-md-row">
+                <div>
+                  <p><span class="fw-bold">Nome:</span> {{ first_name }}</p>
+                  <p><span class="fw-bold">Cognome:</span> {{ last_name }}</p>
+                </div>
+                <div>
+                  <p><span class="fw-bold">Telefono:</span> {{ phone }}</p>
+                  <p><span class="fw-bold">Indirizzo:</span> {{ address }}</p>
+                </div>
+              </div>
+            </div>
             <div class="dropin">
               <div id="dropin-container"></div>
               <button v-if="paid" @click="handlePayment" class="btn btn-outline-success border-2 fw-bold">Effettua il
@@ -301,12 +316,8 @@ export default {
   }
 }
 
-.position-relative {
+.wrapper {
   min-height: 70vh;
-}
-
-.dropin {
-  margin-top: -32px;
 }
 
 .ex-10-icon {
