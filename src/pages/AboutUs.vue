@@ -58,6 +58,7 @@ export default {
                 <h2 class="fw-bolder mt-5">Unisciti a noi in questa avventura culinaria.</h2>
                 <h2 class="fw-bolder">Con Devvery, ogni pasto è un'esperienza da gustare.</h2>
             </div>
+            <p class="text-end fw-bold mt-5">Il team di Devvery: Carlo Marcon, Davide Santambrogio, Riccardo Andreazza, Salvatore Bevilacqua, Valerio Perria</p>
         </div>
     </div>
     <AppFooter />
@@ -75,7 +76,7 @@ export default {
         display: block;
         transform: rotate(180deg);
         z-index: 9;
-        bottom: -5%;
+        bottom: -90px;
         left: 0;
         background-size: cover;
         background-repeat: no-repeat;
