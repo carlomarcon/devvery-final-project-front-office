@@ -119,9 +119,9 @@ export default {
                     class="img-fluid rounded-start-3 w-100 h-100 object-fit-cover" alt="Immagine non presente">
 
                   <div class="card-img-overlay">
-                    <p v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
+                    <p title="Celiaco" v-if="item.celiac === 1" class="badge bg-warning rounded-pill px-3 border me-2"><i
                         class="fa-solid fa-bread-slice"></i></p>
-                    <p v-if="item.vegan === 1" class="badge bg-success rounded-pill px-3 border"><i
+                    <p title="Vegano" v-if="item.vegan === 1" class="badge bg-success rounded-pill px-3 border"><i
                         class="fa-solid fa-seedling"></i></p>
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export default {
                     <p class="card-text text-light">{{ item.price }} €</p>
                   </div>
                   <div class="text-end">
-                    <button @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i
+                    <button :title="`Aggiungi ${item.name}`" @click="addtoCart(item)" class="btn ms_btn-yellow position-absolute bottom-0 end-0"><i
                         class="fa-solid fa-plus"></i></button>
                   </div>
 
