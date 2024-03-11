@@ -304,12 +304,12 @@ export default {
     width: 100%;
     background-image: url(../assets/images/main/onda_white.png);
     content: '';
-    height: 80px;
+    height: 90px;
     position: absolute;
     display: block;
     transform: rotate(180deg);
     z-index: 9;
-    bottom: -74px;
+    bottom: -90px;
     left: 0%;
     background-size: cover;
     background-repeat: no-repeat;
